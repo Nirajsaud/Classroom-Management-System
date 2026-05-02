@@ -22,13 +22,13 @@
             <span class="logo">pathshala</span>
         </div>
         <div class="nav-center">
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
+            <a href="${pageContext.request.contextPath}/home">Home</a>
+            <a href="${pageContext.request.contextPath}/about">About Us</a>
+            <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
         </div>
         <div class="nav-right">
-            <a href="login.jsp" class="login-link">Log In</a>
-            <a href="signup.jsp" class="btn btn-outline">Join for Free</a>
+            <a href="${pageContext.request.contextPath}/login" class="login-link">Log In</a>
+            <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
         </div>
     </nav>
 
@@ -240,9 +240,9 @@
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
-                <a href="#">Home</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
+                <a href="${pageContext.request.contextPath}/home">Home</a>
+                <a href="${pageContext.request.contextPath}/about">About Us</a>
+                <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
             </div>
             <div class="footer-links">
                 <h4>Our Offering</h4>
