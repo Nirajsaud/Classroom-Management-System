@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-page: #ffffff;
+  --bg-card: #f3f4f6;
+  --black: #111111;
+  --gray-text: #4b5563;
+  --navy: #1e3a8a;
+  --navy-hover: #1e40af;
+  --orange-link: #d97706;
+  --orange-link-hover: #b45309;
+  --pink-icon-bg: #fce7f3;
+  --pink-icon: #e63a6e;
+  --glow: rgba(239, 68, 68, 0.25);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.denied-card {
+  background-color: #ffffff;
+  border-radius: 1.75rem;
+  padding: 3.1rem 2.6rem 2.4rem;
+  max-width: 460px;
+  width: min(95%, 460px);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+
+  /* Soft pink glow */
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.75),
+    0 22px 80px rgba(239, 68, 68, 0.16),
+    0 4px 16px rgba(15, 23, 42, 0.08);
+
+  animation: fadeIn 0.5s ease both;
+}
+
+/* Lock icon */
+.icon-wrap {
+  width: 52px;
+  height: 52px;
+  background-color: var(--pink-icon-bg);
+  border-radius: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  animation: fadeInUp 0.45s ease 0.1s both;
+}
+
+.icon-wrap svg {
+  width: 26px;
+  height: 26px;
+  color: var(--pink-icon);
+}
+
+/* Heading */
+.denied-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 0.6rem;
+  animation: fadeInUp 0.45s ease 0.15s both;
+}
+
+/* Subtext */
+.denied-desc {
+  font-size: 0.975rem;
+  font-weight: 400;
+  color: var(--gray-text);
+  line-height: 1.55;
+  margin-bottom: 1.6rem;
+  animation: fadeInUp 0.45s ease 0.2s both;
+}
+
+/* Return button */
+.btn-return {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-width: 220px;
+  padding: 0.95rem 2.1rem;
+  background-color: var(--navy);
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  margin: 0 0 1.1rem;
+  align-self: center;
+  animation: fadeInUp 0.45s ease 0.25s both;
+  box-shadow: 0 6px 18px rgba(30, 58, 138, 0.22);
+}
+
+.error-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.contact-link {
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-return:hover {
+  background-color: var(--navy-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(30, 58, 138, 0.4);
+}
+
+.btn-return:active {
+  transform: translateY(0);
+}
+
+.btn-return .arrow {
+  font-size: 1.05rem;
+}
+
+/* Contact link */
+.contact-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--orange-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  animation: fadeInUp 0.45s ease 0.3s both;
+}
+
+.contact-link:hover {
+  color: var(--orange-link-hover);
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
