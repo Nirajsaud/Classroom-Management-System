@@ -1,0 +1,52 @@
+# =============================================
+# Maven compiled output
+# Everyone compiles this locally themselves
+# =============================================
+target/
+
+# =============================================
+# Eclipse IDE personal settings
+# Every teammate has their own, do not share
+# =============================================
+.settings/
+.classpath
+.project
+*.launch
+.factorypath
+
+# =============================================
+# Uploaded files (stored locally on each machine)
+# Too large for Git, and personal to each machine
+# =============================================
+src/main/webapp/uploads/
+
+# =============================================
+# Compiled Java class files
+# =============================================
+*.class
+
+# =============================================
+# Packaged output files
+# =============================================
+*.war
+*.jar
+*.ear
+
+# =============================================
+# Log files
+# =============================================
+*.log
+logs/
+
+# =============================================
+# Database credentials
+# Never push passwords to GitHub
+# =============================================
+db.properties
+config.properties
+
+# =============================================
+# OS generated files
+# =============================================
+.DS_Store
+Thumbs.db
