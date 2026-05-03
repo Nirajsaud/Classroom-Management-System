@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+@font-face {
+    font-family: 'Ananda Namaste';
+    src: url('fonts/AnandaNamaste.ttf') format('truetype');
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f6f8fb;
+    background-image: 
+        radial-gradient(at 20% 20%, rgba(190, 205, 235, 0.7) 0px, transparent 50%),
+        radial-gradient(at 80% 30%, rgba(245, 218, 168, 0.7) 0px, transparent 50%),
+        radial-gradient(at 80% 80%, rgba(200, 230, 240, 0.7) 0px, transparent 50%),
+        radial-gradient(at 20% 80%, rgba(247, 230, 210, 0.7) 0px, transparent 50%);
+    padding: 20px;
+}
+
+.logo-container {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 10px 35px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.logo-text {
+    font-family: 'Ananda Namaste', sans-serif;
+    font-size: 2.2rem;
+    color: #111;
+}
+
+.login-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+}
+
+.card-header h2 { font-size: 1.5rem; color: #1a1a2e; margin-bottom: 8px; }
+.card-header p { font-size: 0.85rem; color: #6b7280; margin-bottom: 32px; }
+
+.input-group { margin-bottom: 24px; }
+.label-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+label { font-size: 0.7rem; font-weight: 700; color: #1a1a2e; }
+
+.forgot-link { font-size: 0.7rem; color: #263f82; text-decoration: none; font-weight: 600; }
+
+.input-wrapper { position: relative; width: 100%; }
+.input-wrapper i.icon-left { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #9ca3af; }
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 45px;
+    background-color: #f3f6fb;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.input-wrapper input:focus { background-color: #ffffff; border-color: #263f82; }
+
+.login-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: #263f82;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-footer { margin-top: 35px; text-align: center; }
+.card-footer p { font-size: 0.85rem; color: #6b7280; }
+.contact-link { color: #263f82; text-decoration: none; font-weight: 600; }
+
+@media (max-width: 480px) { .login-card { padding: 30px 20px; } }

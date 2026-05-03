@@ -1,0 +1,219 @@
+:root {
+    --bg-light: #F8FAFC;
+    --primary-blue: #1E3A8A;
+    --accent-blue: #38BDF8;
+    --accent-orange: #F39126;
+    --text-main: #1A1A1A;
+    --text-muted: #64748B;
+}
+
+@font-face {
+    font-family: 'Ananda Namaste';
+    src: url('../fonts/ananda-namaste.ttf') format('truetype');
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* Navbar Styling */
+.main-nav {
+    background: #FFF;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 0 4rem;
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pathshala-logo {
+    font-family: 'Ananda Namaste', cursive;
+    font-size: 2rem;
+    color: #000;
+}
+
+.center-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #94A3B8;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.nav-link.active, .nav-link:hover {
+    color: var(--primary-blue);
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.bell-icon { font-size: 1.4rem; color: #333; cursor: pointer; }
+
+.v-divider { width: 1px; height: 35px; background: #CBD5E1; }
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    background: #E2E8F0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748B;
+}
+
+.logout-btn {
+    text-decoration: none;
+    color: #EF4444;
+    font-weight: 600;
+}
+
+/* Dashboard Content */
+.dashboard-container {
+    max-width: 1300px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.welcome-section h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.teacher-name {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.welcome-section p {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    margin-bottom: 4rem;
+}
+
+/* Feature Cards Grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.feature-card {
+    display: block;
+    background: #FFF;
+    border-radius: 20px;
+    padding: 2.5rem;
+    min-height: 350px;
+    border: 1.5px solid transparent;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.card-blue { border-color: var(--accent-blue); }
+.card-orange { border-color: var(--accent-orange); }
+.card-navy { border-color: var(--primary-blue); }
+
+.feature-card h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.card-divider {
+    height: 1px;
+    width: 100%;
+    background: #E2E8F0;
+    margin-bottom: 2rem;
+}
+
+/* Color specific overrides for dividers to match design */
+.card-blue .card-divider { background: var(--accent-blue); }
+.card-orange .card-divider { background: var(--accent-orange); }
+.card-navy .card-divider { background: var(--primary-blue); }
+
+.card-body h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.card-body p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Notice Board */
+.notice-board {
+    background: #FFF;
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+}
+
+.notice-board h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #475569;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #333;
+    margin-bottom: 3rem;
+}
+
+.notice-item {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    border-left: 4px solid var(--accent-orange);
+}
+
+.timestamp {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+.notice-item p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .main-nav { padding: 0 1.5rem; }
+    .center-links { display: none; } /* Mobile nav logic can go here */
+}
