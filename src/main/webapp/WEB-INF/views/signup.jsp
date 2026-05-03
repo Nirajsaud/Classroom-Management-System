@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pathshala - Sign Up</title>
-    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -29,7 +29,7 @@
                     <p>Please enter your details to continue</p>
                 </div>
 
-                <form action="signup_action.jsp" method="POST">
+                <form action="${pageContext.request.contextPath}/signup" method="post">
                     <!-- Name Input -->
                     <div class="input-group">
                         <label>Name</label>
@@ -66,13 +66,13 @@
                 </form>
 
                 <div class="form-footer">
-                    <p>Trouble Signing Up? <a href="#">Contact Administratior</a></p>
+                    <p>Trouble Signing Up? <a href="${pageContext.request.contextPath}/contact">Contact Administratior</a></p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Logic to show password on focus -->
-    <script src="js/signup.js"></script>
+    <script src="../js/signup.js"></script>
 </body>
 </html>

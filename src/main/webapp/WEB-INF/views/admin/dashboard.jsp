@@ -11,7 +11,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="../css/adminDashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
 </head>
 <body>
 

@@ -7,7 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contact.css">
 </head>
 <body>
     <!-- Navbar (3-Zone Layout) -->
@@ -16,13 +16,13 @@
             <span class="logo">pathshala</span>
         </div>
         <div class="nav-center">
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
+            <a href="${pageContext.request.contextPath}/home">Home</a>
+            <a href="${pageContext.request.contextPath}/about">About Us</a>
+            <a href="${pageContext.request.contextPath}/contact" class="active">Contact Us</a>
         </div>
         <div class="nav-right">
-            <a href="#" class="login-link">Log In</a>
-            <a href="#" class="btn btn-outline">Join for Free</a>
+            <a href="${pageContext.request.contextPath}/login" class="login-link">Log In</a>
+            <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
         </div>
     </nav>
 
@@ -159,9 +159,9 @@
             </div>
             <div class="footer-links">
                 <h4>Nav Bar</h4>
-                <a href="#">Home</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
+                <a href="${pageContext.request.contextPath}/home">Home</a>
+                <a href="${pageContext.request.contextPath}/about">About Us</a>
+                <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
             </div>
             <div class="footer-links">
                 <h4>Our Offering</h4>
