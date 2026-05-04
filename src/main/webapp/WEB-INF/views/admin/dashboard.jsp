@@ -23,11 +23,11 @@
             </div>
             
             <nav class="sidebar-menu">
-                <a href="#" class="menu-item active"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-graduation-cap"></i> Teachers</a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-user-group"></i> Students</a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-pen-nib"></i> Classrooms</a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-file-lines"></i> Report</a>
+                <a href="${pageContext.request.contextPath}/dashboard" class="menu-item active"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+                <a href="${pageContext.request.contextPath}/teachers" class="menu-item"><i class="fa-solid fa-graduation-cap"></i> Teachers</a>
+                <a href="${pageContext.request.contextPath}/students" class="menu-item"><i class="fa-solid fa-user-group"></i> Students</a>
+                <a href="${pageContext.request.contextPath}/classrooms" class="menu-item"><i class="fa-solid fa-pen-nib"></i> Classrooms</a>
+                <a href="${pageContext.request.contextPath}/report" class="menu-item"><i class="fa-solid fa-file-lines"></i> Report</a>
             </nav>
         </aside>
 
@@ -38,7 +38,7 @@
                     <i class="fa-regular fa-bell bell-icon"></i>
                     <div class="v-divider"></div>
                     <div class="profile-box"><i class="fa-solid fa-user"></i></div>
-                    <a href="logout" class="logout-link">Logout</a>
+                    <a href="${pageContext.request.contextPath}/logout" class="logout-link">Logout</a>
                 </div>
             </header>
 

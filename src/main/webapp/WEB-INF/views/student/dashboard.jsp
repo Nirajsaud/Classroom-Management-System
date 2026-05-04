@@ -60,7 +60,7 @@
 
         <!-- Clickable Action Cards -->
         <section class="action-grid">
-            <a href="subjects.jsp" class="card card-subjects">
+            <a href="${pageContext.request.contextPath}/subjects" class="card card-subjects">
                 <div class="card-header">
                     <h2>Subjects</h2>
                 </div>
@@ -69,7 +69,7 @@
                 </div>
             </a>
 
-            <a href="classrooms.jsp" class="card card-classrooms">
+            <a href="${pageContext.request.contextPath}/classrooms" class="card card-classrooms">
                 <div class="card-header">
                     <h2>Classrooms</h2>
                 </div>
@@ -78,7 +78,7 @@
                 </div>
             </a>
 
-            <a href="payments.jsp" class="card card-payments">
+            <a href="${pageContext.request.contextPath}/payments" class="card card-payments">
                 <div class="card-header">
                     <h2>My Payments</h2>
                 </div>

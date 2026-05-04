@@ -31,6 +31,8 @@ public class LoginServlet extends HttpServlet {
         // Ensure this matches the string returned by your service (usually all caps "SUCCESS")
         String status = loginService.authenticate(email, password);
         
+        System.out.println("DEBUG LOGIN STATUS: " + status);
+        
         if ("SUCCESS".equalsIgnoreCase(status)) {
             try {
                 UserModel user = loginService.getUserDetails(email);
