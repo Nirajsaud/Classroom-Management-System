@@ -37,5 +37,28 @@
   </dependencies>
   <build>
     <finalName>Pathshala</finalName>
+    <plugins>
+      <!-- Ensure runtime dependencies are copied into the webapp WEB-INF/lib so Tomcat/Eclipse WTP can see them -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies-to-webapp-lib</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <!-- Copy all runtime/compile dependencies to src/main/webapp/WEB-INF/lib -->
+              <outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/lib</outputDirectory>
+              <includeScope>runtime</includeScope>
+              <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>
