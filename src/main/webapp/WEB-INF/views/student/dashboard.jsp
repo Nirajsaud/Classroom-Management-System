@@ -23,18 +23,19 @@
         </div>
         
         <div class="nav-center">
-            <a href="dashboard.jsp" class="nav-item active">
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-item active">
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
-            <a href="classrooms.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
-            <a href="subjects.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/subjects" class="nav-item">
                 <i class="fa-solid fa-book"></i> Subjects
             </a>
-            <a href="payments.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/payments" class="nav-item">
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
+            
         </div>
         
         <div class="nav-right">
@@ -45,7 +46,7 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
             </div>
-            <a href="logout" class="logout-link">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout" class="logout-link">Logout</a>
         </div>
     </nav>
 
@@ -53,7 +54,7 @@
     <main class="dashboard-container">
         
         <header class="welcome-section">
-            <h1>Welcome Back, <span class="underlined-name">Student Name</span></h1>
+            <h1>Welcome Back, <span class="underlined-name">${user.fullName}</span></h1>
             <p>What would you like to do today?</p>
         </header>
 
