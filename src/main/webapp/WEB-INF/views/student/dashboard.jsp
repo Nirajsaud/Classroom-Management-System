@@ -46,7 +46,7 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
             </div>
-            <a href="${pageContext.request.contextPath}/logout" class="logout-link">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-link">Logout</a>
         </div>
     </nav>
 

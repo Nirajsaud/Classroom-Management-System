@@ -38,7 +38,7 @@
                     <i class="fa-regular fa-bell bell-icon"></i>
                     <div class="v-divider"></div>
                     <div class="profile-box"><i class="fa-solid fa-user"></i></div>
-                    <a href="${pageContext.request.contextPath}/logout" class="logout-link">Logout</a>
+                    <a href="${pageContext.request.contextPath}/logout-user" class="logout-link">Logout</a>
                 </div>
             </header>
 

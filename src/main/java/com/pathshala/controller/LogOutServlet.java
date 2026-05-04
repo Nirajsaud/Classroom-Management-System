@@ -1,6 +1,8 @@
+
 package com.pathshala.controller;
 
 import java.io.IOException;
+
 
 
 import jakarta.servlet.ServletException;
@@ -14,7 +16,7 @@ import com.pathshala.utils.SessionUtil;
 /**
  * Servlet implementation class LogOutServlet
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/logout" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/logout-user" })
 public class LogOutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
