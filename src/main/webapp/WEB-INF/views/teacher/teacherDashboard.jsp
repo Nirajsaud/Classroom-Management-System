@@ -16,27 +16,40 @@
 <body>
 
     <!-- Header / Navbar -->
-    <header class="main-nav">
+     <header class="main-nav">
         <div class="nav-container">
             <div class="logo-area">
                 <span class="pathshala-logo">pathshala</span>
             </div>
-            
+
             <nav class="center-links">
-                <a href="#" class="nav-link active"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
-                <a href="#" class="nav-link"><i class="fa-solid fa-pen-nib"></i> Classrooms</a>
-                <a href="#" class="nav-link"><i class="fa-solid fa-book-open"></i> Teaching Resources</a>
+                <a href="${pageContext.request.contextPath}/teacher/teacherDashboard" class="nav-link">
+                    <i class="fa-solid fa-table-cells-large"></i> Dashboard
+                </a>
+
+                <a href="${pageContext.request.contextPath}/teacher/classroom" class="nav-link active">
+                    <i class="fa-solid fa-pen-nib"></i> Classrooms
+                </a>
+
+                <a href="${pageContext.request.contextPath}/accessDenied" class="nav-link">
+                    <i class="fa-regular fa-bookmark"></i> Subjects
+                </a>
+
+                <a href="${pageContext.request.contextPath}/accessDenied" class="nav-link">
+                    <i class="fa-regular fa-credit-card"></i> Payment
+                </a>
             </nav>
-            
+
             <div class="user-controls">
                 <i class="fa-regular fa-bell bell-icon"></i>
                 <div class="v-divider"></div>
-                <div class="profile-icon"><i class="fa-solid fa-user"></i></div>
-                <a href="logout" class="logout-btn">Logout</a>
+                <div class="profile-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
             </div>
         </div>
     </header>
-
     <main class="dashboard-container">
         <!-- Welcome Section -->
         <section class="welcome-section">
