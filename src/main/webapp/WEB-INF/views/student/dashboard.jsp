@@ -1,121 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathshala | Student Profile</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Pathshala | Student Dashboard</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons: FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/studentProfile.css">
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/studentDashboard.css">
 </head>
 <body>
 
-    <header class="main-nav">
-        <div class="nav-container">
-            <div class="logo-area">
-                <span class="pathshala-logo">pathshala</span>
-            </div>
-
-            <nav class="center-links">
-                <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">
-                    <i class="fa-solid fa-table-cells-large"></i> Dashboard
-                </a>
-
-                <a href="${pageContext.request.contextPath}/student/classrooms" class="nav-link">
-                    <i class="fa-solid fa-pen-nib"></i> Classrooms
-                </a>
-
-                <a href="${pageContext.request.contextPath}/student/subjects" class="nav-link">
-                    <i class="fa-regular fa-bookmark"></i> Subjects
-                </a>
-
-                <a href="${pageContext.request.contextPath}/student/payment" class="nav-link">
-                    <i class="fa-regular fa-credit-card"></i> Payment
-                </a>
-            </nav>
-
-            <div class="user-controls">
-                <i class="fa-regular fa-bell bell-icon"></i>
-
-                <div class="v-divider"></div>
-
-                <a href="${pageContext.request.contextPath}/student/profile" class="profile-icon active-profile">
-                    <i class="fa-solid fa-user"></i>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
-            </div>
+    <!-- Nav Bar: 3-Zone Layout -->
+    <nav class="dash-nav">
+        <div class="nav-left">
+            <span class="logo">pathshala</span>
         </div>
-    </header>
-
-    <main class="profile-page">
-        <h1 class="page-title">Student Profile</h1>
-
-        <form action="${pageContext.request.contextPath}/student/profile" method="post" class="profile-form">
-            <section class="profile-top">
-                <div class="photo-box">
+        
+        <div class="nav-center">
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-item active">
+                <i class="fa-solid fa-table-cells-large"></i> Dashboard
+            </a>
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
+                <i class="fa-solid fa-pen-nib"></i> Classrooms
+            </a>
+            <a href="${pageContext.request.contextPath}/subjects" class="nav-item">
+                <i class="fa-solid fa-book"></i> Subjects
+            </a>
+            <a href="${pageContext.request.contextPath}/payments" class="nav-item">
+                <i class="fa-solid fa-wallet"></i> Payment
+            </a>
+            
+        </div>
+        
+        <div class="nav-right">
+            <div class="action-icons">
+                <i class="fa-regular fa-bell bell-icon"></i>
+                <div class="nav-divider"></div>
+                <div class="profile-box">
                     <i class="fa-solid fa-user"></i>
                 </div>
-
-                <div class="personal-details">
-                    <div class="section-title">
-                        <i class="fa-solid fa-user"></i>
-                        <h2>Personal Details</h2>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fullName">FULL NAME</label>
-                        <input type="text" id="fullName" name="fullName" placeholder="Full name" value="Student Name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phoneNumber">PHONE NUMBER</label>
-                        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone number" value="9800000000">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">EMAIL</label>
-                        <input type="email" id="email" name="email" placeholder="Email" value="student@pathshala.com">
-                    </div>
-                </div>
-            </section>
-
-            <section class="security-section">
-                <div class="section-title">
-                    <i class="fa-solid fa-lock"></i>
-                    <h2>Security</h2>
-                </div>
-
-                <div class="security-grid">
-                    <div class="form-group password-field">
-                        <label for="currentPassword">Password</label>
-                        <input type="password" id="currentPassword" name="currentPassword">
-                    </div>
-
-                    <div class="security-row">
-                        <div class="form-group">
-                            <label for="newPassword">Change Password</label>
-                            <input type="password" id="newPassword" name="newPassword">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" id="confirmPassword" name="confirmPassword">
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <div class="form-actions">
-                <a href="${pageContext.request.contextPath}/dashboard" class="cancel-btn">Cancel Changes</a>
-                <button type="submit" class="save-btn">Save Changes</button>
             </div>
-        </form>
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-link">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-container">
+        
+        <header class="welcome-section">
+            <h1>Welcome Back, <span class="underlined-name">${user.fullName}</span></h1>
+            <p>What would you like to do today?</p>
+        </header>
+
+        <!-- Clickable Action Cards -->
+        <section class="action-grid">
+            <a href="${pageContext.request.contextPath}/subjects" class="card card-subjects">
+                <div class="card-header">
+                    <h2>Subjects</h2>
+                </div>
+                <div class="card-body">
+                    <p>View and access materials status, from the classroom you have paid for.</p>
+                </div>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/classrooms" class="card card-classrooms">
+                <div class="card-header">
+                    <h2>Classrooms</h2>
+                </div>
+                <div class="card-body">
+                    <p>Browse available classroom packages from Grade 4 to 10 and purchase the ones you want to join.</p>
+                </div>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/payments" class="card card-payments">
+                <div class="card-header">
+                    <h2>My Payments</h2>
+                </div>
+                <div class="card-body">
+                    <p>Check your payments expiry date and renew classroom subscriptions before you get locked.</p>
+                </div>
+            </a>
+        </section>
+
+        <!-- Notification Panel -->
+        <section class="notification-panel">
+            <div class="notif-title">
+                <h2>Notification</h2>
+            </div>
+            <div class="notif-content">
+                <!-- Static for now, will be dynamic in backend phase -->
+                <div class="notif-row">
+                    <span class="timestamp">3 Days ago</span>
+                    <p class="message">Rabina lama added a new video to class 5 science</p>
+                </div>
+                <div class="notif-row">
+                    <span class="timestamp">5 Days ago</span>
+                    <p class="message">Rabina lama added a new pdf to class 5 science</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
 </body>

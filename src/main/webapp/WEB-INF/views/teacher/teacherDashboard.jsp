@@ -23,11 +23,11 @@
             </div>
 
             <nav class="center-links">
-                <a href="${pageContext.request.contextPath}/teacher/teacherDashboard" class="nav-link">
+                <a href="${pageContext.request.contextPath}/dashboard" class="nav-link active">
                     <i class="fa-solid fa-table-cells-large"></i> Dashboard
                 </a>
 
-                <a href="${pageContext.request.contextPath}/teacher/classroom" class="nav-link active">
+                <a href="${pageContext.request.contextPath}/teacher/classroom" class="nav-link ">
                     <i class="fa-solid fa-pen-nib"></i> Classrooms
                 </a>
 
