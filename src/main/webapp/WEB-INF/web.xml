@@ -7,11 +7,7 @@
 
     <display-name>Pathshala Web Application</display-name>
 
-    <!-- 
-      NOTE: We are leaving this empty because you are using @WebServlet 
-      annotations in your Java classes. This keeps the project clean 
-      and prevents "Duplicate Mapping" errors.
-    -->
+    
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
