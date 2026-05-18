@@ -211,7 +211,22 @@ a {
 .full-width {
     grid-column: span 2;
 }
+.profile-photo {
+    overflow: hidden;
+    cursor: pointer;
+}
 
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 .form-group label {
     font-size: 0.82rem;
     font-weight: 700;
@@ -332,11 +347,38 @@ a {
         font-size: 2rem;
     }
 
-    .profile-photo {
-        width: 150px;
-        height: 150px;
-    }
+ .profile-photo {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    background: #FFFFFF;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #CBD5E1;
+    font-size: 4.5rem;
+
+    overflow: hidden;
+    position: relative;
+
+    cursor: pointer;
+}
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#placeholderIcon {
+    z-index: 1;
+}
     .form-actions {
         flex-direction: column;
     }

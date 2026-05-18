@@ -49,7 +49,7 @@
         </a>
 
         <div class="error-actions">
-            <a href="${pageContext.request.contextPath}/teacher/teacherContact"
+            <a href="${pageContext.request.contextPath}/contact.jsp"
                class="contact-link">
                 Contact Administration
             </a>

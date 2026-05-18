@@ -1,54 +1,31 @@
-// Wait until the whole HTML page loads first
 document.addEventListener("DOMContentLoaded", function () {
-    const tabButtons = document.querySelectorAll(".tab-btn");
-    const tabContents = document.querySelectorAll(".tab-content");
-	
-	// Loop through every tab button
-    tabButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            const selectedTab = button.getAttribute("data-tab");
+    const openUploadBtn = document.getElementById("openUploadBtn");
+    const cancelUploadBtn = document.getElementById("cancelUploadBtn");
+    const uploadOverlay = document.getElementById("uploadOverlay");
+    const materialFile = document.getElementById("materialFile");
 
-            tabButtons.forEach(function (btn) {
-                btn.classList.remove("active");
-            });
+    if (openUploadBtn && uploadOverlay) {
+        openUploadBtn.addEventListener("click", function () {
+            uploadOverlay.classList.add("active");
+        });
+    }
 
-            tabContents.forEach(function (content) {
-                content.classList.remove("active");
-            });
+    if (cancelUploadBtn && uploadOverlay) {
+        cancelUploadBtn.addEventListener("click", function () {
+            uploadOverlay.classList.remove("active");
+        });
+    }
 
-            button.classList.add("active");
+    if (materialFile) {
+        materialFile.addEventListener("change", function () {
+            const file = materialFile.files[0];
+            const uploadText = document.getElementById("uploadText");
+            const uploadIcon = document.getElementById("uploadIcon");
 
-            const activeContent = document.getElementById(selectedTab);
-            if (activeContent) {
-                activeContent.classList.add("active");
+            if (file && uploadText && uploadIcon) {
+                uploadText.innerHTML = file.name;
+                uploadIcon.style.display = "none";
             }
         });
-    });
-	
-	// Open upload popup/modal when upload button is clicked
-    document.getElementById("openUploadBtn").onclick = function () {
-        document.getElementById("uploadOverlay").classList.add("active");
-    };
-
-    document.getElementById("cancelUploadBtn").onclick = function () {
-        document.getElementById("uploadOverlay").classList.remove("active");
-    };
-
-    document.getElementById("materialFile").onchange = function () {
-        previewFile();
-    };
-});
-
-// Function to show selected file name
-function previewFile() {
-    const fileInput = document.getElementById("materialFile");
-    const fileNameText = document.getElementById("uploadText");
-    const icon = document.getElementById("uploadIcon");
-
-    const file = fileInput.files[0];
-
-    if (file) {
-        fileNameText.innerHTML = file.name;
-        icon.style.display = "none";
     }
-}
+});
