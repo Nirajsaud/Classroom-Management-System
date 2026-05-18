@@ -377,15 +377,18 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     cursor: pointer;
     transition: transform 0.2s;
 }
 
 .user-avatar:hover { transform: scale(1.08); }
 
-.user-avatar svg {
-    width: 55%; height: 55%;
-    color: #6b7280;
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Logout */

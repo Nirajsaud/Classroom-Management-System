@@ -63,6 +63,15 @@
                 <span>Report</span>
             </a>
 
+            <a href="Admin_Contact.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
+                    <path d="M3 8l9 6 9-6"/>
+                    <path d="M12 14v7"/>
+                </svg>
+                <span>Contact</span>
+            </a>
+
         </nav>
     </aside>
 
@@ -172,10 +181,7 @@
             <div class="topbar-divider"></div>
 
             <div class="user-avatar" title="Admin Profile">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                </svg>
+                <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
             </div>
 
             <button type="button" class="logout-btn">Logout</button>
