@@ -9,7 +9,10 @@
     <title>Pathshala | Payment</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/payment.css">
+        <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/notification.css">
 </head>
 <body>
 
@@ -20,21 +23,79 @@
         </div>
 
         <nav class="center-links">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">Dashboard</a>
-            <a href="${pageContext.request.contextPath}/student/classroom" class="nav-link">Classrooms</a>
-            <a href="${pageContext.request.contextPath}/student/subjects" class="nav-link">Subjects</a>
-            <a href="${pageContext.request.contextPath}/student/payment" class="nav-link active">Payment</a>
-        </nav>
-
-        <div class="user-controls">
-            <a href="${pageContext.request.contextPath}/student/profile" class="profile-icon">
-                <i class="fa-solid fa-user"></i>
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">
+                <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+            <a href="${pageContext.request.contextPath}/student/classroom" class="nav-link active">
+                <i class="fa-solid fa-pen-nib"></i> Classrooms
+            </a>
+
+            <a href="${pageContext.request.contextPath}/student/subjects" class="nav-link">
+                <i class="fa-solid fa-book"></i> Subjects
+            </a>
+
+            <a href="${pageContext.request.contextPath}/student/payment" class="nav-link">
+                <i class="fa-solid fa-wallet"></i> Payment
+            </a>
+        </nav>
+<div class="user-controls">
+
+    <div class="bell-wrapper" id="bellWrapper">
+        <button type="button" class="bell-btn" id="bellBtn">
+            <i class="fa-regular fa-bell"></i>
+        </button>
+
+        <c:if test="${not empty noticeList}">
+            <span class="bell-badge" id="bellBadge"></span>
+        </c:if>
+
+        <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-header">
+                <h4>Notifications</h4>
+                <button type="button" class="notif-mark-all" id="markAllRead">
+                    Dismiss all
+                </button>
+            </div>
+
+            <div class="notif-list" id="notifList">
+                <c:choose>
+                    <c:when test="${empty noticeList}">
+                        <div class="notif-footer">
+                            <p>No notifications yet.</p>
+                        </div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <c:forEach var="notice" items="${noticeList}">
+                            <div class="notif-item unread">
+                                <div class="notif-dot"></div>
+
+                                <div class="notif-content">
+                                    <div class="notif-title">${notice.title}</div>
+                                    <div class="notif-text">${notice.content}</div>
+                                    <div class="notif-time">${notice.createdAt}</div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
     </div>
+
+    <div class="v-divider"></div>
+
+    <a href="${pageContext.request.contextPath}/student/profile" class="profile-icon">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+    <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+
+</div>
+</div>
 </header>
+
 
 <main class="payment-page">
 
@@ -83,6 +144,6 @@
     </section>
 
 </main>
-
+<script src="${pageContext.request.contextPath}/js/notification.js"></script>
 </body>
 </html>

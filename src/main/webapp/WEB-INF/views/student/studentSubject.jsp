@@ -27,74 +27,92 @@
 
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/studentSubject.css">
-
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/notification.css">
 </head>
 
 <body>
 
 <header class="main-nav">
-
     <div class="nav-container">
-
         <div class="logo-area">
             <span class="pathshala-logo">pathshala</span>
         </div>
 
         <nav class="center-links">
-
-            <a href="${pageContext.request.contextPath}/dashboard"
-               class="nav-link">
-
-                <i class="fa-solid fa-table-cells-large"></i>
-                Dashboard
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">
+                <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/classroom"
-               class="nav-link">
-
-                <i class="fa-solid fa-pen-nib"></i>
-                Classrooms
+            <a href="${pageContext.request.contextPath}/classroom" class="nav-link ">
+                <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/subjects"
-               class="nav-link active">
-
-                <i class="fa-solid fa-book"></i>
-                Subjects
+            <a href="${pageContext.request.contextPath}/subjects" class="nav-link active">
+                <i class="fa-solid fa-book"></i> Subjects
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/payment"
-               class="nav-link">
-
-                <i class="fa-solid fa-wallet"></i>
-                Payment
+            <a href="${pageContext.request.contextPath}/payment" class="nav-link">
+                <i class="fa-solid fa-wallet"></i> Payment
             </a>
-
         </nav>
+<div class="user-controls">
 
-        <div class="user-controls">
+    <div class="bell-wrapper" id="bellWrapper">
+        <button type="button" class="bell-btn" id="bellBtn">
+            <i class="fa-regular fa-bell"></i>
+        </button>
 
-            <i class="fa-regular fa-bell bell-icon"></i>
+        <c:if test="${not empty noticeList}">
+            <span class="bell-badge" id="bellBadge"></span>
+        </c:if>
 
-            <div class="v-divider"></div>
+        <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-header">
+                <h4>Notifications</h4>
+                <button type="button" class="notif-mark-all" id="markAllRead">
+                    Dismiss all
+                </button>
+            </div>
 
-            <a href="${pageContext.request.contextPath}/student/profile"
-               class="profile-icon">
+            <div class="notif-list" id="notifList">
+                <c:choose>
+                    <c:when test="${empty noticeList}">
+                        <div class="notif-footer">
+                            <p>No notifications yet.</p>
+                        </div>
+                    </c:when>
 
-                <i class="fa-solid fa-user"></i>
-            </a>
+                    <c:otherwise>
+                        <c:forEach var="notice" items="${noticeList}">
+                            <div class="notif-item unread">
+                                <div class="notif-dot"></div>
 
-            <a href="${pageContext.request.contextPath}/logout"
-               class="logout-btn">
-
-                Logout
-            </a>
-
+                                <div class="notif-content">
+                                    <div class="notif-title">${notice.title}</div>
+                                    <div class="notif-text">${notice.content}</div>
+                                    <div class="notif-time">${notice.createdAt}</div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
-
     </div>
 
+    <div class="v-divider"></div>
+
+    <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+    <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+
+</div>
+</div>
 </header>
+
 
 <main class="subject-page">
 
@@ -192,8 +210,8 @@
                                 <h3>${resource.title}</h3>
 
                                 <p>
-                                    ${resource.description}
-                                </p>
+    								${resource.filePath}
+								</p>
 
                             </div>
 
@@ -203,7 +221,7 @@
 
                             <span class="upload-date">
                                 Uploaded:
-                                ${resource.uploadDate}
+                                ${resource.uploadedAt}
                             </span>
 
                             <a href="${pageContext.request.contextPath}/download?file=${resource.filePath}"
@@ -225,6 +243,6 @@
     </section>
 
 </main>
-
+<script src="${pageContext.request.contextPath}/js/notification.js"></script>
 </body>
 </html>
