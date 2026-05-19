@@ -117,7 +117,7 @@
     <section class="top-controls">
 
         <form method="get" action="${pageContext.request.contextPath}/classrooms" class="filters">
->>>>>>> refs/heads/dev/Nischal-backend
+
             <select class="filter-select" name="classId" onchange="this.form.submit()">
                 <option value="0">All Classes</option>
 

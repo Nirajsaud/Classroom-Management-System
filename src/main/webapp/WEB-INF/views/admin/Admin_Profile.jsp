@@ -1,20 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Teachers – Pathshala</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Admin_Teacher.css">
+    <title>Admin Profile – Pathshala</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Admin_Profile.css">
 </head>
 <body>
+
 <div class="app-wrapper">
 
+    <!-- ═══════════════ SIDEBAR ═══════════════ -->
     <aside class="sidebar">
         <div class="sidebar-logo">pathshala</div>
+
         <nav class="sidebar-nav">
+
             <a href="${pageContext.request.contextPath}/dashboard" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="7" height="7" rx="1"/>
@@ -24,13 +26,15 @@
                 </svg>
                 <span>Dashboard</span>
             </a>
-            <a href="${pageContext.request.contextPath}/teachers" class="nav-item active">
+
+            <a href="${pageContext.request.contextPath}/teachers" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                     <path d="M6 12v5c3 3 9 3 12 0v-5"/>
                 </svg>
                 <span>Teachers</span>
             </a>
+
             <a href="${pageContext.request.contextPath}/students" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -39,6 +43,7 @@
                 </svg>
                 <span>Students</span>
             </a>
+
             <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -46,6 +51,7 @@
                 </svg>
                 <span>Classrooms</span>
             </a>
+
             <a href="${pageContext.request.contextPath}/report" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -56,6 +62,7 @@
                 </svg>
                 <span>Report</span>
             </a>
+
             <a href="${pageContext.request.contextPath}/admincontact" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
@@ -64,11 +71,16 @@
                 </svg>
                 <span>Contact</span>
             </a>
+
         </nav>
     </aside>
 
+    <!-- ═══════════════ MAIN ═══════════════ -->
     <div class="main-area">
+
+        <!-- Topbar -->
         <header class="topbar">
+
             <div class="bell-wrapper" id="bellWrapper">
                 <button class="bell-btn" id="bellBtn" title="Notifications" aria-haspopup="true" aria-expanded="false">
                     <svg class="bell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -77,12 +89,14 @@
                     </svg>
                 </button>
                 <span class="bell-badge" id="bellBadge"></span>
+
                 <div class="notif-dropdown" id="notifDropdown" role="menu">
                     <div class="notif-header">
                         <h4>Login Approvals</h4>
                         <button class="notif-mark-all" id="markAllRead">Dismiss all</button>
                     </div>
                     <div class="notif-list" id="notifList">
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -94,6 +108,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -105,6 +120,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -116,6 +132,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -127,6 +144,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -138,6 +156,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="notif-footer" id="notifEmpty" style="display:none;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
@@ -148,61 +167,102 @@
                     </div>
                 </div>
             </div>
+
             <div class="topbar-divider"></div>
-            
+
             <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
 			    <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
 			</a>
 
-            
-            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout-user"
+               class="logout-btn"
+               style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                Logout
+            </a>
+
         </header>
 
+        <!-- ═══════════════ PROFILE CONTENT ═══════════════ -->
         <main class="content-area">
-            <div class="page-header">
-                <div>
-                    <h1 class="page-title-large">Manage Teacher</h1>
-                    <p class="page-subtitle">View and manage faculty information across all Classrooms</p>
-                </div>
-                <a href="${pageContext.request.contextPath}/addteacher" class="add-teacher-btn">+ Add Teacher</a>
-            </div>
 
-            <div class="teachers-overview">
-                <div class="teacher-stat-card">
-                    <span class="teacher-stat-label">Total Faculty</span>
-                    <span class="teacher-stat-value">${totalTeachers}</span>
-                </div>
-            </div>
+            <h1 class="profile-page-title">Admin Profile</h1>
 
-            <section class="teacher-table-card">
-                <div class="table-header-row">
-                    <div>Name</div>
-                    <div>Subject</div>
-                    <div>Email</div>
-                    <div>Phone No.</div>
-                    <div>Action</div>
-                </div>
+            <form class="profile-card"
+                  action="${pageContext.request.contextPath}/admin/updateProfile"
+                  method="post"
+                  enctype="multipart/form-data">
 
-                <c:forEach var="teacher" items="${teachers}">
-                    <div class="teacher-row">
-                        <div class="teacher-name">
-                            <span class="avatar-gray">${fn:substring(teacher.fullName, 0, 1)}</span>
-                            <span>${teacher.fullName}</span>
-                        </div>
-                        <div>${teacher.subject}</div>
-                        <div>${teacher.email}</div>
-                        <div>${teacher.phone}</div>
-                        <div>
-                            <a href="${pageContext.request.contextPath}/teachers/edit?id=${teacher.id}" class="edit-link">Edit</a>
-                        </div>
+                <!-- Left: Photo -->
+                <div class="profile-photo-col">
+                    <div class="profile-photo-wrap">
+                        <img src="${not empty adminPhoto
+                                    ? pageContext.request.contextPath.concat('/').concat(adminPhoto)
+                                    : 'https://via.placeholder.com/160'}"
+                             alt="Admin Photo"
+                             class="profile-photo">
+                        <label class="photo-edit-btn" for="photoInput" title="Change photo">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8
+                                         a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                        </label>
+                        <input type="file" id="photoInput" name="adminPhoto" accept="image/*">
                     </div>
-                </c:forEach>
+                </div>
 
-                <div class="table-pagination" id="teacherPagination"></div>
-            </section>
+                <!-- Right: Form -->
+                <div class="profile-form-col">
+
+                    <div class="profile-section-heading">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span>Personal Details</span>
+                    </div>
+
+                    <div class="profile-fields">
+                        <div class="profile-field-group">
+                            <label class="field-label" for="fullName">FULL NAME</label>
+                            <input class="field-input" type="text" id="fullName"
+                                name="fullName"
+                                placeholder="${user.fullName}"
+                                value="${user.fullName}">
+                        </div>
+                        <div class="profile-field-group">
+                            <label class="field-label" for="phoneNumber">PHONE NUMBER</label>
+                            <input class="field-input" type="tel" id="phoneNumber"
+                                name="phoneNumber"
+                                placeholder="${user.phoneNumber}"
+                                value="${user.phoneNumber}">
+                        </div>
+
+                        <div class="profile-field-group">
+                            <label class="field-label" for="email">EMAIL</label>
+                            <input class="field-input" type="email" id="email"
+                                name="email"
+                                placeholder="${user.email}"
+                                value="${user.email}" readonly>
+                        </div>
+                        
+
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn-cancel-changes" type="reset">Cancel Changes</button>
+                        <button class="btn-save-changes"   type="submit">Save Changes</button>
+                    </div>
+
+                </div>
+            </form>
+
         </main>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/Admin_Teacher.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/Admin_Profile.js"></script>
 </body>
 </html>

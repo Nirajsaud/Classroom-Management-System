@@ -432,3 +432,10 @@ a {
     justify-content: center;
     color: #64748B;
 }
+
+input[readonly] {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    color: #666;
+    cursor: not-allowed;
+}

@@ -81,108 +81,27 @@
 
         <header class="topbar">
 
-            <div class="bell-wrapper" id="bellWrapper">
-                <button class="bell-btn" id="bellBtn" title="Notifications" aria-haspopup="true" aria-expanded="false">
-                    <svg class="bell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-                    </svg>
-                </button>
-                <span class="bell-badge" id="bellBadge"></span>
+				<div class="bell-wrapper">
+					<a href="${pageContext.request.contextPath}/approvals"
+						class="bell-btn" title="Pending Approvals"
+						style="display: flex; align-items: center; text-decoration: none; position: relative;">
+						<svg class="bell-icon" viewBox="0 0 24 24" fill="none"
+							stroke="currentColor" stroke-width="2"
+							style="width: 24px; height: 24px; color: #111827;">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+							<path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg> <c:if
+							test="${pendingCount > 0}">
+							<span class="bell-badge"
+								style="position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; background: #ef4444; border-radius: 50%;"></span>
+						</c:if>
+					</a>
+				</div>
 
-                <div class="notif-dropdown" id="notifDropdown" role="menu">
-                    <div class="notif-header">
-                        <h4>Login Approvals</h4>
-                        <button class="notif-mark-all" id="markAllRead">Dismiss all</button>
-                    </div>
-                    <div class="notif-list" id="notifList">
+				<div class="topbar-divider"></div>
 
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Aarav Sharma</strong> (Class 8) is requesting login access.
-                                </div>
-                                <div class="notif-time">Just now</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Priya Thapa</strong> (Class 6) is requesting login access.
-                                </div>
-                                <div class="notif-time">3 minutes ago</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Rohan Karki</strong> (Class 10) is requesting login access.
-                                </div>
-                                <div class="notif-time">10 minutes ago</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Sita Gurung</strong> (Class 5) is requesting login access.
-                                </div>
-                                <div class="notif-time">25 minutes ago</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Bikash Rai</strong> (Class 9) is requesting login access.
-                                </div>
-                                <div class="notif-time">1 hour ago</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="notif-footer" id="notifEmpty" style="display:none;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
-                        <p>All caught up!</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topbar-divider"></div>
-
-            <div class="user-avatar" title="Admin Profile">
+            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
                 <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
-            </div>
+            </a>
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
 
@@ -195,8 +114,8 @@
                 <div class="stat-card blue">
                     <div class="stat-text">
                         <span class="stat-label">Total Students</span>
-                        <span class="stat-value" data-target="1284" data-prefix="">
-                            <span class="count-target">1,284</span>
+                        <span class="stat-value" data-target="${totalStudents}" data-prefix="">
+                            <span class="count-target">${totalStudents}</span>
                         </span>
                     </div>
                     <div class="stat-icon-wrap">
@@ -210,8 +129,8 @@
                 <div class="stat-card orange">
                     <div class="stat-text">
                         <span class="stat-label">Total Teachers</span>
-                        <span class="stat-value" data-target="72" data-prefix="">
-                            <span class="count-target">72</span>
+                        <span class="stat-value" data-target="${totalTeachers}" data-prefix="">
+                            <span class="count-target">${totalTeachers}</span>
                         </span>
                     </div>
                     <div class="stat-icon-wrap">
@@ -226,8 +145,8 @@
                 <div class="stat-card green">
                     <div class="stat-text">
                         <span class="stat-label">Payment Collected</span>
-                        <span class="stat-value" data-target="452390" data-prefix="Rs ">
-                            <span class="count-target">Rs 4,52,390</span>
+                        <span class="stat-value" data-target="${totalRevenue}" data-prefix="Rs ">
+                            <span class="count-target">Rs ${totalRevenue}</span>
                         </span>
                     </div>
                     <div class="stat-icon-wrap">

@@ -73,6 +73,16 @@
             /* Dismiss after short delay so user sees the confirmation */
             setTimeout(function () { dismissItem(item); }, 900);
 
+            /*
+             * TODO (backend integration):
+             * Send an AJAX POST to your servlet here, e.g.:
+             *
+             * fetch('/pathshala/admin/approveLogin', {
+             *     method: 'POST',
+             *     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+             *     body: 'studentId=' + item.dataset.studentId + '&action=' + action
+             * });
+             */
         }
     });
 
@@ -146,4 +156,5 @@
         if (!span || isNaN(target)) return;
         setTimeout(function () { countUp(span, target, prefix, 1200); }, 300);
     });
+
 })();

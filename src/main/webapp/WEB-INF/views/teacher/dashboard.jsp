@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherDashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/notification.css">
 </head>
 <body>
 
-<header class="main-nav">
+ <header class="main-nav">
     <div class="nav-container">
         <div class="logo-area">
             <span class="pathshala-logo">pathshala</span>
@@ -33,7 +34,6 @@
 
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
-
 
             <a href="${pageContext.request.contextPath}/students" class="nav-link">
                 <i class="fa-solid fa-book-open"></i> Students
@@ -85,26 +85,30 @@
 
             <div class="v-divider"></div>
 
-           <a href="${pageContext.request.contextPath}/profile"
-  		 class="profile-icon">
+            <a href="${pageContext.request.contextPath}/profile"
+   			class="profile-icon">
 
-   		 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-        	 alt="Profile"
-         class="nav-profile-image"
 
-         onerror="this.style.display='none';
+
+   			 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+         		alt="Profile"
+       	 	 class="nav-profile-image"
+
+        	 	onerror="this.style.display='none';
                   this.nextElementSibling.style.display='flex';">
 
-    <div class="default-profile-icon">
-        <i class="fa-solid fa-user"></i>
-    </div>
+    		<div class="default-profile-icon">
+       		 	<i class="fa-solid fa-user"></i>
+   			 </div>
 
-</a>
+			</a>
+
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>
 </header>
+
 <main class="dashboard-container">
 
     <section class="welcome-section">
@@ -206,5 +210,6 @@
 
 </main>
 
+<script src="${pageContext.request.contextPath}/js/notification.js"></script>
 </body>
 </html>

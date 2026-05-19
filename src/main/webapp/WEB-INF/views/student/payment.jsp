@@ -27,15 +27,17 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/classroom" class="nav-link active">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/subjects" class="nav-link">
+            <a href="${pageContext.request.contextPath}/subjects" class="nav-link">
                 <i class="fa-solid fa-book"></i> Subjects
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/payments" class="nav-link">
+
+            <a href="${pageContext.request.contextPath}/payments" class="nav-link">
+
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
         </nav>
@@ -86,7 +88,7 @@
 
     <div class="v-divider"></div>
 
-    <a href="${pageContext.request.contextPath}/student/profile"
+    <a href="${pageContext.request.contextPath}/profile"
    class="profile-icon">
 
     <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
@@ -102,7 +104,7 @@
 
 </a>
 
-    <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+    <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
 
 </div>
 </div>
@@ -135,7 +137,7 @@
             </div>
         </div>
 
-        <form action="${pageContext.request.contextPath}/student/payment" method="post">
+        <form action="${pageContext.request.contextPath}/makepayment" method="post">
 
             <input type="hidden" name="classId" value="${selectedClass.classId}">
             <input type="hidden" name="amountPaid" value="${selectedClass.price}">

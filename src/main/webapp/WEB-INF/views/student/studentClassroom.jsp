@@ -90,26 +90,26 @@
 
     <div class="v-divider"></div>
 
-    <a href="${pageContext.request.contextPath}profile"
-   class="profile-icon">
 
-    <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-         alt="Profile"
-         class="nav-profile-image"
+    		<a href="${pageContext.request.contextPath}/profile" class="profile-icon">
 
-         onerror="this.style.display='none';
-                  this.nextElementSibling.style.display='flex';">
+    			<img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+         			alt="Profile"
+         			class="nav-profile-image"
 
-    <div class="default-profile-icon">
-        <i class="fa-solid fa-user"></i>
-    </div>
+         			onerror="this.style.display='none';
+                  		this.nextElementSibling.style.display='flex';">
 
-</a>
+    		<div class="default-profile-icon">
+        		<i class="fa-solid fa-user"></i>
+   			 </div>
 
-    <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
+			</a>
 
-</div>
-</div>
+    		<a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
+
+		</div>
+		</div>
 </header>
 
 <main class="classroom-page">

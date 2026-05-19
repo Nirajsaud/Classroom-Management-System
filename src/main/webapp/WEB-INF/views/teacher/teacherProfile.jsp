@@ -87,6 +87,7 @@
             <a href="${pageContext.request.contextPath}/profile"
    			class="profile-icon">
 
+
    			 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
          		alt="Profile"
        	 	 class="nav-profile-image"
@@ -99,6 +100,7 @@
    			 </div>
 
 			</a>
+
 
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">

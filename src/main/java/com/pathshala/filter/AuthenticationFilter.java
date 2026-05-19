@@ -9,11 +9,18 @@ import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
+import com.pathshala.model.UserModel;
+import com.pathshala.model.PendingApprovalDTO;
+import com.pathshala.dao.UserDAO;
 import com.pathshala.utils.SessionUtil;
 
-// Only protect the routes that require a login! Add more here as you build them.
-@WebFilter(urlPatterns = {"/dashboard", "/profile", "/settings",})
+@WebFilter(urlPatterns = {
+    "/dashboard", "/profile", "/teachers", 
+    "/students", "/students/view", "/classrooms", 
+    "/report", "/admincontact, /approvals"
+})
 public class AuthenticationFilter extends HttpFilter {
        
     private static final long serialVersionUID = 1L;
@@ -25,21 +32,71 @@ public class AuthenticationFilter extends HttpFilter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        // Check if the session exists and contains your login identifier
-        boolean isLoggedIn = SessionUtil.getAttribute(httpRequest, "user") != null;
+        // 1. Enforce Authentication
+        UserModel user = (UserModel) SessionUtil.getAttribute(httpRequest, "user");
+        boolean isLoggedIn = (user != null);
 
-        if (isLoggedIn) {
-            // User is logged in, allow the request to proceed to the DashboardServlet
-            
-            // Prevent caching so the back button doesn't show sensitive data after logout
-            httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            httpResponse.setHeader("Pragma", "no-cache");
-            httpResponse.setDateHeader("Expires", 0);
-            
-            chain.doFilter(request, response);
-        } else {
-            // User is not logged in, redirect to login page
+        if (!isLoggedIn) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login?error=please_login");
+            return;
         }
+
+        // Prevent browser back-button caching for secure sessions
+        httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        httpResponse.setHeader("Pragma", "no-cache");
+        httpResponse.setDateHeader("Expires", 0);
+
+        String currentURI = httpRequest.getRequestURI();
+        String role = user.getRole().toUpperCase();
+
+        // 2. Centralized Real-time Admin Notifications Injection
+        // Because the filter handles all admin views, we pull requests here once 
+        // to populate the bell panel dynamically across any active path.
+        if ("ADMIN".equals(role)) {
+            UserDAO userDAO = new UserDAO();
+            List<PendingApprovalDTO> pendingApprovals = userDAO.getPendingApprovals();
+            httpRequest.setAttribute("pendingApprovals", pendingApprovals);
+            httpRequest.setAttribute("pendingCount", pendingApprovals.size());
+        }
+
+        // 3. Handle Shared Route Routing (/dashboard)
+        if (currentURI.contains("/dashboard")) {
+            switch (role) {
+                case "ADMIN":
+                    // Pass through to DashboardServlet to compute stats
+                    chain.doFilter(request, response);
+                    break;
+                case "TEACHER":
+                    httpRequest.getRequestDispatcher("/WEB-INF/views/teacher/dashboard.jsp").forward(request, response);
+                    break;
+                case "STUDENT":
+                    httpRequest.getRequestDispatcher("/WEB-INF/views/student/dashboard.jsp").forward(request, response);
+                    break;
+                default:
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/login?error=invalid_role");
+            }
+            return;
+        }
+
+        // 4. Centralized Authorization Guard Rules
+        if (currentURI.contains("/teachers") || currentURI.contains("/report") || 
+            currentURI.contains("/admincontact") || currentURI.contains("/addteacher") || 
+            currentURI.contains("/students/view") || currentURI.contains("/approvals")) {
+            
+            if (!role.equals("ADMIN")) {
+                httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+                return;
+            }
+        }
+
+        if (currentURI.contains("/students")) {
+            if (role.equals("STUDENT")) {
+                httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+                return;
+            }
+        }
+
+        // Allowed to proceed to requested resource servlet paths
+        chain.doFilter(request, response);
     }
 }

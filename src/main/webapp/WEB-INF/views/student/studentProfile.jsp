@@ -213,17 +213,9 @@
                 </div>
 
                 <div class="form-group full-width">
-
-                    <label for="email">
-                        EMAIL ADDRESS
-                    </label>
-
-                    <input type="email"
-                           id="email"
-                           name="email"
-                           value="${user.email}">
-
-                </div>
+						<label for="email">EMAIL ADDRESS</label> <input type="email"
+							id="email" name="email" value="${user.email}" readonly>
+					</div>
 
             </div>
 

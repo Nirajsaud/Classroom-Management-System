@@ -107,7 +107,8 @@
         priceDisplay.textContent = newVal;
         exitEditMode();
 
-        
+        // TODO: Send price update to backend API
+        // Example: POST /api/classrooms/updatePrice with { classroomId, newPrice }
     });
 
     /* Cancel edit */
@@ -124,5 +125,51 @@
         priceEditRow.classList.remove('visible');
         changePriceBtn.style.display = '';
     }
+
+    /* ── Add/Delete Subjects ── */
+    var addSubjectBtn = document.getElementById('addSubjectBtn');
+    var newSubjectInput = document.getElementById('newSubjectInput');
+    var deleteSubjectBtns = document.querySelectorAll('.btn-delete-subject');
+
+    /* Add Subject */
+    addSubjectBtn.addEventListener('click', function () {
+        var subjectName = newSubjectInput.value.trim();
+        
+        if (subjectName === '') {
+            newSubjectInput.style.borderColor = '#ef4444';
+            newSubjectInput.focus();
+            return;
+        }
+        
+        newSubjectInput.style.borderColor = '';
+        
+        // TODO: Send POST request to backend API to add subject
+        // Example: POST /api/classrooms/addSubject with { classroomId, subjectName }
+        // On success: Clear input and refresh subject list
+        
+        newSubjectInput.value = '';
+        newSubjectInput.focus();
+    });
+
+    /* Delete Subject */
+    deleteSubjectBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var subject = btn.getAttribute('data-subject');
+            
+            // TODO: Send DELETE request to backend API to delete subject
+            // Example: DELETE /api/classrooms/deleteSubject with { classroomId, subjectName }
+            // On success: Refresh subject list to show updated data
+            
+            // For now, just remove the button's row for instant feedback
+            btn.closest('.subjects-table-row').style.opacity = '0.5';
+        });
+    });
+
+    /* Allow Enter key to add subject */
+    newSubjectInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            addSubjectBtn.click();
+        }
+    });
 
 })();

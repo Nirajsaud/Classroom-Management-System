@@ -92,7 +92,7 @@
 
     <div class="v-divider"></div>
 
-    <a href="${pageContext.request.contextPath}/student/profile"
+    <a href="${pageContext.request.contextPath}/profile"
    class="profile-icon">
 
     <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
