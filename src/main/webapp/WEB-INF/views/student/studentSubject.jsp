@@ -44,16 +44,30 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/classroom" class="nav-link ">
-                <i class="fa-solid fa-pen-nib"></i> Classrooms
+
+            <a href="${pageContext.request.contextPath}/classrooms"
+               class="nav-link">
+
+                <i class="fa-solid fa-pen-nib"></i>
+                Classrooms
+>>>>>>> refs/heads/dev/Nischal-backend
             </a>
 
-            <a href="${pageContext.request.contextPath}/subjects" class="nav-link active">
-                <i class="fa-solid fa-book"></i> Subjects
+
+            <a href="${pageContext.request.contextPath}/subjects"
+               class="nav-link active">
+
+                <i class="fa-solid fa-book"></i>
+                Subjects
+>>>>>>> refs/heads/dev/Nischal-backend
             </a>
 
-            <a href="${pageContext.request.contextPath}/payment" class="nav-link">
-                <i class="fa-solid fa-wallet"></i> Payment
+            <a href="${pageContext.request.contextPath}/payments"
+               class="nav-link">
+
+                <i class="fa-solid fa-wallet"></i>
+                Payment
+>>>>>>> refs/heads/dev/Nischal-backend
             </a>
         </nav>
 <div class="user-controls">
@@ -75,6 +89,7 @@
                 </button>
             </div>
 
+<<<<<<< HEAD
             <div class="notif-list" id="notifList">
                 <c:choose>
                     <c:when test="${empty noticeList}">
@@ -83,11 +98,13 @@
                         </div>
                     </c:when>
 
+
                     <c:otherwise>
                         <c:forEach var="notice" items="${noticeList}">
                             <div class="notif-item unread">
                                 <div class="notif-dot"></div>
 
+<<<<<<< HEAD
                                 <div class="notif-content">
                                     <div class="notif-title">${notice.title}</div>
                                     <div class="notif-text">${notice.content}</div>
@@ -107,7 +124,7 @@
         <i class="fa-solid fa-user"></i>
     </a>
 
-    <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+    <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
 
 </div>
 </div>

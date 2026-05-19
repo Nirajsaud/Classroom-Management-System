@@ -625,3 +625,181 @@ html, body {
     .stat-row { grid-template-columns: 1fr; }
     .stat-card:nth-child(3) { grid-column: 1; }
 }
+/* ═══════════════ REFINED CONTACT SUBMISSION ═══════════════ */
+
+.submission-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    animation: fade-up 0.4s ease both;
+}
+
+.submission-header {
+    padding-bottom: 0.5rem;
+}
+
+.title-block h1 {
+    font-size: 1.6rem;
+    color: var(--navy);
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+}
+
+.title-block p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Container Structure */
+.submission-card {
+    background: var(--card-bg);
+    border-radius: var(--border-r);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+    border: 1px solid rgba(30, 42, 110, 0.03);
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 850px;
+}
+
+.styled-table th {
+    background: rgba(235, 242, 251, 0.5); 
+    padding: 1.2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(30, 42, 110, 0.06);
+}
+
+/* Rows and Interaction States */
+.styled-table td {
+    padding: 1.2rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+    vertical-align: middle;
+}
+
+.main-row {
+    transition: background-color 0.2s ease;
+}
+
+.main-row:hover {
+    background-color: rgba(235, 242, 251, 0.3);
+}
+
+.main-row.unread {
+    background-color: rgba(37, 99, 235, 0.01);
+}
+
+.main-row.unread .user-name {
+    color: var(--navy);
+    font-weight: 700;
+}
+
+/* Typography elements */
+.date-txt, .user-name { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); }
+.time-txt, .user-email { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+.phone-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    background: rgba(15, 23, 42, 0.05);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+}
+
+.msg-preview {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Expandable Detail Row Engine */
+.detail-row {
+    display: none; /* Default state hidden */
+    background: rgba(235, 242, 251, 0.15);
+}
+
+.detail-row.expanded {
+    display: table-row; /* Dynamic target display rule */
+}
+
+.detail-content {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    animation: fade-up 0.25s ease-out;
+}
+
+.detail-content h5 {
+    font-size: 0.85rem;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.detail-content p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    max-width: 750px;
+}
+
+/* Action Control Elements */
+.text-right { text-align: right; }
+.action-group { display: inline-flex; gap: 0.5rem; }
+
+.tbl-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tbl-btn.toggle-msg-btn { 
+    background: var(--navy); 
+    color: #fff; 
+    min-width: 65px;
+}
+
+.tbl-btn.toggle-msg-btn:hover { 
+    background: var(--blue-accent); 
+}
+
+/* State changes toggled via script styling */
+.main-row.active-row {
+    background-color: rgba(235, 242, 251, 0.4) !important;
+}
+
+.main-row.active-row .toggle-msg-btn {
+    background: rgba(30, 42, 110, 0.1);
+    color: var(--navy);
+}
+
+.tbl-btn.bin-btn { 
+    background: transparent; 
+    color: #ef4444; 
+    border: 1px solid rgba(239, 68, 68, 0.3); 
+}
+
+.tbl-btn.bin-btn:hover { 
+    background: rgba(239, 68, 68, 0.1); 
+}

@@ -13,7 +13,7 @@ import java.io.IOException;
 import com.pathshala.utils.SessionUtil;
 
 // Only protect the routes that require a login! Add more here as you build them.
-@WebFilter(urlPatterns = {"/dashboard", "/profile", "/settings"})
+@WebFilter(urlPatterns = {"/dashboard", "/profile", "/settings",})
 public class AuthenticationFilter extends HttpFilter {
        
     private static final long serialVersionUID = 1L;

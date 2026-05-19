@@ -30,15 +30,15 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/classroom" class="nav-link ">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/subjects" class="nav-link">
+            <a href="${pageContext.request.contextPath}/subjects" class="nav-link">
                 <i class="fa-solid fa-book"></i> Subjects
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/payment" class="nav-link active">
+            <a href="${pageContext.request.contextPath}/payments" class="nav-link active">
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
         </nav>
@@ -49,10 +49,13 @@
             <i class="fa-regular fa-bell"></i>
         </button>
 
+<<<<<<< HEAD
         <c:if test="${not empty noticeList}">
             <span class="bell-badge" id="bellBadge"></span>
         </c:if>
 
+
+<<<<<<< HEAD
         <div class="notif-dropdown" id="notifDropdown">
             <div class="notif-header">
                 <h4>Notifications</h4>
@@ -84,16 +87,17 @@
                     </c:otherwise>
                 </c:choose>
             </div>
+
         </div>
     </div>
 
     <div class="v-divider"></div>
 
-    <a href="${pageContext.request.contextPath}/student/profile" class="profile-icon">
+    <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
         <i class="fa-solid fa-user"></i>
     </a>
 
-    <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+    <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
 
 </div>
 </div>
