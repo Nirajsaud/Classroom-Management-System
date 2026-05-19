@@ -160,9 +160,21 @@
                 <i class="fa-regular fa-bell bell-icon"></i>
                 <div class="v-divider"></div>
 
-                <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
-                    <i class="fa-solid fa-user"></i>
-                </a>
+                <a href="${pageContext.request.contextPath}/profile"
+   					class="profile-icon">
+
+   					 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+         				alt="Profile"
+         				class="nav-profile-image"
+
+         				onerror="this.style.display='none';
+                		  this.nextElementSibling.style.display='flex';">
+
+   				 <div class="default-profile-icon">
+        		<i class="fa-solid fa-user"></i>
+    			</div>
+
+				</a>
 
                 <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
             </div>

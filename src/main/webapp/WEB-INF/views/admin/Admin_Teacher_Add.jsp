@@ -148,7 +148,7 @@
                 </div>
             </div>
             <div class="topbar-divider"></div>
-            <a href="${pageContext.request.contextPath}/adminprofile" class="user-avatar" title="Admin Profile">
+            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
 			    <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
 			</a>
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>

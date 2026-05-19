@@ -1,0 +1,127 @@
+.bell-wrapper {
+    position: relative;
+}
+
+.bell-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    color: #111827;
+    font-size: 1.25rem;
+}
+
+.bell-btn:hover {
+    background: rgba(30, 58, 138, 0.08);
+}
+
+.bell-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 9px;
+    height: 9px;
+    background: #EF4444;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+}
+
+.notif-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 330px;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.14);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px) scale(0.96);
+    transition: 0.2s ease;
+    z-index: 300;
+}
+
+.notif-dropdown.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0) scale(1);
+}
+
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #E2E8F0;
+    background: #F8FAFC;
+}
+
+.notif-header h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #1E3A8A;
+}
+
+.notif-mark-all {
+    border: none;
+    background: none;
+    color: #F39126;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.notif-list {
+    max-height: 340px;
+    overflow-y: auto;
+}
+
+.notif-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #F1F5F9;
+    background: #FFFFFF;
+}
+
+.notif-item.unread {
+    background: #F8FAFC;
+}
+
+.notif-dot {
+    width: 8px;
+    height: 8px;
+    background: #F39126;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.notif-content {
+    flex: 1;
+}
+
+.notif-text {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #111827;
+}
+
+.notif-time {
+    font-size: 0.72rem;
+    color: #64748B;
+    margin-top: 0.3rem;
+}
+
+.notif-item.dismissed {
+    display: none;
+}
+
+.notif-footer {
+    padding: 1.4rem;
+    text-align: center;
+    color: #64748B;
+    font-size: 0.85rem;
+}

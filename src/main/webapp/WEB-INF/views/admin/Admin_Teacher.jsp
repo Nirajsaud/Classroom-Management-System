@@ -150,7 +150,7 @@
             </div>
             <div class="topbar-divider"></div>
             
-            <a href="${pageContext.request.contextPath}/adminprofile" class="user-avatar" title="Admin Profile">
+            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
 			    <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
 			</a>
 
@@ -164,7 +164,7 @@
                     <h1 class="page-title-large">Manage Teacher</h1>
                     <p class="page-subtitle">View and manage faculty information across all Classrooms</p>
                 </div>
-                <a href="${pageContext.request.contextPath}/teachers/add" class="add-teacher-btn">+ Add Teacher</a>
+                <a href="${pageContext.request.contextPath}/addteacher" class="add-teacher-btn">+ Add Teacher</a>
             </div>
 
             <div class="teachers-overview">
