@@ -49,13 +49,12 @@
             <i class="fa-regular fa-bell"></i>
         </button>
 
-<<<<<<< HEAD
         <c:if test="${not empty noticeList}">
             <span class="bell-badge" id="bellBadge"></span>
         </c:if>
 
 
-<<<<<<< HEAD
+
         <div class="notif-dropdown" id="notifDropdown">
             <div class="notif-header">
                 <h4>Notifications</h4>
@@ -93,9 +92,21 @@
 
     <div class="v-divider"></div>
 
-    <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
+    <a href="${pageContext.request.contextPath}/student/profile"
+   class="profile-icon">
+
+    <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+         alt="Profile"
+         class="nav-profile-image"
+
+         onerror="this.style.display='none';
+                  this.nextElementSibling.style.display='flex';">
+
+    <div class="default-profile-icon">
         <i class="fa-solid fa-user"></i>
-    </a>
+    </div>
+
+</a>
 
     <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
 

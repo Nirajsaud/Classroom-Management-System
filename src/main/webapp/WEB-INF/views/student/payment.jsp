@@ -86,9 +86,21 @@
 
     <div class="v-divider"></div>
 
-    <a href="${pageContext.request.contextPath}/student/profile" class="profile-icon">
+    <a href="${pageContext.request.contextPath}/student/profile"
+   class="profile-icon">
+
+    <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+         alt="Profile"
+         class="nav-profile-image"
+
+         onerror="this.style.display='none';
+                  this.nextElementSibling.style.display='flex';">
+
+    <div class="default-profile-icon">
         <i class="fa-solid fa-user"></i>
-    </a>
+    </div>
+
+</a>
 
     <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
 

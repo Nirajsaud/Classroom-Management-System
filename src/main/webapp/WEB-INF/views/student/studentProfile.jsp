@@ -46,7 +46,6 @@
 
                 <i class="fa-solid fa-book"></i>
                 Subjects
->>>>>>> refs/heads/dev/Nischal-backend
             </a>
 
 
@@ -55,7 +54,7 @@
 
                 <i class="fa-solid fa-wallet"></i>
                 Payment
->>>>>>> refs/heads/dev/Nischal-backend
+
             </a>
         </nav>
 <div class="user-controls">
@@ -77,7 +76,7 @@
                 </button>
             </div>
 
-<<<<<<< HEAD
+
             <div class="notif-list" id="notifList">
                 <c:choose>
                     <c:when test="${empty noticeList}">
@@ -91,7 +90,7 @@
                             <div class="notif-item unread">
                                 <div class="notif-dot"></div>
 
-<<<<<<< HEAD
+
                                 <div class="notif-content">
                                     <div class="notif-title">${notice.title}</div>
                                     <div class="notif-text">${notice.content}</div>
@@ -108,10 +107,21 @@
 
     <div class="v-divider"></div>
 
-    <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
-        <i class="fa-solid fa-user"></i>
-    </a>
+<a href="${pageContext.request.contextPath}/student/profile"
+   class="profile-icon">
 
+    <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+         alt="Profile"
+         class="nav-profile-image"
+
+         onerror="this.style.display='none';
+                  this.nextElementSibling.style.display='flex';">
+
+    <div class="default-profile-icon">
+        <i class="fa-solid fa-user"></i>
+    </div>
+
+</a>
     <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
 
 </div>
