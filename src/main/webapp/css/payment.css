@@ -68,7 +68,7 @@ a {
 }
 
 .nav-link:hover,
-.nav-link.active {
+.nav-link {
     color: var(--primary-blue);
 }
 

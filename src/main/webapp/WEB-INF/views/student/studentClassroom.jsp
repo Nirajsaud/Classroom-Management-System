@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/studentClassroom.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/notification.css">
 </head>
 <body>
 
@@ -41,19 +43,73 @@
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
         </nav>
+<div class="user-controls">
 
-        <div class="user-controls">
-            <i class="fa-regular fa-bell bell-icon"></i>
+    <div class="bell-wrapper" id="bellWrapper">
+        <button type="button" class="bell-btn" id="bellBtn">
+            <i class="fa-regular fa-bell"></i>
+        </button>
 
-            <div class="v-divider"></div>
+        <c:if test="${not empty noticeList}">
+            <span class="bell-badge" id="bellBadge"></span>
+        </c:if>
 
-            <a href="${pageContext.request.contextPath}/student/profile" class="profile-icon">
-                <i class="fa-solid fa-user"></i>
-            </a>
+        <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-header">
+                <h4>Notifications</h4>
+                <button type="button" class="notif-mark-all" id="markAllRead">
+                    Dismiss all
+                </button>
+            </div>
 
-            <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+            <div class="notif-list" id="notifList">
+                <c:choose>
+                    <c:when test="${empty noticeList}">
+                        <div class="notif-footer">
+                            <p>No notifications yet.</p>
+                        </div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <c:forEach var="notice" items="${noticeList}">
+                            <div class="notif-item unread">
+                                <div class="notif-dot"></div>
+
+                                <div class="notif-content">
+                                    <div class="notif-title">${notice.title}</div>
+                                    <div class="notif-text">${notice.content}</div>
+                                    <div class="notif-time">${notice.createdAt}</div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
     </div>
+
+    <div class="v-divider"></div>
+
+    <a href="${pageContext.request.contextPath}/profile"
+   class="profile-icon">
+
+    <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+         alt="Profile"
+         class="nav-profile-image"
+
+         onerror="this.style.display='none';
+                  this.nextElementSibling.style.display='flex';">
+
+    <div class="default-profile-icon">
+        <i class="fa-solid fa-user"></i>
+    </div>
+
+</a>
+
+    <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
+
+</div>
+</div>
 </header>
 
 <main class="classroom-page">
@@ -63,7 +119,7 @@
         <p>Browse class packages, search by grade, and purchase access to start learning.</p>
     </section>
 
-    <form method="get" action="${pageContext.request.contextPath}/student/classroom" class="filter-bar">
+    <form method="get" action="${pageContext.request.contextPath}/classroom" class="filter-bar">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
 
@@ -116,7 +172,7 @@
                                 </c:when>
 
                                 <c:otherwise>
-                                    <form method="get" action="${pageContext.request.contextPath}/student/payment">
+                                    <form method="get" action="${pageContext.request.contextPath}/payment">
                                         <input type="hidden" name="classId" value="${classroom.classId}">
 
                                         <button type="submit" class="buy-btn">
@@ -135,6 +191,6 @@
     </section>
 
 </main>
-
+<script src="${pageContext.request.contextPath}/js/notification.js"></script>
 </body>
 </html>
