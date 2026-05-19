@@ -127,7 +127,16 @@ a {
     text-decoration: underline;
     text-underline-offset: 6px;
 }
+.profile-icon {
+    overflow: hidden;
+}
 
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 .welcome-section p {
     font-size: 1.25rem;
     color: #000;
