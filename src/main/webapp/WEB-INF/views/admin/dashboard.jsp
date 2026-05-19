@@ -180,9 +180,9 @@
 
             <div class="topbar-divider"></div>
 
-            <div class="user-avatar" title="Admin Profile">
+            <a href="${pageContext.request.contextPath}/adminprofile" class="user-avatar" title="Admin Profile">
                 <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
-            </div>
+            </a>
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
 
@@ -195,8 +195,8 @@
                 <div class="stat-card blue">
                     <div class="stat-text">
                         <span class="stat-label">Total Students</span>
-                        <span class="stat-value" data-target="1284" data-prefix="">
-                            <span class="count-target">1,284</span>
+                        <span class="stat-value" data-target="${totalStudents}" data-prefix="">
+                            <span class="count-target">${totalStudents}</span>
                         </span>
                     </div>
                     <div class="stat-icon-wrap">
@@ -210,8 +210,8 @@
                 <div class="stat-card orange">
                     <div class="stat-text">
                         <span class="stat-label">Total Teachers</span>
-                        <span class="stat-value" data-target="72" data-prefix="">
-                            <span class="count-target">72</span>
+                        <span class="stat-value" data-target="${totalTeachers}" data-prefix="">
+                            <span class="count-target">${totalTeachers}</span>
                         </span>
                     </div>
                     <div class="stat-icon-wrap">
@@ -226,8 +226,8 @@
                 <div class="stat-card green">
                     <div class="stat-text">
                         <span class="stat-label">Payment Collected</span>
-                        <span class="stat-value" data-target="452390" data-prefix="Rs ">
-                            <span class="count-target">Rs 4,52,390</span>
+                        <span class="stat-value" data-target="${totalRevenue}" data-prefix="Rs ">
+                            <span class="count-target">Rs ${totalRevenue}</span>
                         </span>
                     </div>
                     <div class="stat-icon-wrap">

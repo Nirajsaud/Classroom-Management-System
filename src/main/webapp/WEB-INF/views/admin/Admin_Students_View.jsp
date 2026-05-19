@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Details – Pathshala</title>
-    <link rel="stylesheet" href="../css/Admin_Students.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Admin_Students.css">
 </head>
 <body>
 
@@ -16,7 +17,7 @@
         <div class="sidebar-logo">pathshala</div>
         <nav class="sidebar-nav">
 
-            <a href="Admin_Dashboard.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="7" height="7" rx="1"/>
                     <rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -26,7 +27,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="Admin_Teacher.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/teachers" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                     <path d="M6 12v5c3 3 9 3 12 0v-5"/>
@@ -34,7 +35,7 @@
                 <span>Teachers</span>
             </a>
 
-            <a href="Admin_Student.jsp" class="nav-item active">
+            <a href="${pageContext.request.contextPath}/students" class="nav-item active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
@@ -43,7 +44,7 @@
                 <span>Students</span>
             </a>
 
-            <a href="Admin_Classroom.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                     <polyline points="9 22 9 12 15 12 15 22"/>
@@ -51,7 +52,7 @@
                 <span>Classrooms</span>
             </a>
 
-            <a href="Admin_Report.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/report" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <polyline points="14 2 14 8 20 8"/>
@@ -62,7 +63,7 @@
                 <span>Report</span>
             </a>
 
-            <a href="Admin_Contact.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/admincontact" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
                     <path d="M3 8l9 6 9-6"/>
@@ -168,19 +169,18 @@
 
             <div class="topbar-divider"></div>
 
-            <div class="user-avatar" title="Admin Profile">
-                <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
-            </div>
+            <a href="${pageContext.request.contextPath}/adminprofile" class="user-avatar" title="Admin Profile">
+			    <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
+			</a>
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
-
         </header>
 
         <!-- Content -->
         <main class="content-area">
 
             <div class="form-header">
-                <a href="Admin_Student.jsp" class="btn-cancel">Cancel</a>
+                <a href="${pageContext.request.contextPath}/students" class="btn-cancel">Cancel</a>
                 <h1 class="form-title">Student Details</h1>
             </div>
 
@@ -191,30 +191,26 @@
 
                     <div class="student-form-group">
                         <label>FULL NAME</label>
-                        <input type="text" value="<%= name %>" readonly>
+                        <input type="text" value="${name}" readonly>
                     </div>
                     <div class="student-form-group">
                         <label>EMAIL</label>
-                        <input type="email" value="<%= email %>" readonly>
+                        <input type="email" value="${email}" readonly>
                     </div>
                     <div class="student-form-group">
                         <label>PHONE NUMBER</label>
-                        <input type="text" value="<%= phone %>" readonly>
+                        <input type="text" value="${phone}" readonly>
                     </div>
                 </div>
 
                 <div class="student-details-right">
                     <div class="enrolled-classroom-header">Enrolled Classroom</div>
                     <div class="enrolled-classroom-list">
-                        <%
-                            for (String c : classroomArr) {
-                        %>
-                        <div class="classroom-item"><%= c.trim() %></div>
-                        <%
-                            }
-                        %>
+                        <c:forEach var="classroom" items="${classroomArr}">
+                            <div class="classroom-item">${classroom}</div>
+                        </c:forEach>
                     </div>
-                    <div class="last-login-badge">Last Login : <%= lastLogin %></div>
+                    <div class="last-login-badge">Last Login : ${lastLogin}</div>
                 </div>
 
             </div>
@@ -223,6 +219,6 @@
     </div>
 </div>
 
-<script src="../js/Admin_Students_View.js"></script>
+<script src="${pageContext.request.contextPath}/js/Admin_Students_View.js"></script>
 </body>
 </html>

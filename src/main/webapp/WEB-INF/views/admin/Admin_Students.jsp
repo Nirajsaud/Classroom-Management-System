@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students – Pathshala</title>
+    <title>Student Details – Pathshala</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Admin_Students.css">
 </head>
 <body>
@@ -168,110 +169,56 @@
 
             <div class="topbar-divider"></div>
 
-            <div class="user-avatar" title="Admin Profile">
-                <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
-            </div>
+            <a href="${pageContext.request.contextPath}/adminprofile" class="user-avatar" title="Admin Profile">
+			    <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
+			</a>
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
-                    
         </header>
 
         <!-- Content -->
         <main class="content-area">
 
-            <div class="page-header">
-                <div>
-                    <h1 class="page-title-large">Students Directory</h1>
-                    <p class="page-subtitle">View and manage student accounts across all Classrooms</p>
-                </div>
+            <div class="form-header">
+                <a href="${pageContext.request.contextPath}/students" class="btn-cancel">Cancel</a>
+                <h1 class="form-title">Student Details</h1>
             </div>
 
-            <div class="teachers-overview">
-                <div class="teacher-stat-card">
-                    <span class="teacher-stat-label">Total Registered Students</span>
-                    <span class="teacher-stat-value">4</span>
+            <div class="student-details-container">
+
+                <div class="student-details-left">
+                    <div class="student-avatar-placeholder"></div>
+
+                    <div class="student-form-group">
+                        <label>FULL NAME</label>
+                        <input type="text" value="${name}" readonly>
+                    </div>
+                    <div class="student-form-group">
+                        <label>EMAIL</label>
+                        <input type="email" value="${email}" readonly>
+                    </div>
+                    <div class="student-form-group">
+                        <label>PHONE NUMBER</label>
+                        <input type="text" value="${phone}" readonly>
+                    </div>
                 </div>
+
+                <div class="student-details-right">
+                    <div class="enrolled-classroom-header">Enrolled Classroom</div>
+                    <div class="enrolled-classroom-list">
+                        <c:forEach var="classroom" items="${classroomArr}">
+                            <div class="classroom-item">${classroom}</div>
+                        </c:forEach>
+                    </div>
+                    <div class="last-login-badge">Last Login : ${lastLogin}</div>
+                </div>
+
             </div>
-
-            <section class="teacher-table-card">
-                <div class="filter-row">
-                    <div class="filter-select">
-                        <select>
-                            <option>All Students</option>
-                            <option>Class 4</option>
-                            <option>Class 5</option>
-                            <option>Class 6</option>
-                            <option>Class 7</option>
-                            <option>Class 8</option>
-                            <option>Class 9</option>
-                            <option>Class 10</option>
-                        </select>
-                    </div>
-                    <div class="table-total">Total : 4</div>
-                </div>
-
-                <div class="table-header-row">
-                    <div>Name</div>
-                    <div>Email</div>
-                    <div>Phone No.</div>
-                    <div>Action</div>
-                </div>
-
-                <div class="teacher-row">
-                    <div class="teacher-name"><span class="avatar-gray">S</span><span>Sabin Paudel</span></div>
-                    <div>sabin.paudel@pathshala.edu</div>
-                    <div>9843304801</div>
-                    <div>
-                        <a class="view-link"
-                           href="Admin_Student_View.jsp?name=Sabin+Paudel&email=sabin.paudel%40pathshala.edu&phone=9843304801&classrooms=Class+4,Class+7&lastLogin=2026-05-13%2C+03%3A54+PM">
-                            View
-                        </a>
-                    </div>
-                </div>
-
-                <div class="teacher-row">
-                    <div class="teacher-name"><span class="avatar-gray">N</span><span>Nischal Raj Joshi</span></div>
-                    <div>nischal.joshi@pathshala.edu</div>
-                    <div>9767965747</div>
-                    <div>
-                        <a class="view-link"
-                           href="Admin_Student_View.jsp?name=Nischal+Raj+Joshi&email=nischal.joshi%40pathshala.edu&phone=9767965747&classrooms=Class+5,Class+8&lastLogin=2026-05-12%2C+02%3A15+PM">
-                            View
-                        </a>
-                    </div>
-                </div>
-
-                <div class="teacher-row">
-                    <div class="teacher-name"><span class="avatar-gray">K</span><span>Kritika Basel</span></div>
-                    <div>kritika.basel@pathshala.edu</div>
-                    <div>9765417252</div>
-                    <div>
-                        <a class="view-link"
-                           href="Admin_Student_View.jsp?name=Kritika+Basel&email=kritika.basel%40pathshala.edu&phone=9765417252&classrooms=Class+6,Class+9&lastLogin=2026-05-10%2C+01%3A30+PM">
-                            View
-                        </a>
-                    </div>
-                </div>
-
-                <div class="teacher-row">
-                    <div class="teacher-name"><span class="avatar-gray">N</span><span>Niraj Saud</span></div>
-                    <div>niraj.saud@pathshala.edu</div>
-                    <div>9869357800</div>
-                    <div>
-                        <a class="view-link"
-                           href="Admin_Student_View.jsp?name=Niraj+Saud&email=niraj.saud%40pathshala.edu&phone=9869357800&classrooms=Class+4,Class+7&lastLogin=2026-05-13%2C+03%3A54+PM">
-                            View
-                        </a>
-                    </div>
-                </div>
-
-                <div class="table-pagination" id="studentPagination"></div>
-            </section>
 
         </main>
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/adminDashboard.js"></script>
+<script src="${pageContext.request.contextPath}/js/Admin_Students.js"></script>
 </body>
 </html>

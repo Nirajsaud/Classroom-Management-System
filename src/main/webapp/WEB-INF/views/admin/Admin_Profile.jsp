@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Teacher – Pathshala</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Admin_Teacher.css">
+    <title>Admin Profile – Pathshala</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Admin_Profile.css">
 </head>
 <body>
+
 <div class="app-wrapper">
 
+    <!-- ═══════════════ SIDEBAR ═══════════════ -->
     <aside class="sidebar">
         <div class="sidebar-logo">pathshala</div>
+
         <nav class="sidebar-nav">
+
             <a href="${pageContext.request.contextPath}/dashboard" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="7" height="7" rx="1"/>
@@ -23,13 +26,15 @@
                 </svg>
                 <span>Dashboard</span>
             </a>
-            <a href="${pageContext.request.contextPath}/teachers" class="nav-item active">
+
+            <a href="${pageContext.request.contextPath}/teachers" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                     <path d="M6 12v5c3 3 9 3 12 0v-5"/>
                 </svg>
                 <span>Teachers</span>
             </a>
+
             <a href="${pageContext.request.contextPath}/students" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -38,6 +43,7 @@
                 </svg>
                 <span>Students</span>
             </a>
+
             <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -45,6 +51,7 @@
                 </svg>
                 <span>Classrooms</span>
             </a>
+
             <a href="${pageContext.request.contextPath}/report" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -55,6 +62,7 @@
                 </svg>
                 <span>Report</span>
             </a>
+
             <a href="${pageContext.request.contextPath}/admincontact" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
@@ -63,11 +71,16 @@
                 </svg>
                 <span>Contact</span>
             </a>
+
         </nav>
     </aside>
 
+    <!-- ═══════════════ MAIN ═══════════════ -->
     <div class="main-area">
+
+        <!-- Topbar -->
         <header class="topbar">
+
             <div class="bell-wrapper" id="bellWrapper">
                 <button class="bell-btn" id="bellBtn" title="Notifications" aria-haspopup="true" aria-expanded="false">
                     <svg class="bell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -76,12 +89,14 @@
                     </svg>
                 </button>
                 <span class="bell-badge" id="bellBadge"></span>
+
                 <div class="notif-dropdown" id="notifDropdown" role="menu">
                     <div class="notif-header">
                         <h4>Login Approvals</h4>
                         <button class="notif-mark-all" id="markAllRead">Dismiss all</button>
                     </div>
                     <div class="notif-list" id="notifList">
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -93,6 +108,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -104,6 +120,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -115,6 +132,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -126,6 +144,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
@@ -137,6 +156,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="notif-footer" id="notifEmpty" style="display:none;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
@@ -147,93 +167,101 @@
                     </div>
                 </div>
             </div>
+
             <div class="topbar-divider"></div>
+
             <a href="${pageContext.request.contextPath}/adminprofile" class="user-avatar" title="Admin Profile">
 			    <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
 			</a>
-            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
+
+            <a href="${pageContext.request.contextPath}/logout-user"
+               class="logout-btn"
+               style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                Logout
+            </a>
+
         </header>
 
+        <!-- ═══════════════ PROFILE CONTENT ═══════════════ -->
         <main class="content-area">
-            <div class="form-header">
-                <a href="${pageContext.request.contextPath}/teachers" class="btn-cancel">Cancel</a>
-                <h1 class="form-title">Add New Teacher</h1>
-            </div>
 
-            <div class="form-container">
-                <div class="form-section">
-                    <div class="section-header">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <h1 class="profile-page-title">Admin Profile</h1>
+
+            <form class="profile-card"
+                  action="${pageContext.request.contextPath}/admin/updateProfile"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <!-- Left: Photo -->
+                <div class="profile-photo-col">
+                    <div class="profile-photo-wrap">
+                        <img src="${not empty adminPhoto
+                                    ? pageContext.request.contextPath.concat('/').concat(adminPhoto)
+                                    : 'https://via.placeholder.com/160'}"
+                             alt="Admin Photo"
+                             class="profile-photo">
+                        <label class="photo-edit-btn" for="photoInput" title="Change photo">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8
+                                         a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                        </label>
+                        <input type="file" id="photoInput" name="adminPhoto" accept="image/*">
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="profile-form-col">
+
+                    <div class="profile-section-heading">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
                         </svg>
-                        <h2>Personal Details</h2>
+                        <span>Personal Details</span>
                     </div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" name="fullName" placeholder="Full name">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" name="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label>Subject</label>
-                            <select name="subject">
-                                <option value="">Select Subject</option>
-                                <option>Nepali</option>
-                                <option>English</option>
-                                <option>Science</option>
-                                <option>Math</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="tel" name="phone" placeholder="Phone number">
-                        </div>
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Assign Classroom</label>
-                        <div class="classroom-buttons">
-                            <button type="button" class="classroom-btn" data-grade="4">4</button>
-                            <button type="button" class="classroom-btn" data-grade="5">5</button>
-                            <button type="button" class="classroom-btn" data-grade="6">6</button>
-                            <button type="button" class="classroom-btn" data-grade="7">7</button>
-                            <button type="button" class="classroom-btn" data-grade="8">8</button>
-                            <button type="button" class="classroom-btn" data-grade="9">9</button>
-                            <button type="button" class="classroom-btn" data-grade="10">10</button>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-section">
-                    <div class="section-header">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
-                        <h2>Security</h2>
-                    </div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" placeholder="">
+                    <div class="profile-fields">
+                        <div class="profile-field-group">
+                            <label class="field-label" for="fullName">FULL NAME</label>
+                            <input class="field-input" type="text" id="fullName"
+                                name="fullName"
+                                placeholder="${adminFullNamePlaceholder}"
+                                value="${adminFullName}">
                         </div>
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input type="password" name="confirmPassword" placeholder="">
+                        <div class="profile-field-group">
+                            <label class="field-label" for="phoneNumber">PHONE NUMBER</label>
+                            <input class="field-input" type="tel" id="phoneNumber"
+                                name="phoneNumber"
+                                placeholder="${adminPhonePlaceholder}"
+                                value="${adminPhone}">
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="form-footer">
-                <button class="btn-create">Create Account</button>
-            </div>
+                        <div class="profile-field-group">
+                            <label class="field-label" for="email">EMAIL</label>
+                            <input class="field-input" type="email" id="email"
+                                name="email"
+                                placeholder="${adminEmailPlaceholder}"
+                                value="${adminEmail}">
+                        </div>
+
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn-cancel-changes" type="reset">Cancel Changes</button>
+                        <button class="btn-save-changes"   type="submit">Save Changes</button>
+                    </div>
+
+                </div>
+            </form>
+
         </main>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/Admin_Teacher_Add.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/Admin_Profile.js"></script>
 </body>
 </html>
