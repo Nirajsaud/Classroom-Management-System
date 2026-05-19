@@ -16,6 +16,7 @@ public class DashboardServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+    	
         
         // 1. Get the user from your SessionUtil
         UserModel user = (UserModel) SessionUtil.getAttribute(request, "user");
