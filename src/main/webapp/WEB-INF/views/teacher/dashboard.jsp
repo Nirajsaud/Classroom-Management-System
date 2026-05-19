@@ -56,7 +56,7 @@
     			<i class="fa-solid fa-user fallback-user-icon"></i>
 			</a>
 
-            <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>
 </header>

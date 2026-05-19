@@ -150,7 +150,8 @@
             <div class="user-avatar" title="Admin Profile">
                 <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
             </div>
-            <button type="button" class="logout-btn">Logout</button>
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
+
         </header>
 
         <main class="content-area">
