@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -7,8 +7,6 @@
 }
 
 :root {
-  --bg-page: #ffffff;
-  --bg-card: #f3f4f6;
   --black: #111111;
   --gray-text: #4b5563;
   --navy: #1e3a8a;
@@ -17,11 +15,11 @@
   --orange-link-hover: #b45309;
   --pink-icon-bg: #fce7f3;
   --pink-icon: #e63a6e;
-  --glow: rgba(239, 68, 68, 0.25);
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+  min-height: 100%;
   width: 100%;
 }
 
@@ -31,22 +29,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  padding: 6rem;
 }
+
+/* =========================
+   CARD
+========================= */
 
 .denied-card {
   background-color: #ffffff;
-  border-radius: 1.75rem;
-  padding: 3.1rem 2.6rem 2.4rem;
-  max-width: 460px;
-  width: min(95%, 460px);
-  text-align: left;
+  border-radius: 28px;
+  width: 400px;
+  min-height: 355px;
+  padding: 100px 36px;
+  text-align: center;
+
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
+  align-items: center;
 
-  /* Soft pink glow */
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.75),
     0 22px 80px rgba(239, 68, 68, 0.16),
@@ -55,85 +56,107 @@ body {
   animation: fadeIn 0.5s ease both;
 }
 
-/* Lock icon */
+/* =========================
+   ICON
+========================= */
+
 .icon-wrap {
-  width: 52px;
-  height: 52px;
+  width: 58px;
+  height: 58px;
   background-color: var(--pink-icon-bg);
-  border-radius: 0.6rem;
+  border-radius: 12px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
+
+  margin-bottom: 1.5rem;
+
   animation: fadeInUp 0.45s ease 0.1s both;
 }
 
 .icon-wrap svg {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   color: var(--pink-icon);
 }
 
-/* Heading */
+/* =========================
+   TITLE
+========================= */
+
 .denied-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.45rem;
-  font-weight: 800;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
   color: var(--black);
-  margin-bottom: 0.6rem;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 14px;
+
   animation: fadeInUp 0.45s ease 0.15s both;
 }
 
-/* Subtext */
+/* =========================
+   DESCRIPTION
+========================= */
+
 .denied-desc {
-  font-size: 0.975rem;
+  font-size: 16px;
   font-weight: 400;
   color: var(--gray-text);
-  line-height: 1.55;
-  margin-bottom: 1.6rem;
+  line-height: 1.5;
+  text-align: center;
+
+  max-width: 280px;
+
+  margin-bottom: 32px;
+
   animation: fadeInUp 0.45s ease 0.2s both;
 }
 
-/* Return button */
+/* =========================
+   RETURN BUTTON
+========================= */
+
 .btn-return {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  min-width: 220px;
-  padding: 0.95rem 2.1rem;
+
+  width: 300px;
+  height: 52px;
+
   background-color: var(--navy);
   color: #ffffff;
+
   font-family: 'DM Sans', sans-serif;
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: 500;
+
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
+
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  margin: 0 0 1.1rem;
-  align-self: center;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+
+  margin-bottom: 1rem;
+
   animation: fadeInUp 0.45s ease 0.25s both;
+
   box-shadow: 0 6px 18px rgba(30, 58, 138, 0.22);
-}
-
-.error-actions {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.85rem;
-}
-
-.contact-link {
-  display: inline-block;
-  text-align: center;
 }
 
 .btn-return:hover {
   background-color: var(--navy-hover);
   transform: translateY(-2px);
+
   box-shadow: 0 8px 22px rgba(30, 58, 138, 0.4);
 }
 
@@ -145,13 +168,27 @@ body {
   font-size: 1.05rem;
 }
 
-/* Contact link */
+/* =========================
+   CONTACT LINK
+========================= */
+
+.error-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .contact-link {
-  font-size: 0.875rem;
+  font-size: 15px;
   font-weight: 500;
   color: var(--orange-link);
+
   text-decoration: none;
+
   transition: color 0.2s ease;
+
+  margin-top: 6px;
+
   animation: fadeInUp 0.45s ease 0.3s both;
 }
 
@@ -160,10 +197,18 @@ body {
   text-decoration: underline;
 }
 
-/* Animations */
+/* =========================
+   ANIMATIONS
+========================= */
+
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInUp {
@@ -171,8 +216,30 @@ body {
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 520px) {
+
+  .denied-card {
+    width: 100%;
+    padding: 36px 28px;
+  }
+
+  .denied-title {
+    font-size: 28px;
+  }
+
+  .btn-return {
+    width: 100%;
+  }
+
 }

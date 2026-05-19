@@ -1,0 +1,391 @@
+:root {
+    --bg-light: #F8FAFC;
+    --primary-blue: #1E3A8A;
+    --accent-orange: #F39126;
+    --danger-red: #EF4444;
+    --text-main: #1A1A1A;
+    --text-muted: #64748B;
+    --border-light: #E2E8F0;
+    --input-border: #CBD5E1;
+    --white: #FFFFFF;
+}
+
+@font-face {
+    font-family: 'Ananda Namaste';
+    src: url('../fonts/ananda-namaste.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.main-nav {
+    background: var(--white);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-light);
+    padding: 0 4rem;
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pathshala-logo {
+    font-family: 'Ananda Namaste', cursive;
+    font-size: 2rem;
+    color: #000;
+}
+
+.center-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    color: #94A3B8;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--primary-blue);
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.bell-icon {
+    font-size: 1.4rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.v-divider {
+    width: 1px;
+    height: 35px;
+    background: #CBD5E1;
+}
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    background: #E2E8F0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748B;
+}
+
+.active-profile {
+    color: var(--primary-blue);
+}
+
+.logout-btn {
+    color: var(--danger-red);
+    font-weight: 600;
+}
+
+/* Profile Page */
+.profile-container {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 4rem;
+}
+
+.profile-header {
+    margin-bottom: 3rem;
+}
+
+.profile-header h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.profile-header p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.profile-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 4rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-light);
+}
+
+.profile-photo-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 3rem;
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CBD5E1;
+    font-size: 4.5rem;
+}
+
+.photo-btn {
+    border: none;
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 0.8rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+.profile-form {
+    width: 100%;
+}
+
+.form-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--primary-blue);
+    margin-bottom: 2.2rem;
+}
+
+.form-title h2 {
+    font-size: 1.35rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+.profile-photo {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-group label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #6B7280;
+    margin-bottom: 0.55rem;
+    letter-spacing: 0.4px;
+}
+
+.form-group input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 0 1rem;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    outline: none;
+    background: #FFFFFF;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-blue);
+}
+
+.form-actions {
+    margin-top: 8rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cancel-btn,
+.save-btn {
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.cancel-btn {
+    background: var(--danger-red);
+    color: var(--white);
+}
+
+.save-btn {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-nav {
+        padding: 0 1.5rem;
+    }
+
+    .center-links {
+        gap: 1.2rem;
+    }
+
+    .profile-card {
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 850px) {
+    .main-nav {
+        height: auto;
+        padding: 1rem 1.5rem;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .center-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .user-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .profile-card {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+
+    .profile-photo-area {
+        padding-top: 0;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .form-actions {
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .profile-container {
+        padding: 2rem 1rem;
+    }
+
+    .profile-header h1 {
+        font-size: 2rem;
+    }
+
+ .profile-photo {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    background: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #CBD5E1;
+    font-size: 4.5rem;
+
+    overflow: hidden;
+    position: relative;
+
+    cursor: pointer;
+}
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#placeholderIcon {
+    z-index: 1;
+}
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

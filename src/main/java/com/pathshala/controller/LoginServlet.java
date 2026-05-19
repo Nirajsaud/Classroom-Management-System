@@ -1,6 +1,7 @@
 package com.pathshala.controller;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,6 +31,8 @@ public class LoginServlet extends HttpServlet {
         
         // Ensure this matches the string returned by your service (usually all caps "SUCCESS")
         String status = loginService.authenticate(email, password);
+        
+        System.out.println("DEBUG LOGIN STATUS: " + status);
         
         if ("SUCCESS".equalsIgnoreCase(status)) {
             try {
