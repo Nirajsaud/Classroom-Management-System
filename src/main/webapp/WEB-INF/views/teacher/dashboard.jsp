@@ -42,7 +42,7 @@
         </nav>
 
         <div class="user-controls">
-            <a href="${pageContext.request.contextPath}contact" class="bell-link">
+            <a href="${pageContext.request.contextPath}/contact" class="bell-link">
                 <i class="fa-regular fa-bell bell-icon"></i>
             </a>
 
