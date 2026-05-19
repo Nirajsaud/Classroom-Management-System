@@ -31,11 +31,11 @@
 
 
             <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
->>>>>>> refs/heads/dev/Nischal-backend
+
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-<<<<<<< HEAD
+
             <a href="${pageContext.request.contextPath}/students" class="nav-link">
                 <i class="fa-solid fa-book-open"></i> Students
 
@@ -102,7 +102,7 @@
 
 </a>
 
-            <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>
 </header>

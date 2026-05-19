@@ -90,7 +90,7 @@
 
     <div class="v-divider"></div>
 
-    <a href="${pageContext.request.contextPath}/student/profile"
+    <a href="${pageContext.request.contextPath}profile"
    class="profile-icon">
 
     <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
@@ -106,7 +106,7 @@
 
 </a>
 
-    <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+    <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
 
 </div>
 </div>
@@ -119,7 +119,7 @@
         <p>Browse class packages, search by grade, and purchase access to start learning.</p>
     </section>
 
-    <form method="get" action="${pageContext.request.contextPath}/classroom" class="filter-bar">
+    <form method="get" action="${pageContext.request.contextPath}/classrooms" class="filter-bar">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
 

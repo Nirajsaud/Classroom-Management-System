@@ -29,7 +29,7 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/classroom" class="nav-link active">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
@@ -99,7 +99,7 @@
 			</a>
 
 
-            <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>
 </header>

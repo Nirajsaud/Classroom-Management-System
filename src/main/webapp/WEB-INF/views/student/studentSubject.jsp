@@ -104,7 +104,7 @@
                             <div class="notif-item unread">
                                 <div class="notif-dot"></div>
 
-<<<<<<< HEAD
+
                                 <div class="notif-content">
                                     <div class="notif-title">${notice.title}</div>
                                     <div class="notif-text">${notice.content}</div>
@@ -120,7 +120,7 @@
 
     <div class="v-divider"></div>
 
-<a href="${pageContext.request.contextPath}/student/profile"
+<a href="${pageContext.request.contextPath}/profile"
    class="profile-icon">
 
     <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
@@ -158,7 +158,7 @@
     <section class="top-controls">
 
         <form method="get"
-              action="${pageContext.request.contextPath}/student/subjects"
+              action="${pageContext.request.contextPath}/subjects"
               class="filter-form">
 
             <select class="filter-select"
