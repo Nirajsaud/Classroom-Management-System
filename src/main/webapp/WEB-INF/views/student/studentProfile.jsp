@@ -107,7 +107,7 @@
 
     <div class="v-divider"></div>
 
-<a href="${pageContext.request.contextPath}/student/profile"
+<a href="${pageContext.request.contextPath}/profile"
    class="profile-icon">
 
     <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
@@ -213,17 +213,9 @@
                 </div>
 
                 <div class="form-group full-width">
-
-                    <label for="email">
-                        EMAIL ADDRESS
-                    </label>
-
-                    <input type="email"
-                           id="email"
-                           name="email"
-                           value="${user.email}">
-
-                </div>
+						<label for="email">EMAIL ADDRESS</label> <input type="email"
+							id="email" name="email" value="${user.email}" readonly>
+					</div>
 
             </div>
 

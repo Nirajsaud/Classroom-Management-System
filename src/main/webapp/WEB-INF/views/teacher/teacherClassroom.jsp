@@ -31,11 +31,11 @@
 
 
             <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
->>>>>>> refs/heads/dev/Nischal-backend
+
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-<<<<<<< HEAD
+
             <a href="${pageContext.request.contextPath}/students" class="nav-link">
                 <i class="fa-solid fa-book-open"></i> Students
 
@@ -117,7 +117,7 @@
     <section class="top-controls">
 
         <form method="get" action="${pageContext.request.contextPath}/classrooms" class="filters">
->>>>>>> refs/heads/dev/Nischal-backend
+
             <select class="filter-select" name="classId" onchange="this.form.submit()">
                 <option value="0">All Classes</option>
 
