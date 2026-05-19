@@ -4,23 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Admin Dashboard – Pathshala</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
+    <link rel="stylesheet" href="../css/Admin_Report.css">
 </head>
 <body>
 
 <div class="app-wrapper">
 
+    <!-- ═══════════════ SIDEBAR ═══════════════ -->
     <aside class="sidebar">
         <div class="sidebar-logo">pathshala</div>
 
         <nav class="sidebar-nav">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-item active">
+
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="7" height="7" rx="1"/>
                     <rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -30,7 +27,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/teachers" class="nav-item">
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                     <path d="M6 12v5c3 3 9 3 12 0v-5"/>
@@ -38,7 +35,7 @@
                 <span>Teachers</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/students" class="nav-item">
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
@@ -47,7 +44,7 @@
                 <span>Students</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                     <polyline points="9 22 9 12 15 12 15 22"/>
@@ -55,7 +52,7 @@
                 <span>Classrooms</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/report" class="nav-item">
+            <a href="#" class="nav-item active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <polyline points="14 2 14 8 20 8"/>
@@ -66,7 +63,7 @@
                 <span>Report</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/contact" class="nav-item">
+            <a href="Admin_Contact.html" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
                     <path d="M3 8l9 6 9-6"/>
@@ -74,11 +71,14 @@
                 </svg>
                 <span>Contact</span>
             </a>
+
         </nav>
     </aside>
 
+    <!-- ═══════════════ MAIN ═══════════════ -->
     <div class="main-area">
 
+        <!-- Topbar -->
         <header class="topbar">
 
             <div class="bell-wrapper" id="bellWrapper">
@@ -181,121 +181,113 @@
             <div class="topbar-divider"></div>
 
             <div class="user-avatar" title="Admin Profile">
-                <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
             </div>
 
-            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
+            <button type="button" class="logout-btn">Logout</button>
 
         </header>
 
+        <!-- Content -->
         <main class="content-area">
-
-            <div class="stat-row">
-
-                <div class="stat-card blue">
-                    <div class="stat-text">
-                        <span class="stat-label">Total Students</span>
-                        <span class="stat-value" data-target="1284" data-prefix="">
-                            <span class="count-target">1,284</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title-large">Report Overview</h1>
                 </div>
-
-                <div class="stat-card orange">
-                    <div class="stat-text">
-                        <span class="stat-label">Total Teachers</span>
-                        <span class="stat-value" data-target="72" data-prefix="">
-                            <span class="count-target">72</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="stat-card green">
-                    <div class="stat-text">
-                        <span class="stat-label">Payment Collected</span>
-                        <span class="stat-value" data-target="452390" data-prefix="Rs ">
-                            <span class="count-target">Rs 4,52,390</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-                            <line x1="1" y1="10" x2="23" y2="10"/>
-                        </svg>
-                    </div>
-                </div>
-
+                <button class="download-btn" id="downloadReportBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download Report
+                </button>
             </div>
 
-            <div class="action-grid">
-
-                <a href="${pageContext.request.contextPath}/teachers" class="action-card teal">
-                    <div class="action-title">Manage Teachers</div>
-                    <hr class="action-divider">
-                    <p class="action-body">Add, remove and manage teacher accounts and assign them to subjects across classrooms.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/students" class="action-card purple">
-                    <div class="action-title">Students Directory</div>
-                    <hr class="action-divider">
-                    <p class="action-body">View all registered students, filter by classroom and access individual student profiles.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/classrooms" class="action-card amber">
-                    <div class="action-title">Classroom Directory</div>
-                    <hr class="action-divider">
-                    <p class="action-body">View all classrooms, monitor enrolled student counts, and manage pricing for each grade.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/report" class="action-card emerald">
-                    <div class="action-title">Report Overview</div>
-                    <hr class="action-divider">
-                    <p class="action-body">Track total students, teachers, revenue, payments per classroom and monitor active and pending enrollments.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Students</div>
+                    <div class="stat-value">19572</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Teachers</div>
+                    <div class="stat-value">98</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-value">Rs. 146390000</div>
+                </div>
             </div>
 
+            <div class="report-main-container">
+                <div class="report-table-section">
+                    <h3>Payment Collected Per Classroom</h3>
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>Classroom</th>
+                                <th>No.of Students</th>
+                                <th>Total Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Class 4</td>
+                                <td>210</td>
+                                <td>Rs. 140000</td>
+                            </tr>
+                            <tr>
+                                <td>Class 5</td>
+                                <td>321</td>
+                                <td>Rs. 1650000</td>
+                            </tr>
+                            <tr>
+                                <td>Class 6</td>
+                                <td>97</td>
+                                <td>Rs. 85000</td>
+                            </tr>
+                            <tr>
+                                <td>Class 7</td>
+                                <td>109</td>
+                                <td>Rs. 265000</td>
+                            </tr>
+                            <tr>
+                                <td>Class 8</td>
+                                <td>210</td>
+                                <td>Rs. 19000</td>
+                            </tr>
+                            <tr>
+                                <td>Class 9</td>
+                                <td>328</td>
+                                <td>Rs. 854000</td>
+                            </tr>
+                            <tr>
+                                <td>Class 10</td>
+                                <td>278</td>
+                                <td>Rs. 98000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="report-sidebar">
+                    <div class="report-card">
+                        <div class="card-label">Active Enrollments</div>
+                        <div class="card-value">15809</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="card-label">Pending Enrollments</div>
+                        <div class="card-value">5809</div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/adminDashboard.js"></script>
+<script src="../js/Admin_Report.js"></script>
 </body>
 </html>

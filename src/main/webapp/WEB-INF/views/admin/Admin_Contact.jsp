@@ -4,23 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Admin Dashboard – Pathshala</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
+    <title>Admin_Teacher – Pathshala</title>
+    <link rel="stylesheet" href="../css/Admin_Contact.css">
 </head>
 <body>
 
 <div class="app-wrapper">
 
+    <!-- ═══════════════ SIDEBAR ═══════════════ -->
     <aside class="sidebar">
         <div class="sidebar-logo">pathshala</div>
 
         <nav class="sidebar-nav">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-item active">
+
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="7" height="7" rx="1"/>
                     <rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -30,7 +27,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/teachers" class="nav-item">
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                     <path d="M6 12v5c3 3 9 3 12 0v-5"/>
@@ -38,7 +35,7 @@
                 <span>Teachers</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/students" class="nav-item">
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
@@ -47,7 +44,7 @@
                 <span>Students</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                     <polyline points="9 22 9 12 15 12 15 22"/>
@@ -55,7 +52,7 @@
                 <span>Classrooms</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/report" class="nav-item">
+            <a href="#" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <polyline points="14 2 14 8 20 8"/>
@@ -66,7 +63,7 @@
                 <span>Report</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/contact" class="nav-item">
+            <a href="#" class="nav-item active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
                     <path d="M3 8l9 6 9-6"/>
@@ -74,11 +71,14 @@
                 </svg>
                 <span>Contact</span>
             </a>
+
         </nav>
     </aside>
 
+    <!-- ═══════════════ MAIN ═══════════════ -->
     <div class="main-area">
 
+        <!-- Topbar -->
         <header class="topbar">
 
             <div class="bell-wrapper" id="bellWrapper">
@@ -184,118 +184,99 @@
                 <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
             </div>
 
-            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
+            <button type="button" class="logout-btn">Logout</button>
 
         </header>
+        <div class="submission-container">
+    
+    <div class="submission-header">
+        <div class="title-block">
+            <h1>Contact Submission</h1>
+            <p>Review and manage inquiries sent through the Pathshala platform</p>
+        </div>
+    </div>
 
-        <main class="content-area">
+    <div class="submission-card">
+        <div class="table-wrapper">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th width="15%">Date / Time</th>
+                        <th width="25%">Sender Details</th>
+                        <th width="20%">Phone Number</th>
+                        <th width="25%">Message Snippet</th>
+                        <th width="15%" class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr class="main-row unread">
+                        <td>
+                            <div class="date-txt">18 May 2026</div>
+                            <div class="time-txt">04:15 PM</div>
+                        </td>
+                        <td>
+                            <div class="user-name">Bikash Rai</div>
+                            <div class="user-email">bikash.rai@example.com</div>
+                        </td>
+                        <td><span class="phone-tag">9841234567</span></td>
+                        <td>
+                            <p class="msg-preview">I'm having trouble logging into the Class 9 math portal...</p>
+                        </td>
+                        <td class="text-right">
+                            <div class="action-group">
+                                <button class="tbl-btn toggle-msg-btn" type="button">Open</button>
+                                <button class="tbl-btn bin-btn" type="button" title="Delete Submission">Bin</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="detail-row">
+                        <td colspan="5">
+                            <div class="detail-content">
+                                <h5>Full Message Content:</h5>
+                                <p>I'm having trouble logging into the Class 9 math portal. It keeps throwing a credential error. Can you please reset my password or verify if my account is activated for this term? Cheers.</p>
+                            </div>
+                        </td>
+                    </tr>
 
-            <div class="stat-row">
+                    <tr class="main-row">
+                        <td>
+                            <div class="date-txt">17 May 2026</div>
+                            <div class="time-txt">11:30 AM</div>
+                        </td>
+                        <td>
+                            <div class="user-name">Sita Gurung</div>
+                            <div class="user-email">sita.g@gmail.com</div>
+                        </td>
+                        <td><span class="phone-tag">9800000000</span></td>
+                        <td>
+                            <p class="msg-preview">The user interface updates look spot on! Much cleaner...</p>
+                        </td>
+                        <td class="text-right">
+                            <div class="action-group">
+                                <button class="tbl-btn toggle-msg-btn" type="button">Open</button>
+                                <button class="tbl-btn bin-btn" type="button" title="Delete Submission">Bin</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="detail-row">
+                        <td colspan="5">
+                            <div class="detail-content">
+                                <h5>Full Message Content:</h5>
+                                <p>The user interface updates look spot on! Much cleaner than the older version. The sidebar transitions are smooth and everything feels much snappier. Brilliant work by the engineering division.</p>
+                            </div>
+                        </td>
+                    </tr>
 
-                <div class="stat-card blue">
-                    <div class="stat-text">
-                        <span class="stat-label">Total Students</span>
-                        <span class="stat-value" data-target="1284" data-prefix="">
-                            <span class="count-target">1,284</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
-                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-                <div class="stat-card orange">
-                    <div class="stat-text">
-                        <span class="stat-label">Total Teachers</span>
-                        <span class="stat-value" data-target="72" data-prefix="">
-                            <span class="count-target">72</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="stat-card green">
-                    <div class="stat-text">
-                        <span class="stat-label">Payment Collected</span>
-                        <span class="stat-value" data-target="452390" data-prefix="Rs ">
-                            <span class="count-target">Rs 4,52,390</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-                            <line x1="1" y1="10" x2="23" y2="10"/>
-                        </svg>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="action-grid">
-
-                <a href="${pageContext.request.contextPath}/teachers" class="action-card teal">
-                    <div class="action-title">Manage Teachers</div>
-                    <hr class="action-divider">
-                    <p class="action-body">Add, remove and manage teacher accounts and assign them to subjects across classrooms.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/students" class="action-card purple">
-                    <div class="action-title">Students Directory</div>
-                    <hr class="action-divider">
-                    <p class="action-body">View all registered students, filter by classroom and access individual student profiles.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/classrooms" class="action-card amber">
-                    <div class="action-title">Classroom Directory</div>
-                    <hr class="action-divider">
-                    <p class="action-body">View all classrooms, monitor enrolled student counts, and manage pricing for each grade.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/report" class="action-card emerald">
-                    <div class="action-title">Report Overview</div>
-                    <hr class="action-divider">
-                    <p class="action-body">Track total students, teachers, revenue, payments per classroom and monitor active and pending enrollments.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-            </div>
-
-        </main>
+</div>
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/adminDashboard.js"></script>
+<script src="../js/Admin_Contact.js"></script>
 </body>
 </html>

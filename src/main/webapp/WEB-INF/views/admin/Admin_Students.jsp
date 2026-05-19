@@ -4,23 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Admin Dashboard – Pathshala</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
+    <title>Students – Pathshala</title>
+    <link rel="stylesheet" href="../css/Admin_Students.css">
 </head>
 <body>
 
 <div class="app-wrapper">
 
+    <!-- ═══════════════ SIDEBAR ═══════════════ -->
     <aside class="sidebar">
         <div class="sidebar-logo">pathshala</div>
-
         <nav class="sidebar-nav">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-item active">
+
+            <a href="Admin_Dashboard.jsp" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="7" height="7" rx="1"/>
                     <rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -30,7 +26,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/teachers" class="nav-item">
+            <a href="Admin_Teacher.jsp" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                     <path d="M6 12v5c3 3 9 3 12 0v-5"/>
@@ -38,7 +34,7 @@
                 <span>Teachers</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/students" class="nav-item">
+            <a href="Admin_Student.jsp" class="nav-item active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
@@ -47,7 +43,7 @@
                 <span>Students</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
+            <a href="Admin_Classroom.jsp" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                     <polyline points="9 22 9 12 15 12 15 22"/>
@@ -55,7 +51,7 @@
                 <span>Classrooms</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/report" class="nav-item">
+            <a href="Admin_Report.jsp" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <polyline points="14 2 14 8 20 8"/>
@@ -66,7 +62,7 @@
                 <span>Report</span>
             </a>
 
-            <a href="${pageContext.request.contextPath}/contact" class="nav-item">
+            <a href="Admin_Contact.jsp" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
                     <path d="M3 8l9 6 9-6"/>
@@ -74,13 +70,15 @@
                 </svg>
                 <span>Contact</span>
             </a>
+
         </nav>
     </aside>
 
+    <!-- ═══════════════ MAIN ═══════════════ -->
     <div class="main-area">
 
+        <!-- Topbar -->
         <header class="topbar">
-
             <div class="bell-wrapper" id="bellWrapper">
                 <button class="bell-btn" id="bellBtn" title="Notifications" aria-haspopup="true" aria-expanded="false">
                     <svg class="bell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -100,9 +98,7 @@
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Aarav Sharma</strong> (Class 8) is requesting login access.
-                                </div>
+                                <div class="notif-text"><strong>Aarav Sharma</strong> (Class 8) is requesting login access.</div>
                                 <div class="notif-time">Just now</div>
                                 <div class="notif-actions">
                                     <button class="btn-approve">Approve</button>
@@ -114,9 +110,7 @@
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Priya Thapa</strong> (Class 6) is requesting login access.
-                                </div>
+                                <div class="notif-text"><strong>Priya Thapa</strong> (Class 6) is requesting login access.</div>
                                 <div class="notif-time">3 minutes ago</div>
                                 <div class="notif-actions">
                                     <button class="btn-approve">Approve</button>
@@ -128,9 +122,7 @@
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Rohan Karki</strong> (Class 10) is requesting login access.
-                                </div>
+                                <div class="notif-text"><strong>Rohan Karki</strong> (Class 10) is requesting login access.</div>
                                 <div class="notif-time">10 minutes ago</div>
                                 <div class="notif-actions">
                                     <button class="btn-approve">Approve</button>
@@ -142,9 +134,7 @@
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Sita Gurung</strong> (Class 5) is requesting login access.
-                                </div>
+                                <div class="notif-text"><strong>Sita Gurung</strong> (Class 5) is requesting login access.</div>
                                 <div class="notif-time">25 minutes ago</div>
                                 <div class="notif-actions">
                                     <button class="btn-approve">Approve</button>
@@ -156,9 +146,7 @@
                         <div class="notif-item unread" role="menuitem">
                             <div class="notif-dot"></div>
                             <div class="notif-content">
-                                <div class="notif-text">
-                                    <strong>Bikash Rai</strong> (Class 9) is requesting login access.
-                                </div>
+                                <div class="notif-text"><strong>Bikash Rai</strong> (Class 9) is requesting login access.</div>
                                 <div class="notif-time">1 hour ago</div>
                                 <div class="notif-actions">
                                     <button class="btn-approve">Approve</button>
@@ -184,118 +172,105 @@
                 <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
             </div>
 
-            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
-
+            <button type="button" class="logout-btn">Logout</button>
         </header>
 
+        <!-- Content -->
         <main class="content-area">
 
-            <div class="stat-row">
-
-                <div class="stat-card blue">
-                    <div class="stat-text">
-                        <span class="stat-label">Total Students</span>
-                        <span class="stat-value" data-target="1284" data-prefix="">
-                            <span class="count-target">1,284</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title-large">Students Directory</h1>
+                    <p class="page-subtitle">View and manage student accounts across all Classrooms</p>
                 </div>
-
-                <div class="stat-card orange">
-                    <div class="stat-text">
-                        <span class="stat-label">Total Teachers</span>
-                        <span class="stat-value" data-target="72" data-prefix="">
-                            <span class="count-target">72</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="stat-card green">
-                    <div class="stat-text">
-                        <span class="stat-label">Payment Collected</span>
-                        <span class="stat-value" data-target="452390" data-prefix="Rs ">
-                            <span class="count-target">Rs 4,52,390</span>
-                        </span>
-                    </div>
-                    <div class="stat-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-                            <line x1="1" y1="10" x2="23" y2="10"/>
-                        </svg>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="action-grid">
-
-                <a href="${pageContext.request.contextPath}/teachers" class="action-card teal">
-                    <div class="action-title">Manage Teachers</div>
-                    <hr class="action-divider">
-                    <p class="action-body">Add, remove and manage teacher accounts and assign them to subjects across classrooms.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/students" class="action-card purple">
-                    <div class="action-title">Students Directory</div>
-                    <hr class="action-divider">
-                    <p class="action-body">View all registered students, filter by classroom and access individual student profiles.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/classrooms" class="action-card amber">
-                    <div class="action-title">Classroom Directory</div>
-                    <hr class="action-divider">
-                    <p class="action-body">View all classrooms, monitor enrolled student counts, and manage pricing for each grade.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
-                <a href="${pageContext.request.contextPath}/report" class="action-card emerald">
-                    <div class="action-title">Report Overview</div>
-                    <hr class="action-divider">
-                    <p class="action-body">Track total students, teachers, revenue, payments per classroom and monitor active and pending enrollments.</p>
-                    <span class="action-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </span>
-                </a>
-
+            <div class="teachers-overview">
+                <div class="teacher-stat-card">
+                    <span class="teacher-stat-label">Total Registered Students</span>
+                    <span class="teacher-stat-value">4</span>
+                </div>
             </div>
+
+            <section class="teacher-table-card">
+                <div class="filter-row">
+                    <div class="filter-select">
+                        <select>
+                            <option>All Students</option>
+                            <option>Class 4</option>
+                            <option>Class 5</option>
+                            <option>Class 6</option>
+                            <option>Class 7</option>
+                            <option>Class 8</option>
+                            <option>Class 9</option>
+                            <option>Class 10</option>
+                        </select>
+                    </div>
+                    <div class="table-total">Total : 4</div>
+                </div>
+
+                <div class="table-header-row">
+                    <div>Name</div>
+                    <div>Email</div>
+                    <div>Phone No.</div>
+                    <div>Action</div>
+                </div>
+
+                <div class="teacher-row">
+                    <div class="teacher-name"><span class="avatar-gray">S</span><span>Sabin Paudel</span></div>
+                    <div>sabin.paudel@pathshala.edu</div>
+                    <div>9843304801</div>
+                    <div>
+                        <a class="view-link"
+                           href="Admin_Student_View.jsp?name=Sabin+Paudel&email=sabin.paudel%40pathshala.edu&phone=9843304801&classrooms=Class+4,Class+7&lastLogin=2026-05-13%2C+03%3A54+PM">
+                            View
+                        </a>
+                    </div>
+                </div>
+
+                <div class="teacher-row">
+                    <div class="teacher-name"><span class="avatar-gray">N</span><span>Nischal Raj Joshi</span></div>
+                    <div>nischal.joshi@pathshala.edu</div>
+                    <div>9767965747</div>
+                    <div>
+                        <a class="view-link"
+                           href="Admin_Student_View.jsp?name=Nischal+Raj+Joshi&email=nischal.joshi%40pathshala.edu&phone=9767965747&classrooms=Class+5,Class+8&lastLogin=2026-05-12%2C+02%3A15+PM">
+                            View
+                        </a>
+                    </div>
+                </div>
+
+                <div class="teacher-row">
+                    <div class="teacher-name"><span class="avatar-gray">K</span><span>Kritika Basel</span></div>
+                    <div>kritika.basel@pathshala.edu</div>
+                    <div>9765417252</div>
+                    <div>
+                        <a class="view-link"
+                           href="Admin_Student_View.jsp?name=Kritika+Basel&email=kritika.basel%40pathshala.edu&phone=9765417252&classrooms=Class+6,Class+9&lastLogin=2026-05-10%2C+01%3A30+PM">
+                            View
+                        </a>
+                    </div>
+                </div>
+
+                <div class="teacher-row">
+                    <div class="teacher-name"><span class="avatar-gray">N</span><span>Niraj Saud</span></div>
+                    <div>niraj.saud@pathshala.edu</div>
+                    <div>9869357800</div>
+                    <div>
+                        <a class="view-link"
+                           href="Admin_Student_View.jsp?name=Niraj+Saud&email=niraj.saud%40pathshala.edu&phone=9869357800&classrooms=Class+4,Class+7&lastLogin=2026-05-13%2C+03%3A54+PM">
+                            View
+                        </a>
+                    </div>
+                </div>
+
+                <div class="table-pagination" id="studentPagination"></div>
+            </section>
 
         </main>
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/adminDashboard.js"></script>
+<script src="../js/Admin_Students.js"></script>
 </body>
 </html>
