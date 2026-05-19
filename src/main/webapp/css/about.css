@@ -302,37 +302,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
     margin-bottom: 52px;
 }
 
-.hero-stats {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
 
-.stat-item { text-align: center; }
-
-.stat-number {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 48px;
-    font-weight: 400;
-    color: var(--clr-primary);
-    line-height: 1;
-    margin-bottom: 6px;
-}
-
-.stat-label {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--clr-text-muted);
-}
-
-.stat-divider {
-    width: 1px;
-    height: 48px;
-    background: var(--clr-border);
-}
 
 /* =============================================
    PLATFORM SECTION
@@ -523,7 +493,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 
 .team-img {
     width: 100%;
-    height: 200px;
+    height: 320px;
     background: linear-gradient(135deg, #B72B2C 0%, #8B1A1A 100%);
     display: flex;
     align-items: center;
@@ -535,7 +505,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 /* Actual photo — fills the slot, crops to fit */
 img.team-photo {
     width: 100%;
-    height: 200px;
+    height: 320px;
     object-fit: cover;
     object-position: center top;
     display: block;

@@ -44,22 +44,7 @@
             <div class="hero-badge reveal">Our Story</div>
             <h1 class="hero-heading reveal">Learning,<br><em>your way.</em></h1>
             <p class="hero-text reveal">Pathshala is an online e-learning and classroom management platform built to bridge the gap between traditional school education and the modern digital world — connecting students, teachers, and administrators in one seamless space.</p>
-            <div class="hero-stats reveal">
-                <div class="stat-item">
-                    <span class="stat-number" data-target="7">0</span>
-                    <span class="stat-label">Grade Levels</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="3">0</span>
-                    <span class="stat-label">User Roles</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="1">0</span>
-                    <span class="stat-label">Unified Platform</span>
-                </div>
-            </div>
+
         </div>
     </section>
 

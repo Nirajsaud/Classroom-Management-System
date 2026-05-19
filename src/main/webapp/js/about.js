@@ -80,41 +80,7 @@
         revealObserver.observe(el);
     });
 
-    /* ---- Animated stat counters ---- */
-    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
 
-    function animateCounter(el) {
-        const target = parseInt(el.getAttribute('data-target'), 10);
-        const duration = 1200; // ms
-        const start = performance.now();
-
-        function tick(now) {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
-            const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.round(eased * target);
-            if (progress < 1) requestAnimationFrame(tick);
-        }
-
-        requestAnimationFrame(tick);
-    }
-
-    const counterObserver = new IntersectionObserver(
-        function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.5 }
-    );
-
-    statNumbers.forEach(function (el) {
-        counterObserver.observe(el);
-    });
 
     /* ---- Team card tilt on mouse move (subtle 3-D feel) ---- */
     const teamCards = document.querySelectorAll('.team-card');
