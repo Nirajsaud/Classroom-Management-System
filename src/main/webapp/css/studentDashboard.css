@@ -1,7 +1,15 @@
-/* Variables */
+/* ==========================================================================
+   Variables & Core Document Layout
+   ========================================================================== */
 :root {
+    --bg-light: #F8FAFC;
     --primary-blue: #1E3A8A;
-    --accent-orange: #F39126;
+    --accent-orange: #F59E0B;
+    --danger-red: #EF4444;
+    --text-main: #111827;
+    --text-muted: #64748B;
+    --border-light: #E2E8F0;
+    --white: #FFFFFF;
     --bg-grey: #F3F4F6;
     --text-dark: #111827;
     --text-light: #6B7280;
@@ -12,95 +20,135 @@
     src: url('../fonts/ananda-namaste.ttf') format('truetype');
 }
 
-/* Global Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
 body { 
     font-family: 'Inter', sans-serif; 
-    background-color: var(--bg-grey); 
-    color: var(--text-dark);
-    min-height: 900px;
+    background-color: #F3F4F6; 
+    color: #111827;
+    min-height: 100vh;
 }
 
-/* Navbar Styling */
-.dash-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
-    padding: 10px 80px;
-    height: 70px; /* Slimmer height as requested */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.logo {
-    font-family: 'Ananda Namaste', cursive;
-    font-size: 28px;
-    color: #000;
-}
-
-.nav-center {
-    display: flex;
-    gap: 35px;
-}
-
-.nav-item {
+a {
     text-decoration: none;
-    color: #9CA3AF;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-    transition: color 0.2s;
+    color: inherit;
 }
 
-.nav-item.active { color: var(--primary-blue); }
-.nav-item:hover { color: var(--accent-orange); }
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 25px;
+/* ==========================================================================
+   Standardized Navigation Bar (Forced Global Overrides)
+   ========================================================================== */
+header.main-nav {
+    display: flex !important;
+    background: #FFFFFF !important;
+    height: 58px !important;
+    align-items: center !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    padding: 0 4rem !important;
+    width: 100% !important;
+    position: relative !important;
+    box-sizing: border-box !important;
 }
 
-.action-icons {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+header.main-nav .nav-container {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
 }
 
-.bell-icon { font-size: 22px; cursor: pointer; color: #374151; }
-.nav-divider { width: 1px; height: 35px; background: #E5E7EB; }
-
-.profile-box {
-    width: 42px;
-    height: 42px;
-    background: #E5E7EB;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: #6B7280;
+header.main-nav .pathshala-logo {
+    font-family: 'Ananda Namaste', cursive !important;
+    font-size: 1.65rem !important;
+    color: #000000 !important;
+    font-weight: normal !important;
 }
 
-.logout-link {
-    color: #EF4444;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
+header.main-nav .center-links {
+    display: flex !important;
+    gap: 1.6rem !important;
+    align-items: center !important;
 }
 
-/* Main Layout */
+header.main-nav .nav-link {
+    color: #94A3B8 !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    text-decoration: none !important;
+    transition: color 0.2s !important;
+}
+
+header.main-nav .nav-link.active,
+header.main-nav .nav-link:hover {
+    color: #1E3A8A !important;
+}
+
+header.main-nav .user-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.1rem !important;
+}
+
+header.main-nav .bell-icon {
+    font-size: 1.25rem !important;
+    color: #111111 !important;
+    cursor: pointer !important;
+}
+
+header.main-nav .v-divider {
+    width: 1px !important;
+    height: 30px !important;
+    background: #E2E8F0 !important;
+    display: block !important;
+}
+
+header.main-nav .profile-icon {
+    width: 38px !important;
+    height: 36px !important;
+    background: #D9D9D9 !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #64748B !important;
+    font-size: 1.1rem !important;
+}
+
+header.main-nav .logout-btn {
+    color: #EF4444 !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+/* ==========================================================================
+   Dashboard Content Layout
+   ========================================================================== */
 .dashboard-container {
-    width: 1440px;
-    max-width: 90%;
+    max-width: 1100px;
     margin: 50px auto;
+    padding: 0 2rem;
 }
 
-.welcome-section h1 { font-size: 32px; font-weight: 600; }
-.underlined-name { border-bottom: 2px solid #000; }
-.welcome-section p { color: var(--text-light); margin-top: 8px; }
+.welcome-section h1 { 
+    font-size: 32px; 
+    font-weight: 600; 
+}
+
+.underlined-name { 
+    border-bottom: 2px solid #000; 
+}
+
+.welcome-section p { 
+    color: #6B7280; 
+    margin-top: 8px; 
+}
 
 /* Action Cards Grid */
 .action-grid {
@@ -118,6 +166,7 @@ body {
     border-radius: 20px;
     text-align: center;
     border: 1.5px solid transparent;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -137,35 +186,78 @@ body {
 .card-subjects .card-header { border-color: #38BDF8; }
 
 .card-classrooms { border-color: #FFEDD5; }
-.card-classrooms .card-header { border-color: var(--accent-orange); }
+.card-classrooms .card-header { border-color: #F59E0B; }
 
 .card-payments { border-color: #D1D5DB; }
-.card-payments .card-header { border-color: var(--primary-blue); }
+.card-payments .card-header { border-color: #1E3A8A; }
 
-.card-body p { font-size: 14px; color: #4B5563; line-height: 1.6; }
+.card-body p { 
+    font-size: 14px; 
+    color: #4B5563; 
+    line-height: 1.6; 
+}
 
 /* Notifications Section */
 .notification-panel {
     background: #fff;
     border-radius: 25px;
     padding: 50px;
-    min-height: 400px;
+    min-height: 250px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .notif-title {
-    border-bottom: 1px solid #374151;
+    border-bottom: 1px solid #E5E7EB;
     margin-bottom: 30px;
     padding-bottom: 15px;
     text-align: center;
 }
 
-.notif-title h2 { font-size: 30px; font-weight: 500; letter-spacing: 1px; }
+.notif-title h2 { 
+    font-size: 26px; 
+    font-weight: 600; 
+    letter-spacing: 0.5px; 
+}
 
 .notif-row {
     margin-bottom: 25px;
     padding-left: 15px;
-    border-left: 5px solid var(--accent-orange);
+    border-left: 5px solid #F59E0B;
 }
 
-.timestamp { font-size: 12px; color: #9CA3AF; display: block; margin-bottom: 4px; }
-.message { font-size: 16px; font-weight: 500; }
+.timestamp { 
+    font-size: 12px; 
+    color: #9CA3AF; 
+    display: block; 
+    margin-bottom: 4px; 
+}
+
+.message { 
+    font-size: 16px; 
+    font-weight: 500; 
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 900px) {
+    header.main-nav {
+        height: auto !important;
+        padding: 1rem 1.5rem !important;
+    }
+
+    header.main-nav .nav-container {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+
+    header.main-nav .center-links,
+    header.main-nav .user-controls {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+}

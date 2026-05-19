@@ -28,7 +28,7 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/teacher/classroom" class="nav-link">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
@@ -42,13 +42,13 @@
         </nav>
 
         <div class="user-controls">
-            <a href="${pageContext.request.contextPath}/teacher/contact" class="bell-link">
+            <a href="${pageContext.request.contextPath}contact" class="bell-link">
                 <i class="fa-regular fa-bell bell-icon"></i>
             </a>
 
             <div class="v-divider"></div>
 
-			<a href="${pageContext.request.contextPath}/teacher/profile" class="profile-icon">
+			<a href="${pageContext.request.contextPath}/profile" class="profile-icon">
     			<img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
         		 alt="Profile_Image"
         		 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -81,7 +81,7 @@
     </section>
 
     <section class="cards-grid">
-        <a href="${pageContext.request.contextPath}/teacher/classroom" class="feature-card card-blue">
+        <a href="${pageContext.request.contextPath}/classrooms" class="feature-card card-blue">
             <h2>Classroom</h2>
             <div class="card-divider"></div>
             <div class="card-body">
@@ -99,7 +99,7 @@
             </div>
         </a>
 
-        <a href="${pageContext.request.contextPath}/accessDenied" class="feature-card card-orange">
+        <a href="${pageContext.request.contextPath}/students" class="feature-card card-orange">
             <h2>Students</h2>
             <div class="card-divider"></div>
             <div class="card-body">
@@ -117,7 +117,7 @@
             </div>
         </a>
 
-        <a href="${pageContext.request.contextPath}/teacher/classroom" class="feature-card card-navy">
+        <a href="${pageContext.request.contextPath}/classrooms" class="feature-card card-navy">
             <h2>Study Resources</h2>
             <div class="card-divider"></div>
             <div class="card-body">

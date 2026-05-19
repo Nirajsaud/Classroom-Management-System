@@ -27,15 +27,15 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/teacher/classroom" class="nav-link active">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-            <a href="${pageContext.request.contextPath}/teacher/subjects" class="nav-link">
+            <a href="${pageContext.request.contextPath}/accessDenied" class="nav-link">
                 <i class="fa-regular fa-bookmark"></i> Subjects
             </a>
 
-            <a href="${pageContext.request.contextPath}/teacher/payment" class="nav-link">
+            <a href="${pageContext.request.contextPath}/accessDenied" class="nav-link">
                 <i class="fa-regular fa-credit-card"></i> Payment
             </a>
         </nav>
@@ -54,7 +54,7 @@
 <main class="classroom-page">
 
     <section class="top-controls">
-        <form method="get" action="${pageContext.request.contextPath}/teacher/classroom" class="filters">
+        <form method="get" action="${pageContext.request.contextPath}/classrooms" class="filters">
             <select class="filter-select" name="classId" onchange="this.form.submit()">
                 <option value="0">All Classes</option>
 

@@ -29,15 +29,15 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/classroom" class="nav-link active">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/subjects" class="nav-link">
+            <a href="${pageContext.request.contextPath}/subjects" class="nav-link">
                 <i class="fa-solid fa-book"></i> Subjects
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/payment" class="nav-link">
+            <a href="${pageContext.request.contextPath}/payments" class="nav-link">
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
         </nav>

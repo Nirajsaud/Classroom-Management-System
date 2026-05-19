@@ -27,11 +27,11 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/teacher/classroom" class="nav-link">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-            <a href="${pageContext.request.contextPath}/accessDenied" class="nav-link">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
                 <i class="fa-solid fa-book-open"></i> Teaching Resources
             </a>
         </nav>
@@ -45,7 +45,7 @@
                 <i class="fa-solid fa-user"></i>
             </div>
 
-            <a href="${pageContext.request.contextPath}/logout" class="logout-btn">
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">
                 Logout
             </a>
         </div>
