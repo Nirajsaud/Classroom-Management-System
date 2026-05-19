@@ -35,21 +35,21 @@
                 Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/classroom"
+            <a href="${pageContext.request.contextPath}/classrooms"
                class="nav-link">
 
                 <i class="fa-solid fa-pen-nib"></i>
                 Classrooms
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/subjects"
+            <a href="${pageContext.request.contextPath}/subjects"
                class="nav-link">
 
                 <i class="fa-solid fa-book"></i>
                 Subjects
             </a>
 
-            <a href="${pageContext.request.contextPath}/student/payment"
+            <a href="${pageContext.request.contextPath}/payments"
                class="nav-link">
 
                 <i class="fa-solid fa-wallet"></i>
@@ -64,13 +64,13 @@
 
             <div class="v-divider"></div>
 
-            <a href="${pageContext.request.contextPath}/student/profile"
+            <a href="${pageContext.request.contextPath}/profile"
                class="profile-icon active-profile">
 
                 <i class="fa-solid fa-user"></i>
             </a>
 
-            <a href="${pageContext.request.contextPath}/logout"
+            <a href="${pageContext.request.contextPath}/logout-user"
                class="logout-btn">
 
                 Logout
@@ -117,7 +117,7 @@
 
         </div>
 
-        <form action="${pageContext.request.contextPath}/student/profile"
+        <form action="${pageContext.request.contextPath}/profile"
               method="post"
               enctype="multipart/form-data"
               class="profile-form">
