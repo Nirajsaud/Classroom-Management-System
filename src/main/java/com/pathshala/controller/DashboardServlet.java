@@ -1,8 +1,6 @@
 package com.pathshala.controller;
 
-import com.pathshala.model.UserModel;
-
-import com.pathshala.utils.SessionUtil;
+import com.pathshala.dao.DashboardDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,36 +11,28 @@ import java.io.IOException;
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private DashboardDAO dashboardDAO;
 
+    @Override
+    public void init() throws ServletException {
+        this.dashboardDAO = new DashboardDAO();
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-    	
         
-        // 1. Get the user from your SessionUtil
-        UserModel user = (UserModel) SessionUtil.getAttribute(request, "user");
-
+        // Fetch active dynamic management statistics from your DAO layer
+        int totalStudents = dashboardDAO.getTotalStudents();
+        int totalTeachers = dashboardDAO.getTotalTeachers();
+        double totalRevenue = dashboardDAO.getTotalRevenue();
         
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
-
-        // 2. Route to the correct JSP based on role
-        String role = user.getRole().toLowerCase();
+        // Bind calculated metrics variables safely to the request scope
+        request.setAttribute("totalStudents", totalStudents);
+        request.setAttribute("totalTeachers", totalTeachers);
+        request.setAttribute("totalRevenue", totalRevenue);
         
-        switch (role) {
-            case "admin":
-                request.getRequestDispatcher("/WEB-INF/views/admin/dashboard.jsp").forward(request, response);
-                break;
-            case "teacher":
-                request.getRequestDispatcher("/WEB-INF/views/teacher/dashboard.jsp").forward(request, response);
-                break;
-            case "student":
-                request.getRequestDispatcher("/WEB-INF/views/student/dashboard.jsp").forward(request, response);
-                break;
-            default:
-                // Fallback if role is messed up in the database
-                response.sendRedirect(request.getContextPath() + "/login?error=invalid_role");
-        }
+        // Route control over to the Admin layout view
+        request.getRequestDispatcher("/WEB-INF/views/admin/dashboard.jsp").forward(request, response);
     }
 }

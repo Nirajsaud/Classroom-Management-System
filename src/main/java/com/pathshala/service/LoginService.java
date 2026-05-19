@@ -32,9 +32,6 @@ public String authenticate(String email, String password) {
                 return "Account pending administrator approval.";
             }
             
-            if ("admin@pathshala.com".equals(email) && "admin123".equals(password)) {
-                return "SUCCESS"; 
-            }
 
             // Verify the password using jBCrypt: BCrypt.checkpw(plain_text_password, hashed_password_from_db)
             if (PasswordUtil.checkPassword(password, user.getPasswordHash())) {

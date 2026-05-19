@@ -229,24 +229,25 @@
                             <label class="field-label" for="fullName">FULL NAME</label>
                             <input class="field-input" type="text" id="fullName"
                                 name="fullName"
-                                placeholder="${adminFullNamePlaceholder}"
-                                value="${adminFullName}">
+                                placeholder="${user.fullName}"
+                                value="${user.fullName}">
                         </div>
                         <div class="profile-field-group">
                             <label class="field-label" for="phoneNumber">PHONE NUMBER</label>
                             <input class="field-input" type="tel" id="phoneNumber"
                                 name="phoneNumber"
-                                placeholder="${adminPhonePlaceholder}"
-                                value="${adminPhone}">
+                                placeholder="${user.phoneNumber}"
+                                value="${user.phoneNumber}">
                         </div>
 
                         <div class="profile-field-group">
                             <label class="field-label" for="email">EMAIL</label>
                             <input class="field-input" type="email" id="email"
                                 name="email"
-                                placeholder="${adminEmailPlaceholder}"
-                                value="${adminEmail}">
+                                placeholder="${user.email}"
+                                value="${user.email}" readonly>
                         </div>
+                        
 
                     </div>
 

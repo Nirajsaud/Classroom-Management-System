@@ -164,7 +164,7 @@
                     <h1 class="page-title-large">Manage Teacher</h1>
                     <p class="page-subtitle">View and manage faculty information across all Classrooms</p>
                 </div>
-                <a href="${pageContext.request.contextPath}/teachers/add" class="add-teacher-btn">+ Add Teacher</a>
+                <a href="${pageContext.request.contextPath}/addteacher" class="add-teacher-btn">+ Add Teacher</a>
             </div>
 
             <div class="teachers-overview">
