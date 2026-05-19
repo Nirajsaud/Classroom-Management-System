@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@
             <div class="hero-text-layer">
                 <h1>Learning, your way.</h1>
                 <p>Explore different courses and master a skill. We help you learn<br>and join a growing community of 5,000+ students learning around the world.</p>
-                <a href="#" class="btn btn-primary">Get Started</a>
+                <a href="${pageContext.request.contextPath}/signup" class="btn btn-primary">Get Started</a>
             </div>
 
             <!-- Bottom Layer: Visual Layout -->
@@ -153,7 +154,7 @@
             </div>
             <h2>Unleash your potential</h2>
             <p>Join thousands of students across Nepal today.</p>
-            <a href="#" class="btn btn-primary">Let's Begin</a>
+            <a href="${pageContext.request.contextPath}/signup" class="btn btn-primary">Let's Begin</a>
         </div>
     </section>
 
@@ -202,7 +203,7 @@
 	            </div>
 	        </div>
 	        <div class="philosophy-action">
-	            <a href="#" class="btn btn-primary outline-orange">Learn more About Us</a>
+	            <a href="${pageContext.request.contextPath}/about" class="btn btn-primary outline-orange">Learn more About Us</a>
 	        </div>
 	    </div>
 	</section>
@@ -214,7 +215,7 @@
                 <div class="contact-text">
                     <h2>Have questions? We're here to help.</h2>
                     <p>Reach out to us and our team will get back to you as soon as possible.</p>
-                    <a href="#" class="btn btn-primary">Contact Us</a>
+                    <a href="${pageContext.request.contextPath}/contact" class="btn btn-primary">Contact Us</a>
                 </div>
                 <div class="contact-visual">
                     <!-- Replace with support illustration -->

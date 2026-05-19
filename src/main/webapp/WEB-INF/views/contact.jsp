@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,30 +9,62 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contact.css">
+    
+    <style>
+        /* Tutor-Compliant Message Styling */
+        .status-container {
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 0.3s ease forwards;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .status-error {
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #e11d48;
+        }
+        .status-success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #16a34a;
+        }
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar (3-Zone Layout) -->
     <nav class="navbar">
         <div class="nav-left">
             <span class="logo">pathshala</span>
         </div>
         <div class="nav-center">
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
+            <a href="${pageContext.request.contextPath}/home">Home</a>
+            <a href="${pageContext.request.contextPath}/about">About Us</a>
+            <a href="${pageContext.request.contextPath}/contact" class="active">Contact Us</a>
         </div>
         <div class="nav-right">
-            <a href="#" class="login-link">Log In</a>
-            <a href="#" class="btn btn-outline">Join for Free</a>
+            <a href="${pageContext.request.contextPath}/login" class="login-link">Log In</a>
+            <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
         </div>
     </nav>
 
-    <!-- Decorative background elements -->
+	<!-- Decorative background elements -->
     <div class="accent-blob top-right"></div>
     <div class="accent-blob bottom-right"></div>
-
-    <!-- Contact Section -->
+	
+	<!-- Contact Section -->
     <main class="contact-section">
         <div class="contact-container">
             <!-- Left: Contact Form -->
@@ -40,39 +74,59 @@
                     <p class="form-subtitle">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
                 </div>
 
-                <form action="ContactController" method="POST" class="contact-form" id="contactForm">
+                <c:if test="${not empty error}">
+                    <div class="status-container status-error feedback-popup">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span>${error}</span>
+                    </div>
+                </c:if>
+                <c:if test="${not empty success}">
+                    <div class="status-container status-success feedback-popup">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>${success}</span>
+                    </div>
+                </c:if>
+
+                <form action="${pageContext.request.contextPath}/contact" method="POST" class="contact-form" id="contactForm" novalidate>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Your Full Name">
+                            <input type="text" id="name" name="name" placeholder="Your Full Name" value="${param.name}">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            <input type="text" id="email" name="email" placeholder="your@email.com" value="${param.email}">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+977 98xxxxxxxx">
+                            <input type="text" id="phone" name="phone" placeholder="+977 98xxxxxxxx" value="${param.phone}">
                         </div>
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Select a subject</option>
-                                <option value="technical_support">Technical Support</option>
-                                <option value="admission">Admission Inquiry</option>
-                                <option value="billing">Payment & Billing</option>
-                                <option value="feedback">Feedback</option>
-                                <option value="partnership">Partnership</option>
-                            </select>
-                        </div>
+                            <label for="subject">Subject</label> <select id="subject" name="subject">
+								<option value="">Select a subject</option>
+								<option value="Technical Support"
+									${param.subject == 'Technical Support' ? 'selected' : ''}>Technical
+									Support</option>
+								<option value="Admission Inquiry"
+									${param.subject == 'Admission Inquiry' ? 'selected' : ''}>Admission
+									Inquiry</option>
+								<option value="Payment & Billing"
+									${param.subject == 'Payment & Billing' ? 'selected' : ''}>Payment
+									& Billing</option>
+								<option value="Feedback"
+									${param.subject == 'Feedback' ? 'selected' : ''}>Feedback</option>
+								<option value="Partnership"
+									${param.subject == 'Partnership' ? 'selected' : ''}>Partnership</option>
+							</select>
+						</div>
                     </div>
 
                     <div class="form-group full-width">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" required placeholder="Please tell us more about your inquiry..." rows="5"></textarea>
+                        <textarea id="message" name="message" placeholder="Please tell us more about your inquiry..." rows="5">${param.message}</textarea>
                     </div>
 
                     <button type="submit" class="submit-btn">Send Message</button>
@@ -140,6 +194,7 @@
         </div>
     </main>
 
+	
     <!-- Success Message -->
     <div class="success-message" id="successMsg">
         <i class="fas fa-check-circle"></i>
@@ -159,9 +214,9 @@
             </div>
             <div class="footer-links">
                 <h4>Nav Bar</h4>
-                <a href="#">Home</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
+                <a href="${pageContext.request.contextPath}/home">Home</a>
+                <a href="${pageContext.request.contextPath}/about">About Us</a>
+                <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
             </div>
             <div class="footer-links">
                 <h4>Our Offering</h4>
@@ -184,6 +239,17 @@
         </div>
     </footer>
 
-    <script src="index.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lookups = document.querySelectorAll('.feedback-popup');
+            lookups.forEach(function(popup) {
+                setTimeout(() => {
+                    popup.classList.add('fade-out');
+                    setTimeout(() => { popup.remove(); }, 500);
+                }, 5000);
+            });
+        });
+    </script>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="../css/about.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/about.css">
 </head>
 <body>
 
@@ -20,13 +20,13 @@
             <span class="logo">pathshala</span>
         </div>
         <div class="nav-center">
-            <a href="index.jsp">Home</a>
-            <a href="about.jsp" class="active">About Us</a>
-            <a href="contact.jsp">Contact Us</a>
+            <a href="${pageContext.request.contextPath}/home">Home</a>
+            <a href="${pageContext.request.contextPath}/about" class="active">About Us</a>
+            <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
         </div>
         <div class="nav-right">
-            <a href="login.jsp" class="login-link">Log In</a>
-            <a href="signup.jsp" class="btn btn-outline">Join for Free</a>
+            <a href="${pageContext.request.contextPath}/login" class="login-link">Log In</a>
+            <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
         </div>
     </nav>
 
@@ -110,9 +110,9 @@
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
-                <a href="index.jsp">Home</a>
-                <a href="about.jsp">About Us</a>
-                <a href="contact.jsp">Contact Us</a>
+                <a href="${pageContext.request.contextPath}/home">Home</a>
+                <a href="${pageContext.request.contextPath}/about">About Us</a>
+                <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
             </div>
             <div class="footer-links">
                 <h4>Our Offering</h4>

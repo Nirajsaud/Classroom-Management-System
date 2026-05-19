@@ -12,7 +12,7 @@
     <!-- Icons: FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="../css/studentDashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/studentDashboard.css">
 </head>
 <body>
 
@@ -23,18 +23,19 @@
         </div>
         
         <div class="nav-center">
-            <a href="dashboard.jsp" class="nav-item active">
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-item active">
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
-            <a href="classrooms.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
-            <a href="subjects.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/subjects" class="nav-item">
                 <i class="fa-solid fa-book"></i> Subjects
             </a>
-            <a href="payments.jsp" class="nav-item">
+            <a href="${pageContext.request.contextPath}/payments" class="nav-item">
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
+            
         </div>
         
         <div class="nav-right">
@@ -45,7 +46,7 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
             </div>
-            <a href="logout" class="logout-link">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-link">Logout</a>
         </div>
     </nav>
 
@@ -53,13 +54,13 @@
     <main class="dashboard-container">
         
         <header class="welcome-section">
-            <h1>Welcome Back, <span class="underlined-name">Student Name</span></h1>
+            <h1>Welcome Back, <span class="underlined-name">${user.fullName}</span></h1>
             <p>What would you like to do today?</p>
         </header>
 
         <!-- Clickable Action Cards -->
         <section class="action-grid">
-            <a href="subjects.jsp" class="card card-subjects">
+            <a href="${pageContext.request.contextPath}/subjects" class="card card-subjects">
                 <div class="card-header">
                     <h2>Subjects</h2>
                 </div>
@@ -68,7 +69,7 @@
                 </div>
             </a>
 
-            <a href="classrooms.jsp" class="card card-classrooms">
+            <a href="${pageContext.request.contextPath}/classrooms" class="card card-classrooms">
                 <div class="card-header">
                     <h2>Classrooms</h2>
                 </div>
@@ -77,7 +78,7 @@
                 </div>
             </a>
 
-            <a href="payments.jsp" class="card card-payments">
+            <a href="${pageContext.request.contextPath}/payments" class="card card-payments">
                 <div class="card-header">
                     <h2>My Payments</h2>
                 </div>
