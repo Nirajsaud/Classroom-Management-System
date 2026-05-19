@@ -170,7 +170,7 @@
 
             <div class="topbar-divider"></div>
 
-            <a href="${pageContext.request.contextPath}/adminprofile" class="user-avatar" title="Admin Profile">
+            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
 			    <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
 			</a>
 
