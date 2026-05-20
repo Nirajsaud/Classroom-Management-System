@@ -80,8 +80,6 @@
         revealObserver.observe(el);
     });
 
-
-
     /* ---- Team card tilt on mouse move (subtle 3-D feel) ---- */
     const teamCards = document.querySelectorAll('.team-card');
 
@@ -103,9 +101,5 @@
             card.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease';
         });
     });
-
-    /* ---- Active nav link highlight on scroll ---- */
-    // (minimal version — marks About Us active when not at top)
-    // Already set via .active class in HTML for this page.
 
 })();

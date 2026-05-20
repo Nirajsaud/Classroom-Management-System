@@ -7,6 +7,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Pathshala Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+  <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -14,51 +21,38 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- Servlet API for Tomcat 10.1 (Jakarta, not javax) -->
     <dependency>
-        <groupId>com.mysql</groupId>
-        <artifactId>mysql-connector-j</artifactId>
-        <version>9.6.0</version>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>6.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>9.6.0</version>
     </dependency>
     <dependency>
-        <groupId>org.mindrot</groupId>
-        <artifactId>jbcrypt</artifactId>
-        <version>0.4</version>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>0.4</version>
     </dependency>
     <dependency>
-    	<groupId>jakarta.servlet.jsp.jstl</groupId>
-    	<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-    	<version>3.0.0</version>
-	</dependency>
-	<dependency>
-    	<groupId>org.glassfish.web</groupId>
-    	<artifactId>jakarta.servlet.jsp.jstl</artifactId>
-    	<version>3.0.1</version>
-	</dependency>
+      <groupId>jakarta.servlet.jsp.jstl</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+      <version>3.0.1</version>
+    </dependency>
   </dependencies>
+
   <build>
     <finalName>Pathshala</finalName>
-    <plugins>
-      <!-- Ensure runtime dependencies are copied into the webapp WEB-INF/lib so Tomcat/Eclipse WTP can see them -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.5.0</version>
-        <executions>
-          <execution>
-            <id>copy-dependencies-to-webapp-lib</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <!-- Copy all runtime/compile dependencies to src/main/webapp/WEB-INF/lib -->
-              <outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/lib</outputDirectory>
-              <includeScope>runtime</includeScope>
-              <overWriteIfNewer>true</overWriteIfNewer>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
   </build>
 </project>

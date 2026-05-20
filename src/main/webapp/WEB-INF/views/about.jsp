@@ -15,7 +15,7 @@
 <body>
 
     <!-- Landing page Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-left">
             <span class="logo">pathshala</span>
         </div>
@@ -27,6 +27,11 @@
         <div class="nav-right">
             <a href="${pageContext.request.contextPath}/login" class="login-link">Log In</a>
             <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
+            <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -58,7 +63,7 @@
                     <p class="platform-text">Teachers can upload materials, create assignments, and communicate with students — all from one platform. Administrators have full control over classrooms, subjects, staff, and semesters.</p>
                     <div class="feature-pills">
                         <span class="pill"><i class="fa-solid fa-graduation-cap"></i> Student Portal</span>
-                        <span class="pill"><i class="fa-solid fa-chalkboard-teacher"></i> Teacher Tools</span>
+                        <span class="pill"><i class="fa-solid fa-chalkboard-user"></i> Teacher Tools</span>
                         <span class="pill"><i class="fa-solid fa-shield-halved"></i> Admin Control</span>
                         <span class="pill"><i class="fa-solid fa-book-open"></i> E-Learning</span>
                     </div>
