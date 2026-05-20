@@ -1,36 +1,43 @@
 /* =============================================
-   PATHSHALA — about.css
-   Colour palette: #1E3A8A (primary blue), #F39126 (accent orange)
+   PATHSHALA — about.css (CONSOLIDATED)
+   Nav + Footer from index.css
+   Hero, Platform, Team from about.css
    ============================================= */
 
 :root {
     --clr-primary: #1E3A8A;
-    --clr-primary-dark: #162d6e;
-    --clr-primary-light: #2a4fa3;
     --clr-accent: #F39126;
-    --clr-accent-light: #fdb05a;
     --clr-bg-light: #F8FAFC;
-    --clr-bg-cream: #FDFBF7;
     --clr-white: #FFFFFF;
     --clr-text-main: #1F2937;
     --clr-text-muted: #6B7280;
     --clr-border: #E2E8F0;
-
+    
+    --font-ui: 'Inter', sans-serif;
+    --font-body: 'Nunito Sans', sans-serif;
     --font-display: 'DM Serif Display', Georgia, serif;
-    --font-ui: 'Outfit', sans-serif;
-
+    
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
     --radius-xl: 32px;
-
-    --shadow-soft: 0 8px 32px rgba(30, 58, 138, 0.08);
+    
+    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.05);
     --shadow-card: 0 16px 48px rgba(30, 58, 138, 0.12);
     --shadow-hover: 0 24px 64px rgba(30, 58, 138, 0.18);
+    
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
 
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Custom Font Import */
 @font-face {
     font-family: 'Ananda Namaste';
     src: url('fonts/ananda-namaste.ttf') format('truetype');
@@ -38,17 +45,14 @@
     font-style: normal;
 }
 
-/* ---- Reset ---- */
-*, *::before, *::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
-
 body {
-    font-family: var(--font-ui);
+    font-family: var(--font-body);
     font-weight: 400;
     color: var(--clr-text-main);
     background-color: var(--clr-white);
@@ -56,97 +60,79 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4 { line-height: 1.15; }
+html { scroll-behavior: smooth; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    line-height: 1.2;
+}
 
 em { font-family: var(--font-display); font-style: italic; }
 
-a { text-decoration: none; color: inherit; transition: var(--transition); }
-
-/* ---- Layout ---- */
-.container {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 32px;
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
 }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
 .container-small {
     max-width: 780px;
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 0 var(--space-4);
 }
 
 /* =============================================
-   NAVBAR
+   NAVBAR (From index.css)
    ============================================= */
 .navbar {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 14px 64px;
-    background-color: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    
+    padding: 12px var(--space-8);
+    background-color: var(--clr-white);
     position: sticky;
     top: 0;
-    z-index: 200;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.navbar.scrolled {
-    border-color: var(--clr-border);
-    box-shadow: 0 4px 20px rgba(30,58,138,0.07);
-}
-
-.nav-left .logo,
-.footer-brand .logo {
+.nav-left .logo {
     font-family: 'Ananda Namaste', cursive, sans-serif;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: normal;
-    color: var(--clr-primary);
-    letter-spacing: 0.5px;
+    line-height: 1.2;
+    color: var(--clr-text-main);
 }
 
 .nav-center {
     display: flex;
-    gap: 40px;
+    gap: var(--space-6);
 }
 
 .nav-center a {
     font-family: var(--font-ui);
     font-weight: 500;
     font-size: 15px;
-    color: var(--clr-text-muted);
-    position: relative;
-    padding-bottom: 3px;
-}
-
-.nav-center a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--clr-accent);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
-
-.nav-center a:hover,
-.nav-center a.active {
     color: var(--clr-text-main);
 }
 
-.nav-center a:hover::after,
-.nav-center a.active::after {
-    width: 100%;
+.nav-center a:hover {
+    color: var(--clr-accent);
 }
 
 .nav-right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 24px;
+    gap: var(--space-4);
 }
 
 .login-link {
@@ -154,35 +140,43 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
     font-weight: 600;
     font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: var(--clr-text-main);
 }
 
-.login-link:hover { color: var(--clr-primary); }
+.login-link:hover {
+    color: var(--clr-accent);
+}
 
 .btn {
     display: inline-block;
     font-family: var(--font-ui);
     font-weight: 600;
     font-size: 14px;
-    padding: 10px 22px;
+    padding: 12px 24px;
     border-radius: 50px;
     cursor: pointer;
+    text-align: center;
     transition: var(--transition);
-    letter-spacing: 0.3px;
+}
+
+.btn-primary {
+    background-color: var(--clr-accent);
+    color: var(--clr-white);
+    border: 2px solid var(--clr-accent);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
 }
 
 .btn-outline {
-    background: transparent;
+    background-color: transparent;
     color: var(--clr-primary);
     border: 2px solid var(--clr-primary);
 }
 
 .btn-outline:hover {
-    background: var(--clr-primary);
+    background-color: var(--clr-primary);
     color: var(--clr-white);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(30,58,138,0.25);
 }
 
 .nav-mobile-toggle {
@@ -205,17 +199,21 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 }
 
 /* =============================================
-   HERO / INTRO
+   HERO / INTRO (From about.css)
    ============================================= */
 .about-hero {
     position: relative;
-    background: var(--clr-bg-cream);
+    background: #FDFBF7;
     padding: 100px 0 120px;
     overflow: hidden;
 }
 
 /* Floating background shapes */
-.hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+.hero-bg-shapes { 
+    position: absolute; 
+    inset: 0; 
+    pointer-events: none; 
+}
 
 .shape {
     position: absolute;
@@ -276,7 +274,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 .hero-badge::before {
     content: '';
     width: 6px; height: 6px;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
 }
 
@@ -302,10 +300,8 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
     margin-bottom: 52px;
 }
 
-
-
 /* =============================================
-   PLATFORM SECTION
+   PLATFORM SECTION (From about.css)
    ============================================= */
 .about-platform {
     padding: 100px 0;
@@ -367,20 +363,25 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
     transition: var(--transition);
 }
 
-.pill i { color: var(--clr-accent); font-size: 13px; }
+.pill i { 
+    color: var(--clr-accent); 
+    font-size: 13px; 
+}
 
 .pill:hover {
     background: var(--clr-primary);
     color: var(--clr-white);
     border-color: var(--clr-primary);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(30,58,138,0.2);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.2);
 }
 
-.pill:hover i { color: var(--clr-accent-light); }
+.pill:hover i { 
+    color: #fdb05a; 
+}
 
 /* =============================================
-   WAVE DIVIDERS
+   WAVE DIVIDERS (From about.css)
    ============================================= */
 .wave-divider {
     display: block;
@@ -388,7 +389,11 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
     margin-bottom: -2px;
 }
 
-.wave-divider svg { width: 100%; height: 80px; display: block; }
+.wave-divider svg { 
+    width: 100%; 
+    height: 80px; 
+    display: block; 
+}
 
 .wave-bottom {
     margin-top: -2px;
@@ -396,7 +401,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 }
 
 /* =============================================
-   TEAM SECTION
+   TEAM SECTION (From about.css)
    ============================================= */
 .meet-team {
     background: var(--clr-primary);
@@ -409,8 +414,8 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(circle at 20% 30%, rgba(243,145,38,0.06) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.03) 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, rgba(243, 145, 38, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -439,7 +444,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 
 .team-subtitle {
     font-size: 16px;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255, 255, 255, 0.55);
     font-weight: 400;
 }
 
@@ -452,11 +457,11 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 
 /* ---- Team Card ---- */
 .team-card {
-    background: rgba(255,255,255,0.97);
+    background: rgba(255, 255, 255, 0.97);
     border-radius: var(--radius-xl);
     overflow: hidden;
     box-shadow: var(--shadow-card);
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
     position: relative;
 }
 
@@ -467,7 +472,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--clr-accent), var(--clr-accent-light));
+    background: linear-gradient(90deg, var(--clr-accent), #fdb05a);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 1;
@@ -478,7 +483,9 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
     box-shadow: var(--shadow-hover);
 }
 
-.team-card:hover::before { opacity: 1; }
+.team-card:hover::before { 
+    opacity: 1; 
+}
 
 .team-card-inner {
     display: flex;
@@ -521,7 +528,7 @@ img.team-photo {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 50%, rgba(30,58,138,0.15) 100%);
+    background: linear-gradient(to bottom, transparent 50%, rgba(30, 58, 138, 0.15) 100%);
 }
 
 .img-placeholder-content {
@@ -578,7 +585,7 @@ img.team-photo {
     font-family: var(--font-display);
     font-size: 13px;
     font-weight: 400;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
     letter-spacing: 1px;
     z-index: 2;
 }
@@ -601,7 +608,9 @@ img.team-photo {
     margin-bottom: 10px;
 }
 
-.role i { font-size: 11px; }
+.role i { 
+    font-size: 11px; 
+}
 
 .team-text h3 {
     font-family: var(--font-display);
@@ -638,103 +647,87 @@ img.team-photo {
 }
 
 /* =============================================
-   FOOTER
+   FOOTER (From index.css)
    ============================================= */
 .footer {
-    background: var(--clr-bg-light);
-    padding: 72px 0 24px;
-    border-top: 1px solid var(--clr-border);
+    background-color: var(--clr-bg-light);
+    padding: var(--space-12) 0 var(--space-4) 0;
+    border-top: 1px solid #E2E8F0;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.2fr;
-    gap: 48px;
-    margin-bottom: 56px;
-    align-items: start;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
 }
 
 .footer-brand .logo {
     font-family: 'Ananda Namaste', cursive, sans-serif;
-    font-size: 28px;
-    color: var(--clr-primary);
+    font-size: 24px;
+    margin-bottom: var(--space-3);
     display: block;
-    margin-bottom: 12px;
+    color: var(--clr-primary);
 }
 
-.footer-tagline {
-    font-size: 14px;
-    color: var(--clr-text-muted);
-    line-height: 1.6;
-    margin-bottom: 24px;
-    max-width: 220px;
+.social-icons {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
 }
-
-.social-icons { display: flex; gap: 10px; }
 
 .social-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    background: var(--clr-primary);
+    width: 40px;
+    height: 40px;
+    background-color: var(--clr-primary);
     color: var(--clr-white);
     border-radius: 50%;
-    font-size: 15px;
-    transition: var(--transition);
+    font-size: 18px;
+    transition: all 0.3s ease;
 }
 
 .social-link:hover {
-    background: var(--clr-accent);
+    background-color: var(--clr-accent);
+    color: var(--clr-white);
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(243,145,38,0.3);
 }
 
 .footer-links h4 {
-    font-family: var(--font-ui);
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     color: var(--clr-primary);
-    margin-bottom: 20px;
+    margin-bottom: var(--space-3);
+    font-size: 16px;
+    font-weight: 700;
 }
 
-.footer-links a,
-.footer-links p {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.footer-links a, .footer-links p {
+    display: block;
     color: var(--clr-text-muted);
+    margin-bottom: var(--space-2);
     font-size: 14px;
-    margin-bottom: 10px;
-    transition: var(--transition);
 }
 
-.footer-links a:hover { color: var(--clr-accent); padding-left: 4px; }
-
-.footer-links p i {
+.footer-links a:hover {
     color: var(--clr-accent);
-    font-size: 13px;
-    width: 14px;
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 24px;
-    border-top: 1px solid var(--clr-border);
-    font-size: 13px;
+    padding-top: var(--space-4);
+    border-top: 1px solid #E2E8F0;
     color: var(--clr-text-muted);
+    font-size: 14px;
 }
 
 /* =============================================
-   REVEAL ANIMATIONS
+   REVEAL ANIMATIONS (From about.css)
    ============================================= */
 .reveal {
     opacity: 0;
     transform: translateY(28px);
-    transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+    transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.visible {
@@ -753,8 +746,17 @@ img.team-photo {
 }
 
 @media (max-width: 768px) {
-    .navbar { grid-template-columns: 1fr auto; padding: 14px 24px; }
-    .nav-center { display: none; flex-direction: column; gap: 12px; }
+    .navbar { 
+        grid-template-columns: 1fr auto; 
+        padding: 12px 24px;
+    }
+    
+    .nav-center { 
+        display: none; 
+        flex-direction: column; 
+        gap: 12px; 
+    }
+    
     .nav-center.open {
         display: flex;
         position: absolute;
@@ -763,16 +765,15 @@ img.team-photo {
         right: 0;
         background: var(--clr-white);
         padding: 20px 24px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         border-top: 1px solid var(--clr-border);
     }
+    
     .nav-right { display: none; }
     .nav-mobile-toggle { display: flex; }
 
     .about-hero { padding: 64px 0 80px; }
     .hero-heading { font-size: 44px; }
-    .hero-stats { gap: 24px; }
-    .stat-number { font-size: 36px; }
 
     .team-card .team-img { height: 160px; }
     .team-text { padding: 20px 24px 24px; }
@@ -784,8 +785,6 @@ img.team-photo {
 
 @media (max-width: 480px) {
     .hero-heading { font-size: 36px; }
-    .hero-stats { flex-direction: column; gap: 20px; align-items: flex-start; }
-    .stat-divider { width: 48px; height: 1px; }
     .platform-grid { gap: 28px; }
     .section-title { font-size: 32px; }
 }
