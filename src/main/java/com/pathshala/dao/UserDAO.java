@@ -15,10 +15,10 @@ public class UserDAO {
      */
     public UserModel getUserByEmail(String email) {
         String query = "SELECT * FROM users WHERE email = ?";
-        
+
         try (Connection conn = DBconfig.getConnection();
              PreparedStatement pst = conn.prepareStatement(query)) {
-            
+
             pst.setString(1, email);
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
@@ -26,13 +26,10 @@ public class UserDAO {
                     user.setUserId(rs.getInt("user_id"));
                     user.setFullName(rs.getString("full_name"));
                     user.setEmail(rs.getString("email"));
+                    user.setPhoneNumber(rs.getString("phone_number"));
                     user.setPasswordHash(rs.getString("password_hash"));
                     user.setRole(rs.getString("role"));
                     user.setApproved(rs.getBoolean("is_approved"));
-                    
-                    // FIX: Populate the phone number property from the database table
-                    user.setPhoneNumber(rs.getString("phone_number"));
-                    
                     return user;
                 }
             }
@@ -44,7 +41,6 @@ public class UserDAO {
 
     /**
      * Retrieves all pending registration accounts that require administrator validation.
-     * Computes real-time duration details directly through SQL.
      */
     public List<PendingApprovalDTO> getPendingApprovals() {
         List<PendingApprovalDTO> pendingList = new ArrayList<>();
@@ -59,7 +55,7 @@ public class UserDAO {
             while (rs.next()) {
                 int mins = rs.getInt("minutes_ago");
                 String timeString;
-                
+
                 if (mins <= 0) {
                     timeString = "Just now";
                 } else if (mins < 60) {
@@ -70,15 +66,15 @@ public class UserDAO {
                 }
 
                 String rawRole = rs.getString("role");
-                String formattedRole = (rawRole != null && !rawRole.isEmpty()) 
-                    ? rawRole.substring(0, 1).toUpperCase() + rawRole.substring(1).toLowerCase() 
-                    : "User";
+                String formattedRole = (rawRole != null && !rawRole.isEmpty())
+                        ? rawRole.substring(0, 1).toUpperCase() + rawRole.substring(1).toLowerCase()
+                        : "User";
 
                 pendingList.add(new PendingApprovalDTO(
-                    rs.getInt("user_id"),
-                    rs.getString("full_name"),
-                    formattedRole,
-                    timeString
+                        rs.getInt("user_id"),
+                        rs.getString("full_name"),
+                        formattedRole,
+                        timeString
                 ));
             }
         } catch (SQLException e) {
@@ -88,16 +84,15 @@ public class UserDAO {
     }
 
     /**
-     * Activates a pending account and ensures the user profile is safely provisioned 
-     * into its corresponding role table (students/teachers/admins) dynamically.
+     * Activates a pending account and provisions it into the correct role table.
      */
     public boolean approveUser(int userId) {
         String getRoleSql = "SELECT role FROM users WHERE user_id = ?";
         String updateStatusSql = "UPDATE users SET is_approved = 1 WHERE user_id = ?";
-        
+
         try (Connection conn = DBconfig.getConnection()) {
             conn.setAutoCommit(false);
-            
+
             String role = null;
             try (PreparedStatement psRole = conn.prepareStatement(getRoleSql)) {
                 psRole.setInt(1, userId);
@@ -107,20 +102,20 @@ public class UserDAO {
                     }
                 }
             }
-            
+
             if (role == null) {
                 conn.rollback();
                 return false;
             }
-            
+
             try (PreparedStatement psUpdate = conn.prepareStatement(updateStatusSql)) {
                 psUpdate.setInt(1, userId);
                 psUpdate.executeUpdate();
             }
-            
+
             String checkSubTable = "";
             String insertSubTable = "";
-            
+
             if ("teacher".equalsIgnoreCase(role)) {
                 checkSubTable = "SELECT 1 FROM teachers WHERE user_id = ?";
                 insertSubTable = "INSERT INTO teachers (user_id) VALUES (?)";
@@ -131,16 +126,18 @@ public class UserDAO {
                 checkSubTable = "SELECT 1 FROM admins WHERE user_id = ?";
                 insertSubTable = "INSERT INTO admins (user_id) VALUES (?)";
             }
-            
+
             if (!checkSubTable.isEmpty()) {
                 boolean alreadyExists = false;
                 try (PreparedStatement psCheck = conn.prepareStatement(checkSubTable)) {
                     psCheck.setInt(1, userId);
                     try (ResultSet rs = psCheck.executeQuery()) {
-                        if (rs.next()) alreadyExists = true;
+                        if (rs.next()) {
+                            alreadyExists = true;
+                        }
                     }
                 }
-                
+
                 if (!alreadyExists) {
                     try (PreparedStatement psInsert = conn.prepareStatement(insertSubTable)) {
                         psInsert.setInt(1, userId);
@@ -148,10 +145,10 @@ public class UserDAO {
                     }
                 }
             }
-            
+
             conn.commit();
             return true;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -159,24 +156,24 @@ public class UserDAO {
     }
 
     /**
-     * Rejects and permanently wipes an unapproved registration attempt.
+     * Rejects and permanently deletes an unapproved registration attempt.
      */
     public boolean rejectUser(int userId) {
         String sql = "DELETE FROM users WHERE user_id = ? AND is_approved = 0";
         try (Connection conn = DBconfig.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             pstmt.setInt(1, userId);
             return pstmt.executeUpdate() > 0;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
     /**
-     * Fetches all platform contact inquiries directly from the database contact_queries table.
+     * Fetches all contact inquiries from contact_queries.
      */
     public List<com.pathshala.model.ContactQueryDTO> getAllContactQueries() {
         List<com.pathshala.model.ContactQueryDTO> list = new ArrayList<>();
@@ -191,20 +188,20 @@ public class UserDAO {
 
             while (rs.next()) {
                 String fullMsg = rs.getString("message");
-                String snippet = (fullMsg != null && fullMsg.length() > 45) 
-                    ? fullMsg.substring(0, 42) + "..." 
-                    : fullMsg;
+                String snippet = (fullMsg != null && fullMsg.length() > 45)
+                        ? fullMsg.substring(0, 42) + "..."
+                        : fullMsg;
 
                 list.add(new com.pathshala.model.ContactQueryDTO(
-                    rs.getInt("query_id"),
-                    rs.getString("query_date"),
-                    rs.getString("query_time"),
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("phone"),
-                    rs.getString("subject"),
-                    snippet,
-                    fullMsg
+                        rs.getInt("query_id"),
+                        rs.getString("query_date"),
+                        rs.getString("query_time"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getString("subject"),
+                        snippet,
+                        fullMsg
                 ));
             }
         } catch (SQLException e) {
@@ -214,19 +211,41 @@ public class UserDAO {
     }
 
     /**
-     * Permanently deletes an incoming customer service query from the system index.
+     * Permanently deletes a contact query.
      */
     public boolean deleteContactQuery(int queryId) {
         String sql = "DELETE FROM contact_queries WHERE query_id = ?";
         try (Connection conn = DBconfig.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             pstmt.setInt(1, queryId);
             return pstmt.executeUpdate() > 0;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * Updates common user profile fields.
+     */
+    public boolean updateUserProfile(int userId, String fullName, String phoneNumber) {
+        String sql = "UPDATE users SET full_name = ?, phone_number = ? WHERE user_id = ?";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, fullName);
+            stmt.setString(2, phoneNumber);
+            stmt.setInt(3, userId);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

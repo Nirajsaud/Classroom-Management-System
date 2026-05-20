@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pathshala | Teacher Students</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherSubject.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/notification.css">
 
@@ -24,8 +27,9 @@
             overflow: hidden !important;
             text-decoration: none;
             background-color: #f3f4f6;
-            flex-shrink: 0 !important; /* Stops flexbox from crushing it */
+            flex-shrink: 0 !important;
         }
+
         .nav-profile-image {
             width: 100% !important;
             height: 100% !important;
@@ -33,8 +37,9 @@
             border-radius: 50% !important;
             display: block;
         }
+
         .default-profile-icon {
-            display: none; /* Controlled by the JS onerror fallback */
+            display: none;
             align-items: center;
             justify-content: center;
             width: 100%;
@@ -48,25 +53,79 @@
 
 <header class="main-nav">
     <div class="nav-container">
-        <div class="logo-area"><span class="pathshala-logo">pathshala</span></div>
+        <div class="logo-area">
+            <span class="pathshala-logo">pathshala</span>
+        </div>
+
         <nav class="center-links">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link"><i class="fa-solid fa-pen-nib"></i> Classrooms</a>
-            <a href="${pageContext.request.contextPath}/students" class="nav-link active"><i class="fa-solid fa-book-open"></i> Students</a>
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">
+                <i class="fa-solid fa-table-cells-large"></i> Dashboard
+            </a>
+
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
+                <i class="fa-solid fa-pen-nib"></i> Classrooms
+            </a>
+
+            <a href="${pageContext.request.contextPath}/students" class="nav-link active">
+                <i class="fa-solid fa-book-open"></i> Students
+            </a>
         </nav>
+
         <div class="user-controls">
-            <button type="button" class="bell-btn" id="bellBtn"><i class="fa-regular fa-bell"></i></button>
+            <div class="bell-wrapper" id="bellWrapper">
+                <button type="button" class="bell-btn" id="bellBtn">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+
+                <c:if test="${not empty noticeList}">
+                    <span class="bell-badge" id="bellBadge"></span>
+                </c:if>
+
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications</h4>
+                        <button type="button" class="notif-mark-all" id="markAllRead">Dismiss all</button>
+                    </div>
+
+                    <div class="notif-list" id="notifList">
+                        <c:choose>
+                            <c:when test="${empty noticeList}">
+                                <div class="notif-footer">
+                                    <p>No notifications yet.</p>
+                                </div>
+                            </c:when>
+
+                            <c:otherwise>
+                                <c:forEach var="notice" items="${noticeList}">
+                                    <div class="notif-item unread">
+                                        <div class="notif-dot"></div>
+
+                                        <div class="notif-content">
+                                            <div class="notif-title">${notice.title}</div>
+                                            <div class="notif-text">${notice.content}</div>
+                                            <div class="notif-time">${notice.createdAt}</div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+            </div>
+
             <div class="v-divider"></div>
-            
-            <a href="${pageContext.request.contextPath}/profile" class="profile-icon"> 
+
+            <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
                 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-                     alt="Profile" class="nav-profile-image"
+                     alt="Profile"
+                     class="nav-profile-image"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
                 <div class="default-profile-icon">
                     <i class="fa-solid fa-user"></i>
                 </div>
-            </a> 
-            
+            </a>
+
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>
@@ -87,6 +146,7 @@
         <form method="get" action="${pageContext.request.contextPath}/students" class="filter-form">
             <select name="classId" class="filter-select" onchange="this.form.submit()">
                 <option value="0">All Classes</option>
+
                 <c:forEach var="classroom" items="${teacherClasses}">
                     <option value="${classroom.classId}" ${selectedClassId == classroom.classId ? 'selected' : ''}>
                         ${classroom.className}
@@ -94,6 +154,7 @@
                 </c:forEach>
             </select>
         </form>
+
         <span class="total-label">Total: ${fn:length(studentList)}</span>
     </section>
 
@@ -106,6 +167,7 @@
                     <p>No students are enrolled in this class configuration context yet.</p>
                 </div>
             </c:when>
+
             <c:otherwise>
                 <div class="table-wrapper">
                     <table class="students-table">
@@ -117,6 +179,7 @@
                                 <th>Class</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             <c:forEach var="student" items="${studentList}">
                                 <tr>

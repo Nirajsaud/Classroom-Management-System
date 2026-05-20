@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,16 +29,12 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-
             <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
-
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
-
             <a href="${pageContext.request.contextPath}/students" class="nav-link">
                 <i class="fa-solid fa-book-open"></i> Students
-
             </a>
         </nav>
 
@@ -86,18 +82,18 @@
 
             <div class="v-divider"></div>
 
-				<a href="${pageContext.request.contextPath}/profile"
-					class="profile-icon"> <img
-					src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-					alt="Profile" class="nav-profile-image"
-					onerror="this.style.display='none';
-                  this.nextElementSibling.style.display='flex';">
+            <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+                     alt="Profile"
+                     class="nav-profile-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
 
-					<div class="default-profile-icon">
-						<i class="fa-solid fa-user"></i>
-					</div>
+                <div class="default-profile-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </a>
 
-				</a> <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>
 </header>
@@ -155,8 +151,17 @@
                                 <p>${material.filePath}</p>
                             </div>
 
-                            <div class="resource-meta">
-                                <span>Created at: ${material.uploadedAt}</span>
+                            <div class="resource-actions">
+                                <a href="${pageContext.request.contextPath}/${material.filePath}"
+                                   target="_blank"
+                                   class="preview-btn">
+                                    Preview
+                                </a>
+
+                                <a href="${pageContext.request.contextPath}/download?file=${fn:escapeXml(material.filePath)}"
+                                   class="download-btn">
+                                    Download
+                                </a>
 
                                 <form method="post" action="${pageContext.request.contextPath}/delete-material">
                                     <input type="hidden" name="materialId" value="${material.materialId}">

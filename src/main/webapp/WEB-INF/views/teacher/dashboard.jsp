@@ -29,12 +29,15 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
+
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link ">
+
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
             <a href="${pageContext.request.contextPath}/students" class="nav-link">
                 <i class="fa-solid fa-book-open"></i> Students
+
             </a>
         </nav>
 
@@ -85,6 +88,8 @@
             <a href="${pageContext.request.contextPath}/profile"
    			class="profile-icon">
 
+
+
    			 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
          		alt="Profile"
        	 	 class="nav-profile-image"
@@ -103,7 +108,6 @@
         </div>
     </div>
 </header>
- 
 
 <main class="dashboard-container">
 

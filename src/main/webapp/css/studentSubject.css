@@ -297,13 +297,38 @@ a {
 .resource-right {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 0.8rem;
+  
+    
+        
+    align-items: center;
+    gap: 10px;
 }
+
 
 .upload-date {
     font-size: 0.82rem;
     color: var(--text-muted);
+}
+.preview-btn {
+    min-width: 140px;
+    height: 46px;
+
+    border-radius: 16px;
+
+    background: linear-gradient(to right,
+        #1E3A8A,
+        #2563EB);
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.88rem;
+    font-weight: 700;
+
+    transition: 0.2s ease;
 }
 
 .download-btn {
@@ -328,7 +353,7 @@ a {
     transition: 0.2s ease;
 }
 
-.download-btn:hover {
+.preview-btn:hover {
     transform: translateY(-1px);
 }
 
@@ -445,4 +470,10 @@ a {
     align-items: center;
     justify-content: center;
     color: #64748B;
+}
+
+.resource-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

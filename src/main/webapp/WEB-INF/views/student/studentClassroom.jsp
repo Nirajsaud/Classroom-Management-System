@@ -1,4 +1,4 @@
-<!-- src/main/webapp/WEB-INF/views/student/classroom.jsp -->
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
@@ -39,7 +39,7 @@
                 <i class="fa-solid fa-book"></i> Subjects
             </a>
 
-            <a href="${pageContext.request.contextPath}/payments" class="nav-link">
+            <a href="${pageContext.request.contextPath}/payment" class="nav-link">
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
         </nav>
@@ -119,14 +119,14 @@
         <p>Browse class packages, search by grade, and purchase access to start learning.</p>
     </section>
 
-    <form method="get" action="${pageContext.request.contextPath}/classroom" class="filter-bar">
+    <form method="get" action="${pageContext.request.contextPath}/classrooms" class="filter-bar">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
 
             <input type="text"
                    name="keyword"
                    value="${keyword}"
-                   placeholder="Search classroom, example Grade 5">
+                   placeholder="Search classroom, example Class 5">
         </div>
 
         <button type="submit" class="search-btn">Search</button>
@@ -172,7 +172,7 @@
                                 </c:when>
 
                                 <c:otherwise>
-                                    <form method="get" action="${pageContext.request.contextPath}/payment">
+                                    <form method="get" action="${pageContext.request.contextPath}/pay">
                                         <input type="hidden" name="classId" value="${classroom.classId}">
 
                                         <button type="submit" class="buy-btn">

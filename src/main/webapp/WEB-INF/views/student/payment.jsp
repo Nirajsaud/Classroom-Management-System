@@ -35,7 +35,9 @@
                 <i class="fa-solid fa-book"></i> Subjects
             </a>
 
-            <a href="${pageContext.request.contextPath}/payments" class="nav-link">
+
+            <a href="${pageContext.request.contextPath}/payment" class="nav-link">
+
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
         </nav>
