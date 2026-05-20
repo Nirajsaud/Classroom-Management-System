@@ -9,14 +9,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Admin_Report.css">
 </head>
 <body>
-
 <div class="app-wrapper">
 
-    <!-- ═══════════════ SIDEBAR ═══════════════ -->
     <aside class="sidebar">
         <div class="sidebar-logo">pathshala</div>
         <nav class="sidebar-nav">
-
             <a href="${pageContext.request.contextPath}/dashboard" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="7" height="7" rx="1"/>
@@ -26,15 +23,13 @@
                 </svg>
                 <span>Dashboard</span>
             </a>
-
-            <a href="${pageContext.request.contextPath}/teachers" class="nav-item">
+            <a href="${pageContext.request.contextPath}/teachers" class="nav-item active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                     <path d="M6 12v5c3 3 9 3 12 0v-5"/>
                 </svg>
                 <span>Teachers</span>
             </a>
-
             <a href="${pageContext.request.contextPath}/students" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -43,7 +38,6 @@
                 </svg>
                 <span>Students</span>
             </a>
-
             <a href="${pageContext.request.contextPath}/classrooms" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -51,8 +45,7 @@
                 </svg>
                 <span>Classrooms</span>
             </a>
-
-            <a href="${pageContext.request.contextPath}/report" class="nav-item active">
+            <a href="${pageContext.request.contextPath}/report" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <polyline points="14 2 14 8 20 8"/>
@@ -62,7 +55,6 @@
                 </svg>
                 <span>Report</span>
             </a>
-
             <a href="${pageContext.request.contextPath}/admincontact" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
@@ -71,125 +63,52 @@
                 </svg>
                 <span>Contact</span>
             </a>
-
         </nav>
     </aside>
 
-    <!-- ═══════════════ MAIN ═══════════════ -->
     <div class="main-area">
-
-        <!-- Topbar -->
         <header class="topbar">
-            <div class="bell-wrapper" id="bellWrapper">
-                <button class="bell-btn" id="bellBtn" title="Notifications" aria-haspopup="true" aria-expanded="false">
-                    <svg class="bell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-                    </svg>
-                </button>
-                <span class="bell-badge" id="bellBadge"></span>
-
-                <div class="notif-dropdown" id="notifDropdown" role="menu">
-                    <div class="notif-header">
-                        <h4>Login Approvals</h4>
-                        <button class="notif-mark-all" id="markAllRead">Dismiss all</button>
-                    </div>
-                    <div class="notif-list" id="notifList">
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text"><strong>Aarav Sharma</strong> (Class 8) is requesting login access.</div>
-                                <div class="notif-time">Just now</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text"><strong>Priya Thapa</strong> (Class 6) is requesting login access.</div>
-                                <div class="notif-time">3 minutes ago</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text"><strong>Rohan Karki</strong> (Class 10) is requesting login access.</div>
-                                <div class="notif-time">10 minutes ago</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text"><strong>Sita Gurung</strong> (Class 5) is requesting login access.</div>
-                                <div class="notif-time">25 minutes ago</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread" role="menuitem">
-                            <div class="notif-dot"></div>
-                            <div class="notif-content">
-                                <div class="notif-text"><strong>Bikash Rai</strong> (Class 9) is requesting login access.</div>
-                                <div class="notif-time">1 hour ago</div>
-                                <div class="notif-actions">
-                                    <button class="btn-approve">Approve</button>
-                                    <button class="btn-reject">Reject</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="notif-footer" id="notifEmpty" style="display:none;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
-                        <p>All caught up!</p>
-                    </div>
-                </div>
+            <div class="bell-wrapper">
+                <a href="${pageContext.request.contextPath}/approvals"
+                    class="bell-btn" title="Pending Approvals"
+                    style="display: flex; align-items: center; text-decoration: none; position: relative;">
+                    <svg class="bell-icon" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        style="width: 24px; height: 24px; color: #111827;">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg> 
+                    <c:if test="${pendingCount > 0}">
+                        <span class="bell-badge"
+                            style="position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; background: #ef4444; border-radius: 50%;"></span>
+                    </c:if>
+                </a>
             </div>
-
             <div class="topbar-divider"></div>
-
-            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
-			    <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
-			</a>
+            
+            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Profile" style="display: inline-block; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}" 
+                     alt="Profile"
+                     onerror="this.src='https://via.placeholder.com/80';"
+                     style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%;">
+            </a>
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
         </header>
 
-        <!-- Content -->
         <main class="content-area">
             <div class="page-header">
                 <div>
                     <h1 class="page-title-large">Report Overview</h1>
                 </div>
-                <button class="download-btn" id="downloadReportBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                
+                <a href="${pageContext.request.contextPath}/report?action=download" class="download-btn" id="downloadReportBtn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                         <polyline points="7 10 12 15 17 10"/>
                         <line x1="12" y1="15" x2="12" y2="3"/>
                     </svg>
                     Download Report
-                </button>
+                </a>
             </div>
 
             <div class="stats-grid">
@@ -214,7 +133,7 @@
                         <thead>
                             <tr>
                                 <th>Classroom</th>
-                                <th>No.of Students</th>
+                                <th>No.of Active Students</th>
                                 <th>Total Revenue</th>
                             </tr>
                         </thead>

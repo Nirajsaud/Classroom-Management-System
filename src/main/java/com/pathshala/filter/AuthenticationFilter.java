@@ -19,7 +19,7 @@ import com.pathshala.utils.SessionUtil;
 @WebFilter(urlPatterns = {
     "/dashboard", "/profile", "/teachers", 
     "/students", "/students/view", "/classrooms", 
-    "/report", "/admincontact, /approvals"
+    "/report", "/admincontact", "/approvals"
 })
 public class AuthenticationFilter extends HttpFilter {
        
@@ -50,8 +50,6 @@ public class AuthenticationFilter extends HttpFilter {
         String role = user.getRole().toUpperCase();
 
         // 2. Centralized Real-time Admin Notifications Injection
-        // Because the filter handles all admin views, we pull requests here once 
-        // to populate the bell panel dynamically across any active path.
         if ("ADMIN".equals(role)) {
             UserDAO userDAO = new UserDAO();
             List<PendingApprovalDTO> pendingApprovals = userDAO.getPendingApprovals();
@@ -63,7 +61,6 @@ public class AuthenticationFilter extends HttpFilter {
         if (currentURI.contains("/dashboard")) {
             switch (role) {
                 case "ADMIN":
-                    // Pass through to DashboardServlet to compute stats
                     chain.doFilter(request, response);
                     break;
                 case "TEACHER":
@@ -77,6 +74,9 @@ public class AuthenticationFilter extends HttpFilter {
             }
             return;
         }
+        
+        // NOTE: The /profile routing block was removed from here. 
+        // It will safely pass through to the ProfileServlet below.
 
         // 4. Centralized Authorization Guard Rules
         if (currentURI.contains("/teachers") || currentURI.contains("/report") || 
@@ -96,7 +96,7 @@ public class AuthenticationFilter extends HttpFilter {
             }
         }
 
-        // Allowed to proceed to requested resource servlet paths
+        // Allowed to proceed to requested resource servlet paths (like ProfileServlet)
         chain.doFilter(request, response);
     }
 }

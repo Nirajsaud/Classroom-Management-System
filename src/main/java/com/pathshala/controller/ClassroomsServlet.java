@@ -6,67 +6,50 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
+import com.pathshala.dao.ClassroomDAO;
+import com.pathshala.model.ClassroomDTO;
 import com.pathshala.model.UserModel;
 import com.pathshala.utils.SessionUtil;
 
-/**
- * Servlet implementation class ClassroomsServlet
- */
 @WebServlet(asyncSupported = true, urlPatterns = { "/classrooms" })
 public class ClassroomsServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+    private final ClassroomDAO classroomDAO = new ClassroomDAO();
+
     public ClassroomsServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		// 1. Get the user from your SessionUtil
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = (UserModel) SessionUtil.getAttribute(request, "user");
-		
-		if (user == null) {
+        
+        if (user == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
-        // 2. Route to the correct JSP based on role
         String role = user.getRole().toLowerCase();
         
         switch (role) {
             case "admin":
-            	request.getRequestDispatcher("WEB-INF/views/admin/Admin_Classroom.jsp").forward(request, response);
+                List<ClassroomDTO> classrooms = classroomDAO.getAllClassroomsWithCounts();
+                request.setAttribute("classrooms", classrooms);
+                request.getRequestDispatcher("WEB-INF/views/admin/Admin_Classroom.jsp").forward(request, response);
                 break;
             case "teacher":
-            	request.getRequestDispatcher("WEB-INF/views/teacher/teacherClassroom.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/views/teacher/teacherClassroom.jsp").forward(request, response);
                 break;
             case "student":
-            	request.getRequestDispatcher("WEB-INF/views/student/studentClassroom.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/views/student/studentClassroom.jsp").forward(request, response);
                 break;
             default:
-                // Fallback if role is messed up in the database
                 response.sendRedirect(request.getContextPath() + "/login?error=invalid_role");
         }
-		
-		
-	}
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

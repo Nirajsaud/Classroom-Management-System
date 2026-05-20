@@ -99,8 +99,11 @@
 
 				<div class="topbar-divider"></div>
 
-            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
-                <img src="https://via.placeholder.com/80" alt="Admin profile placeholder">
+            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Profile" style="display: inline-block; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}" 
+                     alt="Profile"
+                     onerror="this.src='https://via.placeholder.com/80';"
+                     style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%;">
             </a>
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>

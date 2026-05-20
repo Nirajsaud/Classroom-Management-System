@@ -29,6 +29,11 @@ public class StudentsServlet extends HttpServlet {
             throws ServletException, IOException {
         
         UserModel user = (UserModel) SessionUtil.getAttribute(request, "user");
+        if (user == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
         String role = user.getRole().toUpperCase();
 
         // Parse class filters if supplied

@@ -47,11 +47,11 @@ public class UserModel {
 	}
 	
 	public String getPhoneNumber() {
-		return phoneNumber;
+	    return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	    this.phoneNumber = phoneNumber;
 	}
 
 	public String getPasswordHash() {

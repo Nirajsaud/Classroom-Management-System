@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,12 +8,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pathshala | Teacher Profile</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherProfile.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/notification.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/notification.css">
+
+    <style>
+        /* Navbar specific locks */
+        .profile-icon {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50% !important;
+            overflow: hidden !important;
+            text-decoration: none;
+            background-color: #f3f4f6;
+            flex-shrink: 0 !important;
+        }
+        .nav-profile-image {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            border-radius: 50% !important;
+            display: block;
+        }
+        .default-profile-icon {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* Large working-card avatar container locks */
+        .profile-photo {
+            width: 160px !important;
+            height: 160px !important;
+            border-radius: 50% !important;
+            overflow: hidden !important;
+            display: block !important;
+            position: relative;
+        }
+        #imagePreview {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            border-radius: 50% !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,21 +70,9 @@
         </div>
 
         <nav class="center-links">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">
-                <i class="fa-solid fa-table-cells-large"></i> Dashboard
-            </a>
-
-
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
-
-                <i class="fa-solid fa-pen-nib"></i> Classrooms
-            </a>
-
-
-            <a href="${pageContext.request.contextPath}/students" class="nav-link">
-                <i class="fa-solid fa-book-open"></i> Students
-
-            </a>
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link"><i class="fa-solid fa-pen-nib"></i> Classrooms</a>
+            <a href="${pageContext.request.contextPath}/students" class="nav-link"><i class="fa-solid fa-book-open"></i> Students</a>
         </nav>
 
         <div class="user-controls">
@@ -45,30 +80,23 @@
                 <button type="button" class="bell-btn" id="bellBtn">
                     <i class="fa-regular fa-bell"></i>
                 </button>
-
                 <c:if test="${not empty noticeList}">
                     <span class="bell-badge" id="bellBadge"></span>
                 </c:if>
-
                 <div class="notif-dropdown" id="notifDropdown">
                     <div class="notif-header">
                         <h4>Notifications</h4>
                         <button type="button" class="notif-mark-all" id="markAllRead">Dismiss all</button>
                     </div>
-
                     <div class="notif-list" id="notifList">
                         <c:choose>
                             <c:when test="${empty noticeList}">
-                                <div class="notif-footer">
-                                    <p>No notifications yet.</p>
-                                </div>
+                                <div class="notif-footer"><p>No notifications yet.</p></div>
                             </c:when>
-
                             <c:otherwise>
                                 <c:forEach var="notice" items="${noticeList}">
                                     <div class="notif-item unread">
                                         <div class="notif-dot"></div>
-
                                         <div class="notif-content">
                                             <div class="notif-title">${notice.title}</div>
                                             <div class="notif-text">${notice.content}</div>
@@ -81,74 +109,56 @@
                     </div>
                 </div>
             </div>
-
             <div class="v-divider"></div>
 
-            <a href="${pageContext.request.contextPath}/profile"
-   			class="profile-icon">
+            <a href="${pageContext.request.contextPath}/profile" class="profile-icon"> 
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+                     alt="Profile" class="nav-profile-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="default-profile-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </a> 
 
-
-   			 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-         		alt="Profile"
-       	 	 class="nav-profile-image"
-
-        	 	onerror="this.style.display='none';
-                  this.nextElementSibling.style.display='flex';">
-
-    		<div class="default-profile-icon">
-       		 	<i class="fa-solid fa-user"></i>
-   			 </div>
-
-			</a>
-
-
-            
-
-            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">
-                Logout
-            </a>
-
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>
 </header>
 
-
 <main class="profile-container">
-
     <section class="profile-header">
         <h1>Teacher Profile</h1>
         <p>Manage your personal information and account details.</p>
     </section>
 
+    <c:if test="${not empty message}">
+        <div style="padding: 14px; margin-bottom: 20px; background-color: #dcfce7; color: #166534; border-radius: 8px; border: 1px solid #bbf7d0;">
+            ${message}
+        </div>
+        <c:remove var="message" scope="session"/>
+    </c:if>
+    <c:if test="${not empty error}">
+        <div style="padding: 14px; margin-bottom: 20px; background-color: #fee2e2; color: #b91c1c; border-radius: 8px; border: 1px solid #fecaca;">
+            ${error}
+        </div>
+        <c:remove var="error" scope="session"/>
+    </c:if>
+
     <section class="profile-card">
-
         <div class="profile-photo-area">
-
             <div class="profile-photo">
-                <i class="fa-solid fa-user" id="placeholderIcon"></i>
-
                 <img id="imagePreview"
-                     src="#"
-                     alt="Profile Preview">
+                     src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+                     alt="Profile Preview" 
+                     onerror="this.src='https://via.placeholder.com/160';">
             </div>
-
-            <label for="profileImage" class="photo-btn">
-                Change Photo
-            </label>
-
+            <label for="profileImage" class="photo-btn">Change Photo</label>
         </div>
 
         <form action="${pageContext.request.contextPath}/profile"
-              method="post"
-              enctype="multipart/form-data"
-              class="profile-form">
+              method="post" enctype="multipart/form-data" class="profile-form">
 
-            <input type="file"
-                   id="profileImage"
-                   name="profileImage"
-                   accept="image/*"
-                   hidden
-                   onchange="previewFile()">
+            <input type="file" id="profileImage" name="profilePhoto" accept="image/*" hidden onchange="previewFile()">
 
             <div class="form-title">
                 <i class="fa-solid fa-user-pen"></i>
@@ -156,68 +166,47 @@
             </div>
 
             <div class="form-grid">
-
                 <div class="form-group">
                     <label for="fullName">FULL NAME</label>
-
-                    <input type="text"
-                           id="fullName"
-                           name="fullName"
-                           value="${user.fullName}">
+                    <input type="text" id="fullName" name="fullName" value="${user.fullName}" required>
                 </div>
-
                 <div class="form-group">
                     <label for="phoneNumber">PHONE NUMBER</label>
-
-                    <input type="text"
-                           id="phoneNumber"
-                           name="phoneNumber"
-                           value="${user.phoneNumber}">
+                    <input type="text" id="phoneNumber" name="phoneNumber" value="${user.phoneNumber}" required>
                 </div>
-
-					<div class="form-group full-width">
-						<label for="email">EMAIL ADDRESS</label> <input type="email"
-							id="email" name="email" value="${user.email}" readonly>
-					</div>
-
-				</div>
-
-            <div class="form-actions">
-
-                <a href="${pageContext.request.contextPath}/dashboard"
-                   class="cancel-btn">
-                    Cancel Changes
-                </a>
-
-                <button type="submit" class="save-btn">
-                    Save Changes
-                </button>
-
+                <div class="form-group full-width">
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input type="email" id="email" name="email" value="${user.email}" readonly>
+                </div>
             </div>
 
+            <div class="form-actions">
+                <button type="reset" class="cancel-btn" onclick="resetPreview()">Cancel Changes</button>
+                <button type="submit" class="save-btn">Save Changes</button>
+            </div>
         </form>
-
     </section>
-
 </main>
 
 <script>
-    function previewFile() {
+    const initialAvatarSrc = document.getElementById("imagePreview").src;
 
+    function previewFile() {
         const preview = document.getElementById('imagePreview');
-        const file = document.querySelector('input[name=profileImage]').files[0];
+        const file = document.querySelector('input[name=profilePhoto]').files[0];
         const reader = new FileReader();
-        const placeholder = document.getElementById('placeholderIcon');
 
         reader.onloadend = function () {
             preview.src = reader.result;
-            preview.style.display = 'block';
-            placeholder.style.display = 'none';
         }
 
         if (file) {
             reader.readAsDataURL(file);
         }
+    }
+
+    function resetPreview() {
+        document.getElementById("imagePreview").src = initialAvatarSrc;
     }
 </script>
 <script src="${pageContext.request.contextPath}/js/notification.js"></script>

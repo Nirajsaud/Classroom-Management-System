@@ -12,6 +12,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherSubject.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/notification.css">
+
+    <style>
+        .profile-icon {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50% !important;
+            overflow: hidden !important;
+            text-decoration: none;
+            background-color: #f3f4f6;
+            flex-shrink: 0 !important; /* Stops flexbox from crushing it */
+        }
+        .nav-profile-image {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            border-radius: 50% !important;
+            display: block;
+        }
+        .default-profile-icon {
+            display: none; /* Controlled by the JS onerror fallback */
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: #6b7280;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
 
@@ -26,9 +57,16 @@
         <div class="user-controls">
             <button type="button" class="bell-btn" id="bellBtn"><i class="fa-regular fa-bell"></i></button>
             <div class="v-divider"></div>
-            <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
-                <div class="default-profile-icon"><i class="fa-solid fa-user"></i></div>
-            </a>
+            
+            <a href="${pageContext.request.contextPath}/profile" class="profile-icon"> 
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+                     alt="Profile" class="nav-profile-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="default-profile-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </a> 
+            
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>

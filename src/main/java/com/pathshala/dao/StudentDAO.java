@@ -204,4 +204,19 @@ public class StudentDAO {
         }
         return null;
     }
+    
+    
+    public static int updateStudentProfile(int userId, String fullName, String phone) throws SQLException {
+        String query = "UPDATE users SET full_name = ?, phone_number = ? WHERE user_id = ? AND role = 'student'";
+        
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setString(1, fullName);
+            ps.setString(2, phone);
+            ps.setInt(3, userId);
+            
+            return ps.executeUpdate();
+        }
+    }
 }

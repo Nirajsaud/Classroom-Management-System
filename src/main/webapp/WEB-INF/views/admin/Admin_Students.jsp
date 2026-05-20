@@ -46,14 +46,28 @@
 
     <div class="main-area">
         <header class="topbar">
-            <div class="bell-wrapper" id="bellWrapper">
-                <button class="bell-btn" id="bellBtn" title="Notifications"><svg class="bell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
-                <span class="bell-badge" id="bellBadge"></span>
-            </div>
+            <div class="bell-wrapper">
+					<a href="${pageContext.request.contextPath}/approvals"
+						class="bell-btn" title="Pending Approvals"
+						style="display: flex; align-items: center; text-decoration: none; position: relative;">
+						<svg class="bell-icon" viewBox="0 0 24 24" fill="none"
+							stroke="currentColor" stroke-width="2"
+							style="width: 24px; height: 24px; color: #111827;">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+							<path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg> <c:if
+							test="${pendingCount > 0}">
+							<span class="bell-badge"
+								style="position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; background: #ef4444; border-radius: 50%;"></span>
+						</c:if>
+					</a>
+				</div>
             <div class="topbar-divider"></div>
-            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
-			    <img src="https://via.placeholder.com/80" alt="Admin Profile">
-			</a>
+            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Profile" style="display: inline-block; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}" 
+                     alt="Profile"
+                     onerror="this.src='https://via.placeholder.com/80';"
+                     style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%;">
+            </a>
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none;">Logout</a>
         </header>
 
@@ -94,7 +108,7 @@
                     <div>Email</div>
                     <div>Phone No.</div>
                     <div>Enrolled Class</div>
-                    <div>Action</div>
+                    
                 </div>
 
                 <c:choose>
@@ -114,11 +128,7 @@
                                 <div><c:out value="${student.email}"/></div>
                                 <div><c:out value="${student.phoneNumber}"/></div>
                                 <div style="color: #64748b; font-size: 0.9rem;"><c:out value="${student.className}"/></div>
-                                <div>
-                                    <a class="view-link" href="${pageContext.request.contextPath}/students/view?id=${student.studentId}">
-                                        View
-                                    </a>
-                                </div>
+                                
                             </div>
                         </c:forEach>
                     </c:otherwise>

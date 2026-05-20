@@ -30,8 +30,9 @@ public class UserDAO {
                     user.setRole(rs.getString("role"));
                     user.setApproved(rs.getBoolean("is_approved"));
                     
-                    // Removed explicit manual .close() invocations here 
-                    // as try-with-resources manages the safe teardown automatically.
+                    // FIX: Populate the phone number property from the database table
+                    user.setPhoneNumber(rs.getString("phone_number"));
+                    
                     return user;
                 }
             }
@@ -87,9 +88,6 @@ public class UserDAO {
     }
 
     /**
-     * Activates a pending account enabling authentication across login services.
-     */
-    /**
      * Activates a pending account and ensures the user profile is safely provisioned 
      * into its corresponding role table (students/teachers/admins) dynamically.
      */
@@ -98,11 +96,9 @@ public class UserDAO {
         String updateStatusSql = "UPDATE users SET is_approved = 1 WHERE user_id = ?";
         
         try (Connection conn = DBconfig.getConnection()) {
-            // Start transaction block
             conn.setAutoCommit(false);
             
             String role = null;
-            // Step A: Find out the user's intended role
             try (PreparedStatement psRole = conn.prepareStatement(getRoleSql)) {
                 psRole.setInt(1, userId);
                 try (ResultSet rs = psRole.executeQuery()) {
@@ -117,13 +113,11 @@ public class UserDAO {
                 return false;
             }
             
-            // Step B: Update user status to approved
             try (PreparedStatement psUpdate = conn.prepareStatement(updateStatusSql)) {
                 psUpdate.setInt(1, userId);
                 psUpdate.executeUpdate();
             }
             
-            // Step C: Seamlessly bridge role assignments to matching sub-tables
             String checkSubTable = "";
             String insertSubTable = "";
             
@@ -155,7 +149,6 @@ public class UserDAO {
                 }
             }
             
-            // Commit changes if all operations succeed
             conn.commit();
             return true;
             
@@ -167,7 +160,6 @@ public class UserDAO {
 
     /**
      * Rejects and permanently wipes an unapproved registration attempt.
-     * Relational tables cascade delete cleanly due to ON DELETE CASCADE constraints.
      */
     public boolean rejectUser(int userId) {
         String sql = "DELETE FROM users WHERE user_id = ? AND is_approved = 0";
@@ -175,6 +167,61 @@ public class UserDAO {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, userId);
+            return pstmt.executeUpdate() > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    /**
+     * Fetches all platform contact inquiries directly from the database contact_queries table.
+     */
+    public List<com.pathshala.model.ContactQueryDTO> getAllContactQueries() {
+        List<com.pathshala.model.ContactQueryDTO> list = new ArrayList<>();
+        String sql = "SELECT query_id, name, email, phone, subject, message, " +
+                     "DATE_FORMAT(created_at, '%Y-%m-%d') as query_date, " +
+                     "DATE_FORMAT(created_at, '%h:%i %p') as query_time " +
+                     "FROM contact_queries ORDER BY created_at DESC";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                String fullMsg = rs.getString("message");
+                String snippet = (fullMsg != null && fullMsg.length() > 45) 
+                    ? fullMsg.substring(0, 42) + "..." 
+                    : fullMsg;
+
+                list.add(new com.pathshala.model.ContactQueryDTO(
+                    rs.getInt("query_id"),
+                    rs.getString("query_date"),
+                    rs.getString("query_time"),
+                    rs.getString("name"),
+                    rs.getString("email"),
+                    rs.getString("phone"),
+                    rs.getString("subject"),
+                    snippet,
+                    fullMsg
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
+     * Permanently deletes an incoming customer service query from the system index.
+     */
+    public boolean deleteContactQuery(int queryId) {
+        String sql = "DELETE FROM contact_queries WHERE query_id = ?";
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setInt(1, queryId);
             return pstmt.executeUpdate() > 0;
             
         } catch (SQLException e) {

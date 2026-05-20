@@ -46,6 +46,15 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                 <span>Report</span>
             </a>
+            
+            <a href="${pageContext.request.contextPath}/admincontact" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
+                    <path d="M3 8l9 6 9-6"/>
+                    <path d="M12 14v7"/>
+                </svg>
+                <span>Contact</span>
+            </a>
         </nav>
     </aside>
 
@@ -60,10 +69,13 @@
                 </a>
             </div>
             <div class="topbar-divider"></div>
-            <a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Admin Profile">
-                <img src="https://via.placeholder.com/80" alt="Admin Profile">
+				<a href="${pageContext.request.contextPath}/profile" class="user-avatar" title="Profile" style="display: inline-block; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}" 
+                     alt="Profile"
+                     onerror="this.src='https://via.placeholder.com/80';"
+                     style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%;">
             </a>
-            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none;">Logout</a>
+				<a href="${pageContext.request.contextPath}/logout-user" class="logout-btn" style="text-decoration: none;">Logout</a>
         </header>
 
         <main class="content-area">

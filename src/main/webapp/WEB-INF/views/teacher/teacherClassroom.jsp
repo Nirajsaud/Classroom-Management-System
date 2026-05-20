@@ -86,23 +86,18 @@
 
             <div class="v-divider"></div>
 
-           <a href="${pageContext.request.contextPath}/profile"
-  		 class="profile-icon">
-
-   		 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-        	 alt="Profile"
-         class="nav-profile-image"
-
-         onerror="this.style.display='none';
+				<a href="${pageContext.request.contextPath}/profile"
+					class="profile-icon"> <img
+					src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+					alt="Profile" class="nav-profile-image"
+					onerror="this.style.display='none';
                   this.nextElementSibling.style.display='flex';">
 
-    <div class="default-profile-icon">
-        <i class="fa-solid fa-user"></i>
-    </div>
+					<div class="default-profile-icon">
+						<i class="fa-solid fa-user"></i>
+					</div>
 
-</a>
-
-            <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
+				</a> <a href="${pageContext.request.contextPath}/logout" class="logout-btn">Logout</a>
         </div>
     </div>
 </header>
