@@ -2,6 +2,7 @@ package com.pathshala.dao;
 
 import com.pathshala.model.StudentModel;
 import com.pathshala.model.MaterialModel;
+import com.pathshala.model.NoticeModel;
 import com.pathshala.model.PaymentModel;
 import com.pathshala.model.SubjectModel;
 import com.pathshala.model.ClassroomModel;
@@ -534,6 +535,40 @@ public class StudentDAO {
                     payment.setPaymentMethod(rs.getString("payment_method"));
                     payment.setPaymentDate(rs.getString("payment_date"));
                     list.add(payment);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+    
+    public List<NoticeModel> getStudentNotices(int userId) {
+        List<NoticeModel> list = new ArrayList<>();
+
+        String sql =
+            "SELECT DISTINCT n.notice_id, n.title, n.content, n.created_at " +
+            "FROM notices n " +
+            "JOIN enrollments e ON n.class_id = e.class_id " +
+            "JOIN students s ON e.student_id = s.student_id " +
+            "WHERE s.user_id = ? " +
+            "ORDER BY n.created_at DESC LIMIT 10";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    NoticeModel notice = new NoticeModel();
+                    notice.setNoticeId(rs.getInt("notice_id"));
+                    notice.setTitle(rs.getString("title"));
+                    notice.setContent(rs.getString("content"));
+                    notice.setCreatedAt(rs.getString("created_at"));
+                    list.add(notice);
                 }
             }
 

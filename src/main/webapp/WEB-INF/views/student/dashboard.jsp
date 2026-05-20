@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,13 +9,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pathshala | Student Dashboard</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/studentDashboard.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/notification.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/notification.css">
 
     <style type="text/css">
         @font-face {
@@ -23,7 +22,6 @@
             src: url('${pageContext.request.contextPath}/fonts/ananda-namaste.ttf') format('truetype');
         }
 
-        /* Reset defaults for the nav container zone */
         header.main-nav, header.main-nav * {
             box-sizing: border-box;
             margin: 0;
@@ -65,7 +63,7 @@
             display: flex !important;
             gap: 1.6rem !important;
             align-items: center !important;
-            list-style: none !important; /* Forces bullet removal if rendered as a list */
+            list-style: none !important;
         }
 
         header.main-nav .nav-link {
@@ -90,12 +88,6 @@
             gap: 1.1rem !important;
         }
 
-        header.main-nav .bell-icon {
-            font-size: 1.25rem !important;
-            color: #111111 !important;
-            cursor: pointer !important;
-        }
-
         header.main-nav .v-divider {
             width: 1px !important;
             height: 30px !important;
@@ -105,15 +97,30 @@
 
         header.main-nav .profile-icon {
             width: 38px !important;
-            height: 36px !important;
-            background: #D9D9D9 !important;
-            border-radius: 12px !important;
-            display: flex !important;
+            height: 38px !important;
+            border-radius: 50% !important;
+            overflow: hidden !important;
+            display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
-            color: #64748B !important;
-            font-size: 1.1rem !important;
+            background: #f3f4f6 !important;
             text-decoration: none !important;
+        }
+
+        header.main-nav .nav-profile-image {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            border-radius: 50% !important;
+        }
+
+        header.main-nav .default-profile-icon {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: #64748B;
         }
 
         header.main-nav .logout-btn {
@@ -128,6 +135,7 @@
                 height: auto !important;
                 padding: 1rem 1.5rem !important;
             }
+
             header.main-nav .nav-container {
                 flex-direction: column !important;
                 gap: 1rem !important;
@@ -137,18 +145,18 @@
 </head>
 <body>
 
-    <header class="main-nav">
+<header class="main-nav">
     <div class="nav-container">
         <div class="logo-area">
             <span class="pathshala-logo">pathshala</span>
         </div>
 
         <nav class="center-links">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link active">
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
@@ -156,134 +164,138 @@
                 <i class="fa-solid fa-book"></i> Subjects
             </a>
 
-
             <a href="${pageContext.request.contextPath}/payment" class="nav-link">
-
                 <i class="fa-solid fa-wallet"></i> Payment
             </a>
         </nav>
-<div class="user-controls">
 
-    <div class="bell-wrapper" id="bellWrapper">
-        <button type="button" class="bell-btn" id="bellBtn">
-            <i class="fa-regular fa-bell"></i>
-        </button>
-
-        <c:if test="${not empty noticeList}">
-            <span class="bell-badge" id="bellBadge"></span>
-        </c:if>
-
-        <div class="notif-dropdown" id="notifDropdown">
-            <div class="notif-header">
-                <h4>Notifications</h4>
-                <button type="button" class="notif-mark-all" id="markAllRead">
-                    Dismiss all
+        <div class="user-controls">
+            <div class="bell-wrapper" id="bellWrapper">
+                <button type="button" class="bell-btn" id="bellBtn">
+                    <i class="fa-regular fa-bell"></i>
                 </button>
-            </div>
 
-            <div class="notif-list" id="notifList">
-                <c:choose>
-                    <c:when test="${empty noticeList}">
-                        <div class="notif-footer">
-                            <p>No notifications yet.</p>
-                        </div>
-                    </c:when>
+                <c:if test="${not empty noticeList}">
+                    <span class="bell-badge" id="bellBadge"></span>
+                </c:if>
 
-                    <c:otherwise>
-                        <c:forEach var="notice" items="${noticeList}">
-                            <div class="notif-item unread">
-                                <div class="notif-dot"></div>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications</h4>
+                        <button type="button" class="notif-mark-all" id="markAllRead">Dismiss all</button>
+                    </div>
 
-                                <div class="notif-content">
-                                    <div class="notif-title">${notice.title}</div>
-                                    <div class="notif-text">${notice.content}</div>
-                                    <div class="notif-time">${notice.createdAt}</div>
+                    <div class="notif-list" id="notifList">
+                        <c:choose>
+                            <c:when test="${empty noticeList}">
+                                <div class="notif-footer">
+                                    <p>No notifications yet.</p>
                                 </div>
-                            </div>
-                        </c:forEach>
-                    </c:otherwise>
-                </c:choose>
+                            </c:when>
+
+                            <c:otherwise>
+                                <c:forEach var="notice" items="${noticeList}">
+                                    <div class="notif-item unread">
+                                        <div class="notif-dot"></div>
+
+                                        <div class="notif-content">
+                                            <div class="notif-title">${notice.title}</div>
+                                            <div class="notif-text">${notice.content}</div>
+                                            <div class="notif-time">${notice.createdAt}</div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
             </div>
+
+            <div class="v-divider"></div>
+
+            <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+                     alt="Profile"
+                     class="nav-profile-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                <div class="default-profile-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
     </div>
-
-    <div class="v-divider"></div>
-
-    <a href="${pageContext.request.contextPath}/profile"
-   class="profile-icon">
-
-    <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-         alt="Profile"
-         class="nav-profile-image"
-
-         onerror="this.style.display='none';
-                  this.nextElementSibling.style.display='flex';">
-
-    <div class="default-profile-icon">
-        <i class="fa-solid fa-user"></i>
-    </div>
-
-</a>
-
-    <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
-
-</div>
-</div>
 </header>
 
-    <main class="dashboard-container">
-        
-        <header class="welcome-section">
-            <h1>Welcome Back, <span class="underlined-name">${user.fullName}</span></h1>
-            <p>What would you like to do today?</p>
-        </header>
+<main class="dashboard-container">
 
-        <section class="action-grid">
-            <a href="${pageContext.request.contextPath}/subjects" class="card card-subjects">
-                <div class="card-header">
-                    <h2>Subjects</h2>
-                </div>
-                <div class="card-body">
-                    <p>View and access materials status, from the classroom you have paid for.</p>
-                </div>
-            </a>
+    <header class="welcome-section">
+        <h1>Welcome Back, <span class="underlined-name">${user.fullName}</span></h1>
+        <p>What would you like to do today?</p>
+    </header>
 
-            <a href="${pageContext.request.contextPath}/classrooms" class="card card-classrooms">
-                <div class="card-header">
-                    <h2>Classrooms</h2>
-                </div>
-                <div class="card-body">
-                    <p>Browse available classroom packages from Grade 4 to 10 and purchase the ones you want to join.</p>
-                </div>
-            </a>
-
-            <a href="${pageContext.request.contextPath}/payments" class="card card-payments">
-                <div class="card-header">
-                    <h2>My Payments</h2>
-                </div>
-                <div class="card-body">
-                    <p>Check your payments expiry date and renew classroom subscriptions before you get locked.</p>
-                </div>
-            </a>
-        </section>
-
-        <section class="notification-panel">
-            <div class="notif-title">
-                <h2>Notification</h2>
+    <section class="action-grid">
+        <a href="${pageContext.request.contextPath}/subjects" class="card card-subjects">
+            <div class="card-header">
+                <h2>Subjects</h2>
             </div>
-            <div class="notif-content">
-                <div class="notif-row">
-                    <span class="timestamp">3 Days ago</span>
-                    <p class="message">Rabina lama added a new video to class 5 science</p>
-                </div>
-                <div class="notif-row">
-                    <span class="timestamp">5 Days ago</span>
-                    <p class="message">Rabina lama added a new pdf to class 5 science</p>
-                </div>
+            <div class="card-body">
+                <p>View and access materials from the classrooms you have enrolled in.</p>
             </div>
-        </section>
+        </a>
 
-    </main>
+        <a href="${pageContext.request.contextPath}/classrooms" class="card card-classrooms">
+            <div class="card-header">
+                <h2>Classrooms</h2>
+            </div>
+            <div class="card-body">
+                <p>Browse available classroom packages from Grade 4 to 10 and purchase the ones you want to join.</p>
+            </div>
+        </a>
+
+        <a href="${pageContext.request.contextPath}/payment" class="card card-payments">
+            <div class="card-header">
+                <h2>My Payments</h2>
+            </div>
+            <div class="card-body">
+                <p>Check your payments, expiry dates, and renew classroom subscriptions.</p>
+            </div>
+        </a>
+    </section>
+
+    <section class="notification-panel">
+        <div class="notif-title">
+            <h2>Notification</h2>
+        </div>
+
+        <div class="notif-content">
+            <c:choose>
+                <c:when test="${empty noticeList}">
+                    <div class="notif-row">
+                        <span class="timestamp">No notices yet</span>
+                        <p class="message">New classroom updates and study materials will appear here.</p>
+                    </div>
+                </c:when>
+
+                <c:otherwise>
+                    <c:forEach var="notice" items="${noticeList}">
+                        <div class="notif-row">
+                            <span class="timestamp">${notice.createdAt}</span>
+                            <p class="message">
+                                <strong>${notice.title}</strong><br>
+                                ${notice.content}
+                            </p>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </section>
+
+</main>
+
 <script src="${pageContext.request.contextPath}/js/notification.js"></script>
 </body>
 </html>

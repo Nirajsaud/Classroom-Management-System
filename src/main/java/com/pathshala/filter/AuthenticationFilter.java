@@ -59,19 +59,7 @@ public class AuthenticationFilter extends HttpFilter {
 
         // 3. Handle Shared Route Routing (/dashboard)
         if (currentURI.contains("/dashboard")) {
-            switch (role) {
-                case "ADMIN":
-                    chain.doFilter(request, response);
-                    break;
-                case "TEACHER":
-                    httpRequest.getRequestDispatcher("/WEB-INF/views/teacher/dashboard.jsp").forward(request, response);
-                    break;
-                case "STUDENT":
-                    httpRequest.getRequestDispatcher("/WEB-INF/views/student/dashboard.jsp").forward(request, response);
-                    break;
-                default:
-                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/login?error=invalid_role");
-            }
+            chain.doFilter(request, response);
             return;
         }
         

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.pathshala.dao.StudentDAO;
+import com.pathshala.dao.TeacherDAO;
 import com.pathshala.model.ClassroomModel;
 import com.pathshala.model.StudentDirectoryDTO;
 import com.pathshala.model.UserModel;
@@ -68,6 +69,9 @@ public class StudentsServlet extends HttpServlet {
             request.setAttribute("teacherClasses", teacherClasses);
             request.setAttribute("studentList", studentList);
             request.setAttribute("totalStudents", baseTotalCount.size());
+            
+            TeacherDAO teacherDAO = new TeacherDAO();
+            request.setAttribute("noticeList", teacherDAO.getTeacherNotifications(user.getUserId()));
 
             request.getRequestDispatcher("/WEB-INF/views/teacher/teacherStudents.jsp").forward(request, response);
         }

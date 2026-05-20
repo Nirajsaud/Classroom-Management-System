@@ -24,6 +24,7 @@ public class ProfileServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private TeacherDAO teacherDAO;
+    private StudentDAO studentDAO;
 
     private static final String UPLOAD_DIR =
             System.getProperty("user.home") + File.separator + "pathshala_uploads";
@@ -31,6 +32,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         teacherDAO = new TeacherDAO();
+        studentDAO = new StudentDAO();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -56,6 +58,7 @@ public class ProfileServlet extends HttpServlet {
                 break;
 
             case "student":
+            	request.setAttribute("noticeList", studentDAO.getStudentNotices(user.getUserId()));
                 request.getRequestDispatcher("/WEB-INF/views/student/studentProfile.jsp").forward(request, response);
                 break;
 

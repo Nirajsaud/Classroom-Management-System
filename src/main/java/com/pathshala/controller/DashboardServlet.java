@@ -1,6 +1,7 @@
 package com.pathshala.controller;
 
 import com.pathshala.dao.DashboardDAO;
+import com.pathshala.dao.StudentDAO;
 import com.pathshala.dao.TeacherDAO;
 import com.pathshala.model.UserModel;
 import com.pathshala.utils.SessionUtil;
@@ -16,11 +17,13 @@ public class DashboardServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private DashboardDAO dashboardDAO;
     private TeacherDAO teacherDAO;
+    private StudentDAO studentDAO;
 
     @Override
     public void init() throws ServletException {
         dashboardDAO = new DashboardDAO();
         teacherDAO = new TeacherDAO();
+        studentDAO = new StudentDAO();
     }
 
     @Override
@@ -49,12 +52,12 @@ public class DashboardServlet extends HttpServlet {
             request.setAttribute("studentCount", teacherDAO.getStudentCount(user.getUserId()));
             request.setAttribute("materialCount", teacherDAO.getMaterialCount(user.getUserId()));
             request.setAttribute("noticeList", teacherDAO.getTeacherNotifications(user.getUserId()));
-            request.setAttribute("teacherNotices", teacherDAO.getRecentTeacherNotices(user.getUserId()));
             request.getRequestDispatcher("/WEB-INF/views/teacher/dashboard.jsp").forward(request, response);
             return;
         }
 
         if ("student".equals(role)) {
+        	request.setAttribute("noticeList", studentDAO.getStudentNotices(user.getUserId()));
             request.getRequestDispatcher("/WEB-INF/views/student/dashboard.jsp").forward(request, response);
             return;
         }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@
 </head>
 <body>
 
- <header class="main-nav">
+<header class="main-nav">
     <div class="nav-container">
         <div class="logo-area">
             <span class="pathshala-logo">pathshala</span>
@@ -29,15 +29,12 @@
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
-
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link ">
-
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link">
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>
 
             <a href="${pageContext.request.contextPath}/students" class="nav-link">
                 <i class="fa-solid fa-book-open"></i> Students
-
             </a>
         </nav>
 
@@ -85,24 +82,16 @@
 
             <div class="v-divider"></div>
 
-            <a href="${pageContext.request.contextPath}/profile"
-   			class="profile-icon">
+            <a href="${pageContext.request.contextPath}/profile" class="profile-icon">
+                <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+                     alt="Profile"
+                     class="nav-profile-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
 
-
-
-   			 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-         		alt="Profile"
-       	 	 class="nav-profile-image"
-
-        	 	onerror="this.style.display='none';
-                  this.nextElementSibling.style.display='flex';">
-
-    		<div class="default-profile-icon">
-       		 	<i class="fa-solid fa-user"></i>
-   			 </div>
-
-			</a>
-
+                <div class="default-profile-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </a>
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>
@@ -132,6 +121,7 @@
         <a href="${pageContext.request.contextPath}/classrooms" class="feature-card card-blue">
             <h2>Classroom</h2>
             <div class="card-divider"></div>
+
             <div class="card-body">
                 <h3>
                     <c:choose>
@@ -150,6 +140,7 @@
         <a href="${pageContext.request.contextPath}/students" class="feature-card card-orange">
             <h2>Students</h2>
             <div class="card-divider"></div>
+
             <div class="card-body">
                 <h3>
                     <c:choose>
@@ -161,13 +152,14 @@
                         </c:otherwise>
                     </c:choose>
                 </h3>
-                <p>View student activity and classroom participation once this feature is available.</p>
+                <p>View students enrolled in your assigned classrooms.</p>
             </div>
         </a>
 
         <a href="${pageContext.request.contextPath}/classrooms" class="feature-card card-navy">
             <h2>Study Resources</h2>
             <div class="card-divider"></div>
+
             <div class="card-body">
                 <h3>
                     <c:choose>
@@ -189,7 +181,7 @@
 
         <div class="board-content">
             <c:choose>
-                <c:when test="${empty teacherNotices}">
+                <c:when test="${empty noticeList}">
                     <div class="notice-item">
                         <span class="timestamp">No notices yet</span>
                         <p>Recent classroom notices and material updates will appear here.</p>
@@ -197,9 +189,10 @@
                 </c:when>
 
                 <c:otherwise>
-                    <c:forEach var="notice" items="${teacherNotices}">
+                    <c:forEach var="notice" items="${noticeList}">
                         <div class="notice-item">
                             <span class="timestamp">${notice.createdAt}</span>
+                            <h3>${notice.title}</h3>
                             <p>${notice.content}</p>
                         </div>
                     </c:forEach>

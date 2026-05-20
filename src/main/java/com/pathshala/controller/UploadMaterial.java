@@ -67,8 +67,17 @@ public class UploadMaterial extends HttpServlet {
         String dbFilePath = "uploads/" + savedFileName;
 
         boolean uploaded = teacherDAO.addMaterial(classId, teacherId, title, dbFilePath);
+        
+        
 
         if (uploaded) {
+            teacherDAO.addNotice(
+                classId,
+                teacherId,
+                "New Material Uploaded",
+                "A new material has been uploaded: " + title
+            );
+
             response.sendRedirect(request.getContextPath() + "/classrooms?classId=" + classId + "&success=uploaded");
         } else {
             response.sendRedirect(request.getContextPath() + "/classrooms?classId=" + classId + "&error=upload_failed");

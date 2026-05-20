@@ -76,6 +76,7 @@ public class ClassroomsServlet extends HttpServlet {
                 request.setAttribute("classroomList", studentDAO.getClassroomsForStudent(user.getUserId(), keyword, sort));
                 request.setAttribute("keyword", keyword);
                 request.setAttribute("sort", sort);
+                request.setAttribute("noticeList", studentDAO.getStudentNotices(user.getUserId()));
 
                 request.getRequestDispatcher("WEB-INF/views/student/studentClassroom.jsp").forward(request, response);
                 break;

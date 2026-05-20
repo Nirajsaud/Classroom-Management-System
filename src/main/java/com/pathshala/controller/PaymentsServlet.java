@@ -41,6 +41,7 @@ public class PaymentsServlet extends HttpServlet {
         request.setAttribute("totalPaid", studentDAO.getTotalPaid(user.getUserId()));
         request.setAttribute("activeClassCount", studentDAO.getActiveClassCount(user.getUserId()));
         request.setAttribute("paymentList", studentDAO.getPaymentHistory(user.getUserId()));
+        request.setAttribute("noticeList", studentDAO.getStudentNotices(user.getUserId()));
 
         request.getRequestDispatcher("WEB-INF/views/student/studentPayment.jsp")
                .forward(request, response);

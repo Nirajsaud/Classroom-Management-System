@@ -65,6 +65,8 @@ public class SubjectsServlet extends HttpServlet {
                 studentDAO.getResourcesForStudent(classId)
             );
         }
+        
+        request.setAttribute("noticeList", studentDAO.getStudentNotices(user.getUserId()));
 
         request.getRequestDispatcher(
             "WEB-INF/views/student/studentSubject.jsp"
