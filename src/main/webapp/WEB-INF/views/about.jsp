@@ -13,25 +13,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome for the social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Shared navbar CSS for Home, About, and Contact pages -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/public-navbar.css">
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/about.css">
 </head>
 <body>
 
     <!-- 1. Navbar (3-Zone Layout) -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-left">
-            <span class="logo">pathshala</span>
-        </div>
-        <div class="nav-center">
-            <a href="${pageContext.request.contextPath}/home">Home</a>
-            <a href="${pageContext.request.contextPath}/about">About Us</a>
-            <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-        </div>
-        <div class="nav-right">
-            <a href="${pageContext.request.contextPath}/login" class="login-link">Log In</a>
-            <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
-        </div>
-    </nav>
+<nav class="public-navbar" id="publicNavbar">
+    <div class="public-nav-left">
+        <a href="${pageContext.request.contextPath}/home" class="public-logo">pathshala</a>
+    </div>
+
+    <button class="public-mobile-toggle" id="mobileToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="public-nav-center">
+        <a href="${pageContext.request.contextPath}/home" class="public-nav-link active">Home</a>
+        <a href="${pageContext.request.contextPath}/about" class="public-nav-link">About Us</a>
+        <a href="${pageContext.request.contextPath}/contact" class="public-nav-link">Contact Us</a>
+    </div>
+
+    <div class="public-nav-right">
+        <a href="${pageContext.request.contextPath}/login" class="public-login-link">Log In</a>
+        <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
+    </div>
+</nav>
 
     <!-- Hero / Intro -->
     <section class="about-hero">

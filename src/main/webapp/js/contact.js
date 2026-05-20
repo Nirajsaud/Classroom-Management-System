@@ -1,7 +1,6 @@
 /* =============================================
-   PATHSHALA — about.js
-   Scroll effects, reveal animation, mobile nav, team tilt
-   Compatible with public-navbar.css
+   PATHSHALA — contact.js
+   Navbar scroll shadow + form-page reveal effects
    ============================================= */
 
 (function () {
@@ -74,26 +73,21 @@ function setupReveal(selector, options) {
 
     document.addEventListener('DOMContentLoaded', function () {
         setupPublicNavbar();
-        setupReveal('.reveal');
 
-        const teamCards = document.querySelectorAll('.team-card');
+        setupReveal([
+            '.contact-form-wrapper',
+            '.contact-info-wrapper',
+            '.info-item',
+            '.footer-grid'
+        ].join(','));
 
-        teamCards.forEach(function (card) {
-            card.addEventListener('mousemove', function (e) {
-                const rect = card.getBoundingClientRect();
-                const cx = rect.left + rect.width / 2;
-                const cy = rect.top + rect.height / 2;
-                const dx = (e.clientX - cx) / (rect.width / 2);
-                const dy = (e.clientY - cy) / (rect.height / 2);
-                const tiltX = dy * -4;
-                const tiltY = dx * 4;
-                card.style.transform = 'translateY(-6px) rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg)';
-                card.style.transition = 'transform 0.1s ease';
+        document.querySelectorAll('.info-item, .icon-circle, .social-icons-contact a').forEach(function (item) {
+            item.addEventListener('mouseenter', function () {
+                item.style.transform = 'translateY(-3px)';
             });
 
-            card.addEventListener('mouseleave', function () {
-                card.style.transform = '';
-                card.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease';
+            item.addEventListener('mouseleave', function () {
+                item.style.transform = '';
             });
         });
     });

@@ -6,32 +6,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pathshala | Learning, your way.</title>
-    
+
     <!-- Google Fonts: Inter & Nunito Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- FontAwesome for the social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/index.css">
+
+    <!-- Shared navbar CSS for Home, About, and Contact pages -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/public-navbar.css">
+
+    <!-- Home page CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/public-animations.css">
+
+    <!-- Home page CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
 </head>
 <body>
 
     <!-- 1. Navbar (3-Zone Layout) -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <span class="logo">pathshala</span>
-        </div>
-        <div class="nav-center">
-            <a href="${pageContext.request.contextPath}/home">Home</a>
-            <a href="${pageContext.request.contextPath}/about">About Us</a>
-            <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-        </div>
-        <div class="nav-right">
-            <a href="${pageContext.request.contextPath}/login" class="login-link">Log In</a>
-            <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
-        </div>
-    </nav>
+<nav class="public-navbar" id="publicNavbar">
+    <div class="public-nav-left">
+        <a href="${pageContext.request.contextPath}/home" class="public-logo">pathshala</a>
+    </div>
+
+    <button class="public-mobile-toggle" id="mobileToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="public-nav-center">
+        <a href="${pageContext.request.contextPath}/home" class="public-nav-link active">Home</a>
+        <a href="${pageContext.request.contextPath}/about" class="public-nav-link">About Us</a>
+        <a href="${pageContext.request.contextPath}/contact" class="public-nav-link">Contact Us</a>
+    </div>
+
+    <div class="public-nav-right">
+        <a href="${pageContext.request.contextPath}/login" class="public-login-link">Log In</a>
+        <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
+    </div>
+</nav>
 
     <!-- 2. Hero Section -->
     <header class="hero">
@@ -49,7 +66,7 @@
                 <div class="hero-illustration">
                     <!-- Replace with hero illustration -->
                     <div>
-                    <img src="images/landing_page_hero_girl.jpg" alt="Student Studying">
+                    <img src="images/landing_page_hero_girl.jpg" alt="Student Studying" style="border-radius: 20px; object-fit: cover;">
                     </div>
                 </div>
 
@@ -82,7 +99,7 @@
             <div class="feature-card">
                 <!-- Replace with icon -->
                 <div class="placeholder-icon">
-                <img src="images/landing_page_flexible_enrollment.jpg"width="200" height="100">
+                <img src="images/landing_page_flexible_enrollment.jpg" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
                 </div>
                 <h4>Flexible Enrollment</h4>
                 <p>Study at your own pace with our flexible learning options tailored for you.</p>
@@ -91,7 +108,7 @@
             <div class="feature-card">
                 <!-- Replace with icon -->
                 <div class="placeholder-icon">
-                <img src="images/landing_page_teacher_led.jpg"width="200" height="100">
+                <img src="images/landing_page_teacher_led.jpg" style="width: 200px; height: 100px; border-radius: 20px; object-fit: cover;">
                 </div>
                 <h4>Teacher-Led Learning</h4>
                 <p>Personalized support from industry experts to help you navigate your career.</p>
@@ -100,7 +117,7 @@
             <div class="feature-card">
                 <!-- Replace with icon -->
                 <div class="placeholder-icon">
-                <img src="images/landing_page_organized_dashboard.jpg"width="200" height="100">
+                <img src="images/landing_page_organized_dashboard.jpg" style="width: 200px; height: 100px; border-radius: 20px; object-fit: cover;">
                 </div>
                 <h4>Organized Dashboard</h4>
                 <p>An easy-to-use dashboard to track your progress and manage your courses.</p>
@@ -150,7 +167,7 @@
         <div class="container cta-content">
             <!-- Replace with book image -->
             <div class="placeholder-box img-book">
-            <img src="images/landing_page_book.jpg"width="350" height="180">
+            <img src="images/landing_page_book.jpg" style="width: 400px; height: 200px; border-radius: 20px; object-fit: cover;">
             </div>
             <h2>Unleash your potential</h2>
             <p>Join thousands of students across Nepal today.</p>
@@ -220,7 +237,7 @@
                 <div class="contact-visual">
                     <!-- Replace with support illustration -->
                     <div class="placeholder-box img-support">
-                    <img src="images/landing_page_contact.jpg"width="300" height="300">
+                    <img src="images/landing_page_contact.jpg" style="width: 300px; height: 300px; border-radius: 20px; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -266,5 +283,6 @@
         </div>
     </footer>
 
+    <script src="${pageContext.request.contextPath}/js/home.js"></script>
 </body>
 </html>

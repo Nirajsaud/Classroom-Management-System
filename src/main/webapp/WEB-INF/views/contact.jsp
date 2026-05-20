@@ -9,6 +9,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/public-navbar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/public-animations.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contact.css">
     
     <style>
@@ -45,20 +47,29 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-left">
-            <span class="logo">pathshala</span>
-        </div>
-        <div class="nav-center">
-            <a href="${pageContext.request.contextPath}/home">Home</a>
-            <a href="${pageContext.request.contextPath}/about">About Us</a>
-            <a href="${pageContext.request.contextPath}/contact" class="active">Contact Us</a>
-        </div>
-        <div class="nav-right">
-            <a href="${pageContext.request.contextPath}/login" class="login-link">Log In</a>
-            <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
-        </div>
-    </nav>
+    <!-- 1. Navbar (3-Zone Layout) -->
+<nav class="public-navbar" id="publicNavbar">
+    <div class="public-nav-left">
+        <a href="${pageContext.request.contextPath}/home" class="public-logo">pathshala</a>
+    </div>
+
+    <button class="public-mobile-toggle" id="mobileToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="public-nav-center">
+        <a href="${pageContext.request.contextPath}/home" class="public-nav-link">Home</a>
+        <a href="${pageContext.request.contextPath}/about" class="public-nav-link">About Us</a>
+        <a href="${pageContext.request.contextPath}/contact" class="public-nav-link active">Contact Us</a>
+    </div>
+
+    <div class="public-nav-right">
+        <a href="${pageContext.request.contextPath}/login" class="public-login-link">Log In</a>
+        <a href="${pageContext.request.contextPath}/signup" class="btn btn-outline">Join for Free</a>
+    </div>
+</nav>
 
 	<!-- Decorative background elements -->
     <div class="accent-blob top-right"></div>
@@ -251,5 +262,6 @@
             });
         });
     </script>
+    <script src="${pageContext.request.contextPath}/js/contact.js"></script>
 </body>
 </html>

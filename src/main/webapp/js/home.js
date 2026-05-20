@@ -1,7 +1,6 @@
 /* =============================================
-   PATHSHALA — about.js
-   Scroll effects, reveal animation, mobile nav, team tilt
-   Compatible with public-navbar.css
+   PATHSHALA — home.js
+   Navbar scroll shadow + soft scroll reveal
    ============================================= */
 
 (function () {
@@ -74,26 +73,28 @@ function setupReveal(selector, options) {
 
     document.addEventListener('DOMContentLoaded', function () {
         setupPublicNavbar();
-        setupReveal('.reveal');
 
-        const teamCards = document.querySelectorAll('.team-card');
+        setupReveal([
+            '.hero-text-layer',
+            '.hero-illustration',
+            '.stat-card',
+            '.feature-card',
+            '.subjects-header',
+            '.subject-card',
+            '.cta-content',
+            '.philosophy-header',
+            '.philosophy-card',
+            '.contact-banner',
+            '.footer-grid'
+        ].join(','));
 
-        teamCards.forEach(function (card) {
-            card.addEventListener('mousemove', function (e) {
-                const rect = card.getBoundingClientRect();
-                const cx = rect.left + rect.width / 2;
-                const cy = rect.top + rect.height / 2;
-                const dx = (e.clientX - cx) / (rect.width / 2);
-                const dy = (e.clientY - cy) / (rect.height / 2);
-                const tiltX = dy * -4;
-                const tiltY = dx * 4;
-                card.style.transform = 'translateY(-6px) rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg)';
-                card.style.transition = 'transform 0.1s ease';
+        document.querySelectorAll('.stat-card, .feature-card, .subject-card, .philosophy-card').forEach(function (card) {
+            card.addEventListener('mouseenter', function () {
+                card.style.transform = 'translateY(-4px)';
             });
 
             card.addEventListener('mouseleave', function () {
                 card.style.transform = '';
-                card.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease';
             });
         });
     });
