@@ -49,7 +49,7 @@
             </a>
 
 
-            <a href="${pageContext.request.contextPath}/payments"
+            <a href="${pageContext.request.contextPath}/payment"
                class="nav-link">
 
                 <i class="fa-solid fa-wallet"></i>

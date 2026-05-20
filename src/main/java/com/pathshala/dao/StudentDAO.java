@@ -1,6 +1,8 @@
 package com.pathshala.dao;
 
 import com.pathshala.model.StudentModel;
+import com.pathshala.model.MaterialModel;
+import com.pathshala.model.SubjectModel;
 import com.pathshala.model.ClassroomModel;
 import com.pathshala.model.StudentDirectoryDTO;
 import com.pathshala.utils.DBconfig;
@@ -58,7 +60,7 @@ public class StudentDAO {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                list.add(new ClassroomModel(rs.getInt("class_id"), rs.getString("class_name"), false));
+                list.add(new ClassroomModel(rs.getInt("class_id"), rs.getString("class_name")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -204,6 +206,7 @@ public class StudentDAO {
         }
         return null;
     }
+    //
     public int getStudentIdByUserId(int userId) {
         String sql = "SELECT student_id FROM students WHERE user_id = ?";
 
@@ -224,7 +227,7 @@ public class StudentDAO {
 
         return 0;
     }
-
+//class order from max- min
     public List<ClassroomModel> getClassroomsForStudent(int userId, String keyword, String sort) {
         List<ClassroomModel> list = new ArrayList<>();
 
@@ -275,4 +278,196 @@ public class StudentDAO {
 
         return list;
     }
+    //payment page,fetch data to show in the front end 
+    public ClassroomModel getClassroomById(int classId) {
+        String sql = "SELECT class_id, class_name, price FROM class_packages WHERE class_id = ?";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, classId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                if (rs.next()) {
+
+                    ClassroomModel classroom = new ClassroomModel();
+
+                    classroom.setClassId(rs.getInt("class_id"));
+                    classroom.setClassName(rs.getString("class_name"));
+                    classroom.setPrice(rs.getDouble("price"));
+
+                    return classroom;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+//creates table enrollment and then payment
+    public int createEnrollmentAndPayment(int userId, int classId, double amountPaid, String paymentMethod) {
+        int studentId = getStudentIdByUserId(userId);
+
+        String checkSql = "SELECT enrollment_id FROM enrollments WHERE student_id = ? AND class_id = ?";
+        String enrollSql = "INSERT INTO enrollments (student_id, class_id, status) VALUES (?, ?, 'active')";
+        String paySql = "INSERT INTO payments (enrollment_id, amount_paid, payment_method) VALUES (?, ?, ?)";
+
+        try (Connection conn = DBconfig.getConnection()) {
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+                checkStmt.setInt(1, studentId);
+                checkStmt.setInt(2, classId);
+
+                try (ResultSet rs = checkStmt.executeQuery()) {
+                    if (rs.next()) {
+                        conn.rollback();
+                        return rs.getInt("enrollment_id");
+                    }
+                }
+            }
+
+            int enrollmentId = 0;
+
+            try (PreparedStatement enrollStmt = conn.prepareStatement(enrollSql, Statement.RETURN_GENERATED_KEYS)) {
+                enrollStmt.setInt(1, studentId);
+                enrollStmt.setInt(2, classId);
+                enrollStmt.executeUpdate();
+
+                try (ResultSet keys = enrollStmt.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        enrollmentId = keys.getInt(1);
+                    }
+                }
+            }
+
+            try (PreparedStatement payStmt = conn.prepareStatement(paySql)) {
+                payStmt.setInt(1, enrollmentId);
+                payStmt.setDouble(2, amountPaid);
+                payStmt.setString(3, paymentMethod);
+                payStmt.executeUpdate();
+            }
+
+            conn.commit();
+            return enrollmentId;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+    
+    //Get enrolled classrooms of the student
+    public List<ClassroomModel> getEnrolledClasses(int userId) {
+
+        List<ClassroomModel> list = new ArrayList<>();
+
+        String sql =
+            "SELECT DISTINCT cp.class_id, cp.class_name " +
+            "FROM enrollments e " +
+            "JOIN students s ON e.student_id = s.student_id " +
+            "JOIN class_packages cp ON e.class_id = cp.class_id " +
+            "WHERE s.user_id = ? " +
+            "ORDER BY cp.class_name ASC";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+
+                    list.add(new ClassroomModel(
+                        rs.getInt("class_id"),
+                        rs.getString("class_name")
+                    ));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+    //Get subjects of selected class
+    public List<SubjectModel> getSubjectsByClass(int classId) {
+
+        List<SubjectModel> list = new ArrayList<>();
+
+        String sql =
+            "SELECT s.subject_id, s.subject_name " +
+            "FROM class_subjects cs " +
+            "JOIN subjects s ON cs.subject_id = s.subject_id " +
+            "WHERE cs.class_id = ? " +
+            "ORDER BY s.subject_name ASC";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, classId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+
+                    list.add(new SubjectModel(
+                        rs.getInt("subject_id"),
+                        rs.getString("subject_name")
+                    ));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+    //Get materials uploaded by teacher
+    public List<MaterialModel> getResourcesForStudent(int classId) {
+
+        List<MaterialModel> list = new ArrayList<>();
+
+        String sql =
+            "SELECT material_id, class_id, teacher_id, title, file_path, uploaded_at " +
+            "FROM materials " +
+            "WHERE class_id = ? " +
+            "ORDER BY uploaded_at DESC";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, classId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+
+                    MaterialModel material = new MaterialModel();
+
+                    material.setMaterialId(rs.getInt("material_id"));
+                    material.setClassId(rs.getInt("class_id"));
+                    material.setTeacherId(rs.getInt("teacher_id"));
+                    material.setTitle(rs.getString("title"));
+                    material.setFilePath(rs.getString("file_path"));
+                    material.setUploadedAt(rs.getTimestamp("uploaded_at").toString());
+
+                    list.add(material);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+    
 }

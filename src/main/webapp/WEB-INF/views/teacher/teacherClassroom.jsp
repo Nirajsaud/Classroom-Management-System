@@ -90,17 +90,17 @@
   		 class="profile-icon">
 
    		 <img src="${pageContext.request.contextPath}/getimage?name=${user.email}"
-        	 alt="Profile"
-         class="nav-profile-image"
+        	  alt="Profile"
+         	  class="nav-profile-image"
 
-         onerror="this.style.display='none';
+         	  onerror="this.style.display='none';
                   this.nextElementSibling.style.display='flex';">
 
-    <div class="default-profile-icon">
-        <i class="fa-solid fa-user"></i>
-    </div>
+    		<div class="default-profile-icon">
+       			 <i class="fa-solid fa-user"></i>
+    		</div>
 
-</a>
+		</a>
 
             <a href="${pageContext.request.contextPath}/logout-user" class="logout-btn">Logout</a>
         </div>

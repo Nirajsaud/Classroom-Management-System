@@ -62,7 +62,7 @@
 
             </a>
 
-            <a href="${pageContext.request.contextPath}/payments"
+            <a href="${pageContext.request.contextPath}/payment"
                class="nav-link">
 
                 <i class="fa-solid fa-wallet"></i>
@@ -253,11 +253,16 @@
                                 ${resource.uploadedAt}
                             </span>
 
-                            <a href="${pageContext.request.contextPath}/download?file=${resource.filePath}"
-                               class="download-btn">
+                            <a href="${pageContext.request.contextPath}/${resource.filePath}"
+   							   target="_blank"
+   							   class="preview-btn">
+    								Preview
+							</a>
 
-                                Download
-                            </a>
+							<a href="${pageContext.request.contextPath}/download?file=${resource.filePath}"
+   							   class="download-btn">
+    								Download
+							</a>
 
                         </div>
 

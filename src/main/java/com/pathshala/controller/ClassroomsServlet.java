@@ -81,12 +81,7 @@ public class ClassroomsServlet extends HttpServlet {
                 request.setAttribute("classroomList", studentDAO.getClassroomsForStudent(user.getUserId(), keyword, sort));
                 request.setAttribute("keyword", keyword);
                 request.setAttribute("sort", sort);
-                java.util.List<com.pathshala.model.ClassroomModel> classroomList =
-                        studentDAO.getClassroomsForStudent(user.getUserId(), keyword, sort);
-
-                System.out.println("Student classroom count = " + classroomList.size());
-
-                request.setAttribute("classroomList", classroomList);
+                
 
                 request.getRequestDispatcher("WEB-INF/views/student/studentClassroom.jsp").forward(request, response);
                 break;

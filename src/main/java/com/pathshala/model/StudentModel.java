@@ -1,18 +1,22 @@
 package com.pathshala.model;
 
 public class StudentModel extends UserModel {
-	private String studentId;
+    private int studentId; // int, not String — matches DB
 
-	public StudentModel(String fullName, String email, String phoneNumber, String passwordHash) {
-		super(fullName, email, phoneNumber, passwordHash, "student");
-	}
+    // No-arg constructor — needed when building from ResultSet
+    public StudentModel() {
+        super();
+    }
 
-	public String getStudentId() {
-		return studentId;
-	}
+    public StudentModel(String fullName, String email, String phoneNumber, String passwordHash) {
+        super(fullName, email, phoneNumber, passwordHash, "student");
+    }
 
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
-	}
+    public int getStudentId() {
+        return studentId;
+    }
 
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
 }
