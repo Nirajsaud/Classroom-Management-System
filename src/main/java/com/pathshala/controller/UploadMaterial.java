@@ -73,15 +73,7 @@ public class UploadMaterial extends HttpServlet {
         } else {
             response.sendRedirect(request.getContextPath() + "/classrooms?classId=" + classId + "&error=upload_failed");
         }
-        boolean uploaded1 = teacherDAO.addMaterial(classId, teacherId, title, dbFilePath);
-        if (uploaded1) {
-            teacherDAO.addNotice(
-                classId,
-                teacherId,
-                "New Material Uploaded",
-                "You uploaded \"" + title + "\" for your classroom."
-            );
-        }
+        
     }
     
 }

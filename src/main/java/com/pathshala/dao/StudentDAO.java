@@ -2,6 +2,7 @@ package com.pathshala.dao;
 
 import com.pathshala.model.StudentModel;
 import com.pathshala.model.MaterialModel;
+import com.pathshala.model.PaymentModel;
 import com.pathshala.model.SubjectModel;
 import com.pathshala.model.ClassroomModel;
 import com.pathshala.model.StudentDirectoryDTO;
@@ -450,6 +451,89 @@ public class StudentDAO {
                     material.setFilePath(rs.getString("file_path"));
                     material.setUploadedAt(rs.getTimestamp("uploaded_at").toString());
                     list.add(material);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+    
+    public double getTotalPaid(int userId) {
+        String sql = "SELECT COALESCE(SUM(p.amount_paid), 0) AS total_paid " +
+                     "FROM payments p " +
+                     "JOIN enrollments e ON p.enrollment_id = e.enrollment_id " +
+                     "JOIN students s ON e.student_id = s.student_id " +
+                     "WHERE s.user_id = ?";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getDouble("total_paid");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public int getActiveClassCount(int userId) {
+        String sql = "SELECT COUNT(DISTINCT e.class_id) AS active_count " +
+                     "FROM enrollments e " +
+                     "JOIN students s ON e.student_id = s.student_id " +
+                     "WHERE s.user_id = ?";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("active_count");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public List<PaymentModel> getPaymentHistory(int userId) {
+        List<PaymentModel> list = new ArrayList<>();
+
+        String sql = "SELECT cp.class_name, p.amount_paid, p.payment_method, p.payment_date " +
+                     "FROM payments p " +
+                     "JOIN enrollments e ON p.enrollment_id = e.enrollment_id " +
+                     "JOIN students s ON e.student_id = s.student_id " +
+                     "JOIN class_packages cp ON e.class_id = cp.class_id " +
+                     "WHERE s.user_id = ? " +
+                     "ORDER BY p.payment_date DESC";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    PaymentModel payment = new PaymentModel();
+                    payment.setClassName(rs.getString("class_name"));
+                    payment.setAmountPaid(rs.getDouble("amount_paid"));
+                    payment.setPaymentMethod(rs.getString("payment_method"));
+                    payment.setPaymentDate(rs.getString("payment_date"));
+                    list.add(payment);
                 }
             }
 
