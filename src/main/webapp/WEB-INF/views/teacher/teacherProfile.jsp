@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -123,14 +124,14 @@
 
         <div class="profile-photo-area">
 
-            <div class="profile-photo">
-                <i class="fa-solid fa-user" id="placeholderIcon"></i>
+		<div class="profile-photo">
+    		<img id="imagePreview"
+         		src="${pageContext.request.contextPath}/getimage?name=${user.email}"
+         		alt="Profile Preview"
+         		onerror="this.style.display='none'; document.getElementById('placeholderIcon').style.display='block';">
 
-                <img id="imagePreview"
-                     src="#"
-                     alt="Profile Preview">
-            </div>
-
+    		<i class="fa-solid fa-user" id="placeholderIcon"></i>
+		</div>
             <label for="profileImage" class="photo-btn">
                 Change Photo
             </label>

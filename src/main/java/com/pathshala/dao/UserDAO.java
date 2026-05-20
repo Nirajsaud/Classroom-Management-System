@@ -26,6 +26,7 @@ public class UserDAO {
                     user.setUserId(rs.getInt("user_id"));
                     user.setFullName(rs.getString("full_name"));
                     user.setEmail(rs.getString("email"));
+                    user.setPhoneNumber(rs.getString("phone_number"));
                     user.setPasswordHash(rs.getString("password_hash"));
                     user.setRole(rs.getString("role"));
                     user.setApproved(rs.getBoolean("is_approved"));
@@ -181,5 +182,23 @@ public class UserDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    public boolean updateUserProfile(int userId, String fullName, String phoneNumber) {
+        String sql = "UPDATE users SET full_name = ?, phone_number = ? WHERE user_id = ?";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, fullName);
+            stmt.setString(2, phoneNumber);
+            stmt.setInt(3, userId);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

@@ -160,14 +160,34 @@
                                 <p>${material.filePath}</p>
                             </div>
 
-                            <div class="resource-meta">
-                                <span>Created at: ${material.uploadedAt}</span>
+                            <div class="resource-actions">
 
-                                <form method="post" action="${pageContext.request.contextPath}/delete-material">
-                                    <input type="hidden" name="materialId" value="${material.materialId}">
-                                    <button type="submit" class="delete-btn">Delete</button>
-                                </form>
-                            </div>
+    <a href="${pageContext.request.contextPath}/${material.filePath}"
+       target="_blank"
+       class="preview-btn">
+        Preview
+    </a>
+
+    <a href="${pageContext.request.contextPath}/download?file=${fn:escapeXml(material.filePath)}"
+       class="download-btn">
+        Download
+    </a>
+
+    <form method="post"
+          action="${pageContext.request.contextPath}/delete-material">
+
+        <input type="hidden"
+               name="materialId"
+               value="${material.materialId}">
+
+        <button type="submit"
+                class="delete-btn">
+            Delete
+        </button>
+
+    </form>
+
+</div>
                         </div>
                     </c:forEach>
                 </c:otherwise>

@@ -58,7 +58,7 @@ public class StudentDAO {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                list.add(new ClassroomModel(rs.getInt("class_id"), rs.getString("class_name")));
+                list.add(new ClassroomModel(rs.getInt("class_id"), rs.getString("class_name"), false));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -203,5 +203,76 @@ public class StudentDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    public int getStudentIdByUserId(int userId) {
+        String sql = "SELECT student_id FROM students WHERE user_id = ?";
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("student_id");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public List<ClassroomModel> getClassroomsForStudent(int userId, String keyword, String sort) {
+        List<ClassroomModel> list = new ArrayList<>();
+
+        int studentId = getStudentIdByUserId(userId);
+
+        StringBuilder sql = new StringBuilder(
+            "SELECT cp.class_id, cp.class_name, cp.price, " +
+            "CASE WHEN e.enrollment_id IS NULL THEN 0 ELSE 1 END AS enrolled " +
+            "FROM class_packages cp " +
+            "LEFT JOIN enrollments e ON cp.class_id = e.class_id AND e.student_id = ? "
+        );
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            sql.append("WHERE cp.class_name LIKE ? ");
+        }
+
+        if ("low".equalsIgnoreCase(sort)) {
+            sql.append("ORDER BY cp.price ASC");
+        } else if ("high".equalsIgnoreCase(sort)) {
+            sql.append("ORDER BY cp.price DESC");
+        } else {
+            sql.append("ORDER BY cp.class_id ASC");
+        }
+
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+            stmt.setInt(1, studentId);
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                stmt.setString(2, "%" + keyword + "%");
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    ClassroomModel classroom = new ClassroomModel();
+                    classroom.setClassId(rs.getInt("class_id"));
+                    classroom.setClassName(rs.getString("class_name"));
+                    classroom.setPrice(rs.getDouble("price"));
+                    classroom.setEnrolled(rs.getBoolean("enrolled"));
+                    list.add(classroom);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 }

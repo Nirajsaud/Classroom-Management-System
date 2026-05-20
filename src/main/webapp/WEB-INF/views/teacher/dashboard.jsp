@@ -25,12 +25,12 @@
         </div>
 
         <nav class="center-links">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">
+            <a href="${pageContext.request.contextPath}/dashboard" class="nav-link active">
                 <i class="fa-solid fa-table-cells-large"></i> Dashboard
             </a>
 
 
-            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link active">
+            <a href="${pageContext.request.contextPath}/classrooms" class="nav-link ">
 
                 <i class="fa-solid fa-pen-nib"></i> Classrooms
             </a>

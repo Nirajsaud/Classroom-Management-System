@@ -48,10 +48,47 @@ public class ClassroomsServlet extends HttpServlet {
             	request.getRequestDispatcher("WEB-INF/views/admin/Admin_Classroom.jsp").forward(request, response);
                 break;
             case "teacher":
-            	request.getRequestDispatcher("WEB-INF/views/teacher/teacherClassroom.jsp").forward(request, response);
+                int classId = 0;
+                String classParam = request.getParameter("classId");
+
+                if (classParam != null && !classParam.trim().isEmpty()) {
+                    try {
+                        classId = Integer.parseInt(classParam);
+                    } catch (NumberFormatException e) {
+                        classId = 0;
+                    }
+                }
+
+                com.pathshala.dao.TeacherDAO teacherDAO = new com.pathshala.dao.TeacherDAO();
+
+                request.setAttribute("teacherClasses", teacherDAO.getTeacherClasses(user.getUserId()));
+                request.setAttribute("studyResources", teacherDAO.getTeacherMaterials(user.getUserId(), classId));
+                request.setAttribute("selectedClassId", classId);
+                request.setAttribute("noticeList", teacherDAO.getTeacherNotifications(user.getUserId()));
+
+                request.getRequestDispatcher("WEB-INF/views/teacher/teacherClassroom.jsp").forward(request, response);
                 break;
             case "student":
-            	request.getRequestDispatcher("WEB-INF/views/student/studentClassroom.jsp").forward(request, response);
+                String keyword = request.getParameter("keyword");
+                String sort = request.getParameter("sort");
+
+                if (sort == null || sort.trim().isEmpty()) {
+                    sort = "default";
+                }
+
+                com.pathshala.dao.StudentDAO studentDAO = new com.pathshala.dao.StudentDAO();
+
+                request.setAttribute("classroomList", studentDAO.getClassroomsForStudent(user.getUserId(), keyword, sort));
+                request.setAttribute("keyword", keyword);
+                request.setAttribute("sort", sort);
+                java.util.List<com.pathshala.model.ClassroomModel> classroomList =
+                        studentDAO.getClassroomsForStudent(user.getUserId(), keyword, sort);
+
+                System.out.println("Student classroom count = " + classroomList.size());
+
+                request.setAttribute("classroomList", classroomList);
+
+                request.getRequestDispatcher("WEB-INF/views/student/studentClassroom.jsp").forward(request, response);
                 break;
             default:
                 // Fallback if role is messed up in the database
