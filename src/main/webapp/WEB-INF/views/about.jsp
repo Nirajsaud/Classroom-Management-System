@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/about.css">
 </head>
 <body>
 
@@ -43,7 +43,7 @@
         <div class="container-small hero-content">
             <div class="hero-badge reveal">Our Story</div>
             <h1 class="hero-heading reveal">Learning,<br><em>your way.</em></h1>
-            <p class="hero-text reveal">Pathshala is an online e-learning and classroom management platform built to bridge the gap between traditional school education and the modern digital world — connecting students, teachers, and administrators in one seamless space.</p>
+            <p class="hero-text reveal">Pathshala is an online e-learning and classroom management platform built to bridge the gap between traditional school education and the modern digital world connecting students, teachers, and administrators in one seamless space.</p>
 
         </div>
     </section>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="platform-right reveal">
                     <p class="platform-text">Pathshala is a student management and e-learning system designed for schools. It supports both students who attend school physically and learners outside the school who want access to quality study resources.</p>
-                    <p class="platform-text">Teachers can upload materials, create assignments, and communicate with students — all from one platform. Administrators have full control over classrooms, subjects, staff, and semesters.</p>
+                    <p class="platform-text">Teachers can upload materials, create assignments, and communicate with students all from one platform. Administrators have full control over classrooms, subjects, staff, and semesters.</p>
                     <div class="feature-pills">
                         <span class="pill"><i class="fa-solid fa-graduation-cap"></i> Student Portal</span>
                         <span class="pill"><i class="fa-solid fa-chalkboard-teacher"></i> Teacher Tools</span>
@@ -84,7 +84,7 @@
             <div class="team-header">
                 <div class="team-eyebrow reveal">The People Behind It</div>
                 <h2 class="meet-title reveal">Meet Our Team</h2>
-                <p class="team-subtitle reveal">Four builders with one goal — making education more accessible.</p>
+                <p class="team-subtitle reveal">Four builders with one goal making education more accessible.</p>
             </div>
 
             <div class="team-grid">
@@ -111,7 +111,7 @@
                         <div class="team-text">
                             <span class="role"><i class="fa-solid fa-server"></i> Backend Developer & Database Engineer</span>
                             <h3>Kritika Basel</h3>
-                            <p>Kritika builds the engine that powers Pathshala. She designs and manages the database architecture and server-side logic — from user role management to semester access control — ensuring the platform runs with reliability and precision at its core.</p>
+                            <p>Kritika builds the engine that powers Pathshala. She designs and manages the database architecture and server-side logic from user role management to semester access control — ensuring the platform runs with reliability and precision at its core.</p>
                             <div class="card-tags">
                                 <span>Database</span>
                                 <span>Server-Side</span>
@@ -143,7 +143,7 @@
                         <div class="team-text">
                             <span class="role"><i class="fa-solid fa-display"></i> Frontend Developer & QA Lead</span>
                             <h3>Sabin Paudel</h3>
-                            <p>Sabin brings Pathshala to life on the screen while making sure every detail holds up under scrutiny. He develops the client-side interface and owns quality assurance — validating user flows, catching edge cases, and ensuring a consistent experience.</p>
+                            <p>Sabin brings Pathshala to life on the screen while making sure every detail holds up under scrutiny. He develops the client-side interface and owns quality assurance validating user flows, catching edge cases, and ensuring a consistent experience.</p>
                             <div class="card-tags">
                                 <span>Frontend</span>
                                 <span>QA</span>
@@ -175,7 +175,7 @@
                         <div class="team-text">
                             <span class="role"><i class="fa-solid fa-layer-group"></i> Full Stack Developer</span>
                             <h3>Nischal Raj Joshi</h3>
-                            <p>Nischal works across every layer of the platform. From frontend interfaces to backend logic, he bridges the gap between design and functionality — contributing wherever needed to keep Pathshala cohesive, complete, and technically strong.</p>
+                            <p>Nischal works across every layer of the platform. From frontend interfaces to backend logic, he bridges the gap between design and functionality contributing wherever needed to keep Pathshala cohesive, complete, and technically strong.</p>
                             <div class="card-tags">
                                 <span>Full Stack</span>
                                 <span>Integration</span>
@@ -207,7 +207,7 @@
                         <div class="team-text">
                             <span class="role"><i class="fa-solid fa-compass-drafting"></i> UX Designer & Project Lead</span>
                             <h3>Niraj Saud</h3>
-                            <p>Niraj leads Pathshala with a user-first mindset. He drives the overall product vision, oversees project direction, and designs the user experience — ensuring the platform is not only functional but intuitive and thoughtfully crafted for every type of user.</p>
+                            <p>Niraj leads Pathshala with a user-first mindset. He drives the overall product vision, oversees project direction, and designs the user experience ensuring the platform is not only functional but intuitive and thoughtfully crafted for every type of user.</p>
                             <div class="card-tags">
                                 <span>UX Design</span>
                                 <span>Leadership</span>
@@ -267,6 +267,6 @@
         </div>
     </footer>
 
-    <script src="about.js"></script>
+    <script src="${pageContext.request.contextPath}/js/about.js"></script>
 </body>
 </html>
