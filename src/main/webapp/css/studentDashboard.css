@@ -1,0 +1,239 @@
+:root {
+    --bg-light: #F8FAFC;
+    --primary-blue: #1E3A8A;
+    --accent-orange: #F59E0B;
+    --danger-red: #EF4444;
+    --text-main: #111827;
+    --text-muted: #64748B;
+    --border-light: #E2E8F0;
+    --white: #FFFFFF;
+}
+
+@font-face {
+    font-family: 'Ananda Namaste';
+    src: url('../fonts/ananda-namaste.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, #F8FAFC, #EEF5FF);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* PAGE */
+
+.dashboard-container {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 4rem;
+}
+
+.welcome-section {
+    margin-bottom: 2.8rem;
+}
+
+.welcome-section h1 {
+    font-size: 2.7rem;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+}
+
+.underlined-name {
+    color: var(--primary-blue);
+    text-decoration: underline;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 2px;
+}
+
+.welcome-section p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* ACTION CARDS */
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    margin-bottom: 2.5rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 30px;
+    padding: 2rem;
+    min-height: 270px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+    transition: 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.09);
+}
+
+.card-header {
+    min-height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.card-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.card-body p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    text-align: center;
+}
+
+.card-subjects {
+    border-color: #BAE6FD;
+}
+
+.card-subjects .card-header {
+    border-color: #38BDF8;
+}
+
+.card-classrooms {
+    border-color: #FFEDD5;
+}
+
+.card-classrooms .card-header {
+    border-color: var(--accent-orange);
+}
+
+.card-payments {
+    border-color: #BFDBFE;
+}
+
+.card-payments .card-header {
+    border-color: var(--primary-blue);
+}
+
+/* NOTIFICATION PANEL */
+
+.notification-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 34px;
+    padding: 2.5rem;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+}
+
+.notif-title {
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.notif-title h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #475569;
+}
+
+.notif-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.notif-row {
+    background: #F8FAFC;
+    border: 1px solid var(--border-light);
+    border-left: 5px solid var(--accent-orange);
+    border-radius: 18px;
+    padding: 1rem 1.2rem;
+}
+
+.timestamp {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.message {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.message strong {
+    color: var(--primary-blue);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: auto;
+    }
+
+    .card-header {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 650px) {
+    .dashboard-container {
+        padding: 2.5rem 1.2rem;
+    }
+
+    .welcome-section h1 {
+        font-size: 2rem;
+    }
+
+    .card {
+        padding: 1.6rem;
+        border-radius: 24px;
+    }
+
+    .card-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .notification-panel {
+        padding: 1.5rem;
+        border-radius: 26px;
+    }
+
+    .notif-title h2 {
+        font-size: 1.5rem;
+    }
+}

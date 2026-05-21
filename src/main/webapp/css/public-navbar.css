@@ -1,0 +1,215 @@
+/* =============================================
+   PATHSHALA — public-navbar.css
+   Shared navbar for Home, About, and Contact
+   ============================================= */
+
+@font-face {
+    font-family: 'Ananda Namaste';
+    src: url('../fonts/ananda-namaste.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.public-navbar {
+    --nav-primary: #1E3A8A;
+    --nav-accent: #F39126;
+    --nav-text: #1F2937;
+    --nav-muted: #6B7280;
+    --nav-border: #E2E8F0;
+    --nav-white: #FFFFFF;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    padding: 12px 64px;
+    background-color: var(--nav-white);
+    border-bottom: 1px solid var(--nav-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    transition: box-shadow 0.25s ease, padding 0.25s ease;
+}
+
+.public-navbar.scrolled {
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+}
+
+.public-nav-left,
+.public-nav-right,
+.public-nav-center {
+    display: flex;
+    align-items: center;
+}
+
+.public-nav-left {
+    justify-content: flex-start;
+}
+
+.public-nav-center {
+    justify-content: center;
+    gap: 48px;
+}
+
+.public-nav-right {
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+.public-logo {
+    font-family: 'Ananda Namaste', cursive, sans-serif;
+    font-size: 32px;
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--nav-text);
+    text-decoration: none;
+}
+
+.public-nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--nav-text);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.public-nav-link:hover,
+.public-nav-link.active {
+    color: var(--nav-accent);
+}
+
+.public-nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0;
+    height: 2px;
+    background-color: var(--nav-accent);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+}
+
+.public-nav-link:hover::after,
+.public-nav-link.active::after {
+    width: 100%;
+}
+
+.public-login-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--nav-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.public-login-link:hover {
+    color: var(--nav-accent);
+}
+
+.public-mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    justify-self: end;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    background: #F8FAFC;
+    border: 1px solid var(--nav-border);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.public-mobile-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--nav-text);
+    border-radius: 999px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.public-mobile-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.public-mobile-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.public-mobile-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+    .public-navbar {
+        grid-template-columns: 1fr auto;
+        padding: 14px 24px;
+        gap: 14px;
+    }
+
+    .public-mobile-toggle {
+        display: flex;
+    }
+
+    .public-nav-center,
+    .public-nav-right {
+        grid-column: 1 / -1;
+        width: 100%;
+        display: none;
+        justify-content: center;
+    }
+
+    .public-nav-center.open,
+    .public-nav-right.open {
+        display: flex;
+        animation: publicNavDrop 0.25s ease forwards;
+    }
+
+    .public-nav-center {
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-top: 8px;
+    }
+
+    .public-nav-right {
+        gap: 16px;
+        padding-bottom: 4px;
+    }
+}
+
+@media (max-width: 520px) {
+    .public-navbar {
+        padding: 12px 16px;
+    }
+
+    .public-nav-center,
+    .public-nav-right {
+        flex-direction: column;
+    }
+
+    .public-nav-right .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@keyframes publicNavDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

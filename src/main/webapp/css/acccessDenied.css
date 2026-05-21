@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #111111;
+  --gray-text: #4b5563;
+  --navy: #1e3a8a;
+  --navy-hover: #1e40af;
+  --orange-link: #d97706;
+  --orange-link-hover: #b45309;
+  --pink-icon-bg: #fce7f3;
+  --pink-icon: #e63a6e;
+}
+
+html,
+body {
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.denied-card {
+  background-color: #ffffff;
+  border-radius: 28px;
+  width: 400px;
+  min-height: 355px;
+  padding: 100px 36px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.75),
+    0 22px 80px rgba(239, 68, 68, 0.16),
+    0 4px 16px rgba(15, 23, 42, 0.08);
+
+  animation: fadeIn 0.5s ease both;
+}
+
+/* =========================
+   ICON
+========================= */
+
+.icon-wrap {
+  width: 58px;
+  height: 58px;
+  background-color: var(--pink-icon-bg);
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 1.5rem;
+
+  animation: fadeInUp 0.45s ease 0.1s both;
+}
+
+.icon-wrap svg {
+  width: 28px;
+  height: 28px;
+  color: var(--pink-icon);
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.denied-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--black);
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 14px;
+
+  animation: fadeInUp 0.45s ease 0.15s both;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.denied-desc {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray-text);
+  line-height: 1.5;
+  text-align: center;
+
+  max-width: 280px;
+
+  margin-bottom: 32px;
+
+  animation: fadeInUp 0.45s ease 0.2s both;
+}
+
+/* =========================
+   RETURN BUTTON
+========================= */
+
+.btn-return {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  width: 300px;
+  height: 52px;
+
+  background-color: var(--navy);
+  color: #ffffff;
+
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+
+  margin-bottom: 1rem;
+
+  animation: fadeInUp 0.45s ease 0.25s both;
+
+  box-shadow: 0 6px 18px rgba(30, 58, 138, 0.22);
+}
+
+.btn-return:hover {
+  background-color: var(--navy-hover);
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 22px rgba(30, 58, 138, 0.4);
+}
+
+.btn-return:active {
+  transform: translateY(0);
+}
+
+.btn-return .arrow {
+  font-size: 1.05rem;
+}
+
+/* =========================
+   CONTACT LINK
+========================= */
+
+.error-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--orange-link);
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+
+  margin-top: 6px;
+
+  animation: fadeInUp 0.45s ease 0.3s both;
+}
+
+.contact-link:hover {
+  color: var(--orange-link-hover);
+  text-decoration: underline;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 520px) {
+
+  .denied-card {
+    width: 100%;
+    padding: 36px 28px;
+  }
+
+  .denied-title {
+    font-size: 28px;
+  }
+
+  .btn-return {
+    width: 100%;
+  }
+
+}
