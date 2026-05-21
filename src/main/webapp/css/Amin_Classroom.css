@@ -660,7 +660,7 @@ html, body {
 .classroom-right-col { flex: 1; }
 
 .subjects-table-card {
-    background: #f5dfc9;
+    background: #f1f5f9; /* Soft cool gray body */
     border-radius: 12px;
     border: 1px solid rgba(0, 0, 0, 0.08);
     overflow: hidden;
@@ -670,7 +670,7 @@ html, body {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 1rem;
-    background: #f59e0b;
+    background: #a3bfa3; /* Muted sage green */
     color: #ffffff;
     font-weight: 700;
     font-size: 0.95rem;
@@ -694,7 +694,7 @@ html, body {
 
 .subjects-table-row:last-child { border-bottom: none; }
 
-.subjects-table-row:hover { background: rgba(245, 158, 11, 0.08); }
+.subjects-table-row:hover { background: rgba(163, 191, 163, 0.15); }
 
 .btn-delete-subject {
     background: #ef4444;
@@ -718,7 +718,7 @@ html, body {
 .subjects-table-add {
     padding: 1.2rem 1.4rem;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.04) 100%);
+    background: rgba(163, 191, 163, 0.08);
     display: flex;
     gap: 0.7rem;
     align-items: center;
@@ -727,7 +727,7 @@ html, body {
 .subject-input {
     flex: 1;
     padding: 0.75rem 1.1rem;
-    border: 2px solid #fdbf60;
+    border: 2px solid #c3d6c3; /* Soft green border */
     border-radius: 10px;
     font-size: 0.92rem;
     font-family: 'Nunito', sans-serif;
@@ -736,7 +736,7 @@ html, body {
     outline: none;
     transition: all 0.3s ease;
     background: #ffffff;
-    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.1);
+    box-shadow: 0 2px 6px rgba(163, 191, 163, 0.1);
 }
 
 .subject-input::placeholder {
@@ -745,13 +745,13 @@ html, body {
 }
 
 .subject-input:focus {
-    border-color: #f59e0b;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    border-color: #a3bfa3;
+    box-shadow: 0 4px 12px rgba(163, 191, 163, 0.25);
     transform: translateY(-2px);
 }
 
 .btn-add-subject {
-    background: linear-gradient(135deg, #f59e0b 0%, #f59e0b 100%);
+    background: #a3bfa3; /* Matching sage green button */
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -762,18 +762,18 @@ html, body {
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
-    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25);
+    box-shadow: 0 4px 10px rgba(163, 191, 163, 0.2);
 }
 
 .btn-add-subject:hover {
-    background: linear-gradient(135deg, #d97706 0%, #d97706 100%);
+    background: #84a98c;
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.35);
+    box-shadow: 0 6px 16px rgba(163, 191, 163, 0.3);
 }
 
 .btn-add-subject:active {
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(245, 158, 11, 0.25);
+    box-shadow: 0 3px 8px rgba(163, 191, 163, 0.2);
 }
 
 /* ── Animations ── */

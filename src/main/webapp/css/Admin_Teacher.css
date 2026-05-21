@@ -736,6 +736,7 @@ html, body {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .form-footer.edit { justify-content: space-between; }

@@ -1,0 +1,338 @@
+/* ======================================================================
+   Pathshala Admin Common Layout
+   File path: src/main/webapp/css/admin-common.css
+   Purpose: shared sidebar, topbar, spacing, profile avatar, and responsive fixes
+   ====================================================================== */
+
+@font-face {
+    font-family: 'Ananda Namaste';
+    src: url('../fonts/ananda-namaste.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --admin-navy: #1E3A8A;
+    --admin-orange: #F39126;
+    --admin-sidebar-bg: #EBF2FB;
+    --admin-page-bg: #EEF5FC;
+    --admin-card-bg: #FFFFFF;
+    --admin-text: #111827;
+    --admin-muted: #64748B;
+    --admin-border: rgba(15, 23, 42, 0.08);
+    --admin-danger: #EF4444;
+    --admin-sidebar-width: 220px;
+    --admin-radius: 22px;
+}
+
+html,
+body {
+    min-width: 0 !important;
+    min-height: 100vh !important;
+    height: auto !important;
+    overflow-x: auto;
+}
+
+body {
+    background: var(--admin-page-bg) !important;
+    color: var(--admin-text);
+}
+
+.app-wrapper {
+    display: flex !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+    background: var(--admin-page-bg) !important;
+    overflow: visible !important;
+}
+
+/* Sidebar */
+.sidebar {
+    width: var(--admin-sidebar-width) !important;
+    min-width: var(--admin-sidebar-width) !important;
+    flex-shrink: 0 !important;
+    background: var(--admin-sidebar-bg) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1.6rem 0 !important;
+    border-right: 1px solid rgba(15, 23, 42, 0.06) !important;
+    box-shadow: inset -1px 0 0 rgba(15, 23, 42, 0.04) !important;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-logo {
+    font-family: 'Ananda Namaste', cursive, sans-serif !important;
+    font-size: 2rem !important;
+    line-height: 1 !important;
+    color:  #111827 !important;
+    padding: 0 1.5rem !important;
+    margin-bottom: 2rem !important;
+    user-select: none;
+}
+
+.sidebar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.nav-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.75rem 1.5rem !important;
+    margin-right: 0.9rem !important;
+    border-radius: 0 999px 999px 0 !important;
+    color: var(--admin-muted) !important;
+    text-decoration: none !important;
+    font-size: 0.96rem !important;
+    font-weight: 700 !important;
+    position: relative !important;
+    transition: 0.2s ease !important;
+}
+
+.nav-item svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0 !important;
+}
+
+.nav-item:hover {
+    background: rgba(30, 58, 138, 0.08) !important;
+    color: var(--admin-navy) !important;
+    transform: translateX(3px);
+}
+
+.nav-item.active {
+    background: rgba(30, 58, 138, 0.12) !important;
+    color: var(--admin-navy) !important;
+}
+
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--admin-navy);
+    border-radius: 0 4px 4px 0;
+}
+
+/* Main area */
+.main-area {
+    flex: 1 !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+}
+
+.topbar {
+    min-height: 72px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 1rem !important;
+    padding: 1rem 2rem !important;
+    background: var(--admin-card-bg) !important;
+    border-bottom: 1px solid var(--admin-border) !important;
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04) !important;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.admin-bell-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--admin-text);
+    background: transparent;
+    text-decoration: none;
+    position: relative;
+    transition: 0.2s ease;
+}
+
+.admin-bell-btn:hover,
+.admin-bell-btn.active {
+    background: rgba(30, 58, 138, 0.08);
+    color: var(--admin-navy);
+}
+
+.admin-bell-btn .bell-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.bell-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 10px;
+    height: 10px;
+    background: var(--admin-danger);
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+}
+
+.topbar-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(15, 23, 42, 0.12);
+}
+
+.user-avatar {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    background: #E2E8F0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2px solid transparent;
+    text-decoration: none !important;
+}
+
+.user-avatar.active,
+.user-avatar:hover {
+    border-color: var(--admin-navy);
+}
+
+.user-avatar img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+.avatar-fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--admin-muted);
+}
+
+.logout-btn {
+    min-height: 40px;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 0.4rem !important;
+    color: var(--admin-danger) !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+}
+
+/* Content padding normalization */
+.content,
+.dashboard-content,
+.page-content,
+.main-content,
+.admin-content,
+.classroom-content,
+.report-content,
+.contact-content,
+.profile-content {
+    padding: 2rem !important;
+}
+
+.main-area > main,
+.main-area > section {
+    width: 100%;
+}
+
+/* Cards and tables feel more consistent without changing page-specific layouts */
+.card,
+.stat-card,
+.panel,
+.table-card,
+.content-card,
+.form-card,
+.profile-card,
+.contact-card,
+.report-card,
+.classroom-card {
+    border-radius: var(--admin-radius);
+}
+
+input,
+select,
+textarea,
+button,
+.action-btn,
+.btn,
+.add-btn,
+.save-btn,
+.cancel-btn,
+.delete-btn,
+.edit-btn,
+.view-btn {
+    font-family: inherit;
+}
+
+/* Responsive fallback */
+@media (max-width: 900px) {
+    .app-wrapper {
+        flex-direction: column !important;
+    }
+
+    .sidebar {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        position: relative !important;
+        padding: 1rem !important;
+    }
+
+    .sidebar-logo {
+        padding: 0 !important;
+        margin-bottom: 1rem !important;
+        text-align: center;
+    }
+
+    .sidebar-nav {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+    }
+
+    .nav-item {
+        margin: 0 !important;
+        border-radius: 999px !important;
+        padding: 0.65rem 1rem !important;
+    }
+
+    .nav-item.active::before {
+        display: none;
+    }
+
+    .topbar {
+        position: relative !important;
+        justify-content: center !important;
+        padding: 1rem !important;
+    }
+
+    .content,
+    .dashboard-content,
+    .page-content,
+    .main-content,
+    .admin-content,
+    .classroom-content,
+    .report-content,
+    .contact-content,
+    .profile-content,
+    .main-area > main {
+        padding: 1.25rem !important;
+    }
+}

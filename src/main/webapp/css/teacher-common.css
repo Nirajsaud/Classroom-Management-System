@@ -1,0 +1,263 @@
+/* ==========================================================================
+   PATHSHALA — Shared Teacher Navbar
+   File path: src/main/webapp/css/teacher-common.css
+
+   Use this after each teacher page CSS and notification.css.
+   It standardizes the navbar, notification/profile area, and responsive behavior.
+   ========================================================================== */
+
+:root {
+    --teacher-bg-light: #F8FAFC;
+    --teacher-primary: #1E3A8A;
+    --teacher-primary-soft: #EFF6FF;
+    --teacher-danger: #EF4444;
+    --teacher-text: #111827;
+    --teacher-muted: #64748B;
+    --teacher-muted-light: #94A3B8;
+    --teacher-border: #E2E8F0;
+    --teacher-white: #FFFFFF;
+}
+
+@font-face {
+    font-family: 'Ananda Namaste';
+    src: url('../fonts/ananda-namaste.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ---------------- Shared teacher navbar ---------------- */
+
+.main-nav {
+    background: var(--teacher-white) !important;
+    min-height: 64px !important;
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    border-bottom: 1px solid var(--teacher-border) !important;
+    padding: 0 4rem !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 250 !important;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04) !important;
+}
+
+.nav-container {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+}
+
+.logo-area {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.pathshala-logo {
+    font-family: 'Ananda Namaste', cursive, sans-serif !important;
+    font-size: 1.85rem !important;
+    line-height: 1 !important;
+    color: #000000 !important;
+    font-weight: normal !important;
+    white-space: nowrap !important;
+}
+
+.center-links {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.55rem !important;
+}
+
+.nav-link {
+    color: var(--teacher-muted-light) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    padding: 0.65rem 0.9rem !important;
+    border-radius: 999px !important;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease !important;
+}
+
+.nav-link:hover {
+    color: var(--teacher-primary) !important;
+    background: var(--teacher-primary-soft) !important;
+    transform: translateY(-1px) !important;
+}
+
+.nav-link.active {
+    color: var(--teacher-primary) !important;
+    background: var(--teacher-primary-soft) !important;
+}
+
+.user-controls {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 1rem !important;
+}
+
+.v-divider {
+    width: 1px !important;
+    height: 30px !important;
+    background: var(--teacher-border) !important;
+}
+
+/* ---------------- Profile icon ---------------- */
+
+.profile-icon {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    position: relative !important;
+    background: #F3F4F6 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--teacher-muted) !important;
+    text-decoration: none !important;
+    border: 2px solid transparent !important;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.profile-icon:hover,
+.profile-icon.profile-active {
+    border-color: var(--teacher-primary) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(30, 58, 138, 0.16) !important;
+}
+
+.nav-profile-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    display: block;
+}
+
+.default-profile-icon {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--teacher-muted);
+    font-size: 1rem;
+}
+
+/* ---------------- Logout ---------------- */
+
+.logout-btn {
+    color: var(--teacher-danger) !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    padding: 0.55rem 0.7rem !important;
+    border-radius: 999px !important;
+    transition: background-color 0.2s ease, transform 0.2s ease !important;
+}
+
+.logout-btn:hover {
+    background: #FEF2F2 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ---------------- Notification alignment override ---------------- */
+
+.bell-wrapper {
+    position: relative;
+}
+
+.bell-btn {
+    width: 38px !important;
+    height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.notif-dropdown {
+    z-index: 500 !important;
+}
+
+/* ---------------- Shared profile-page polish ---------------- */
+
+.profile-card {
+    border-radius: 24px !important;
+}
+
+.profile-photo {
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    background: #F3F4F6 !important;
+}
+
+.profile-photo img,
+#imagePreview {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 980px) {
+    .main-nav {
+        height: auto !important;
+        padding: 1rem 1.5rem !important;
+    }
+
+    .nav-container {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .logo-area,
+    .center-links,
+    .user-controls {
+        justify-content: center !important;
+    }
+
+    .center-links {
+        flex-wrap: wrap !important;
+    }
+
+    .user-controls {
+        flex-wrap: wrap !important;
+    }
+
+    .notif-dropdown {
+        right: 50% !important;
+        transform: translate(50%, -8px) scale(0.96) !important;
+    }
+
+    .notif-dropdown.open {
+        transform: translate(50%, 0) scale(1) !important;
+    }
+}
+
+@media (max-width: 560px) {
+    .main-nav {
+        padding: 0.9rem 1rem !important;
+    }
+
+    .center-links {
+        gap: 0.35rem !important;
+    }
+
+    .nav-link {
+        font-size: 0.82rem !important;
+        padding: 0.55rem 0.75rem !important;
+    }
+
+    .notif-dropdown {
+        width: min(330px, calc(100vw - 32px)) !important;
+    }
+}
