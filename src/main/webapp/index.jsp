@@ -99,7 +99,7 @@
             <div class="feature-card">
                 <!-- Replace with icon -->
                 <div class="placeholder-icon">
-                <img src="images/landing_page_flexible_enrollment.jpg" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+                <img src="images/landing_page_flexible_enrollment.jpg" style="width: 150px; height: 100px; border-radius: 50%; object-fit: cover;">
                 </div>
                 <h4>Flexible Enrollment</h4>
                 <p>Study at your own pace with our flexible learning options tailored for you.</p>

@@ -136,7 +136,7 @@
                     <div class="team-card-inner">
                         <div class="team-img-wrap">
                             <img
-                                src="images/sabin.jpeg"
+                                src="images/sabin.jfif"
                                 alt="Sabin Paudel"
                                 class="team-img team-photo"
                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"

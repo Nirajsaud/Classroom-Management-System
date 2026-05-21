@@ -168,6 +168,7 @@ a {
 
 .hero-visual-layer {
     display: flex;
+    margin-bottom: 30px;
     align-items: flex-end;
     justify-content: space-between;
     gap: var(--space-8);
@@ -677,5 +678,3 @@ a {
         max-width: 350px;
     }
 }
-
-
