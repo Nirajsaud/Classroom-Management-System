@@ -8,83 +8,123 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
-import com.pathshala.model.UserModel;
-import com.pathshala.model.PendingApprovalDTO;
 import com.pathshala.dao.UserDAO;
+import com.pathshala.model.PendingApprovalDTO;
+import com.pathshala.model.UserModel;
 import com.pathshala.utils.SessionUtil;
 
 @WebFilter(urlPatterns = {
-    "/dashboard", "/profile", "/teachers", 
-    "/students", "/students/view", "/classrooms", 
-    "/report", "/admincontact", "/approvals"
+        "/dashboard",
+        "/profile",
+
+        "/classrooms",
+        "/classrooms/manage",
+        "/subjects",
+        "/payment",
+
+        "/teachers",
+        "/teachers/edit",
+        "/addteacher",
+
+        "/students",
+        "/students/view",
+
+        "/report",
+        "/approvals",
+        "/admincontact"
 })
 public class AuthenticationFilter extends HttpFilter {
-       
+
     private static final long serialVersionUID = 1L;
 
+    private static final List<String> STUDENT_ALLOWED = Arrays.asList(
+            "/dashboard",
+            "/classrooms",
+            "/subjects",
+            "/payment",
+            "/profile"
+    );
+
+    private static final List<String> TEACHER_ALLOWED = Arrays.asList(
+            "/dashboard",
+            "/classrooms",
+            "/students",
+            "/profile"
+    );
+
+    private static final List<String> ADMIN_ALLOWED = Arrays.asList(
+            "/dashboard",
+            "/teachers",
+            "/teachers/edit",
+            "/addteacher",
+            "/students",
+            "/students/view",
+            "/classrooms",
+            "/classrooms/manage",
+            "/report",
+            "/profile",
+            "/approvals",
+            "/admincontact"
+    );
+
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        // 1. Enforce Authentication
         UserModel user = (UserModel) SessionUtil.getAttribute(httpRequest, "user");
-        boolean isLoggedIn = (user != null);
 
-        if (!isLoggedIn) {
+        if (user == null) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login?error=please_login");
             return;
         }
 
-        // Prevent browser back-button caching for secure sessions
         httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         httpResponse.setHeader("Pragma", "no-cache");
         httpResponse.setDateHeader("Expires", 0);
 
-        String currentURI = httpRequest.getRequestURI();
+        String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
         String role = user.getRole().toUpperCase();
 
-        // 2. Centralized Real-time Admin Notifications Injection
-        if ("ADMIN".equals(role)) {
-            UserDAO userDAO = new UserDAO();
-            List<PendingApprovalDTO> pendingApprovals = userDAO.getPendingApprovals();
-            httpRequest.setAttribute("pendingApprovals", pendingApprovals);
-            httpRequest.setAttribute("pendingCount", pendingApprovals.size());
+        boolean allowed = false;
+
+        switch (role) {
+            case "STUDENT":
+                allowed = STUDENT_ALLOWED.contains(path);
+                break;
+
+            case "TEACHER":
+                allowed = TEACHER_ALLOWED.contains(path);
+                break;
+
+            case "ADMIN":
+                allowed = ADMIN_ALLOWED.contains(path);
+
+                if (allowed) {
+                    UserDAO userDAO = new UserDAO();
+                    List<PendingApprovalDTO> pendingApprovals = userDAO.getPendingApprovals();
+                    httpRequest.setAttribute("pendingApprovals", pendingApprovals);
+                    httpRequest.setAttribute("pendingCount", pendingApprovals.size());
+                }
+                break;
+
+            default:
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login?error=invalid_role");
+                return;
         }
 
-        // 3. Handle Shared Route Routing (/dashboard)
-        if (currentURI.contains("/dashboard")) {
-            chain.doFilter(request, response);
+        if (!allowed) {
+            httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
-        
-        // NOTE: The /profile routing block was removed from here. 
-        // It will safely pass through to the ProfileServlet below.
 
-        // 4. Centralized Authorization Guard Rules
-        if (currentURI.contains("/teachers") || currentURI.contains("/report") || 
-            currentURI.contains("/admincontact") || currentURI.contains("/addteacher") || 
-            currentURI.contains("/students/view") || currentURI.contains("/approvals")) {
-            
-            if (!role.equals("ADMIN")) {
-                httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
-                return;
-            }
-        }
-
-        if (currentURI.contains("/students")) {
-            if (role.equals("STUDENT")) {
-                httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
-                return;
-            }
-        }
-
-        // Allowed to proceed to requested resource servlet paths (like ProfileServlet)
         chain.doFilter(request, response);
     }
 }
