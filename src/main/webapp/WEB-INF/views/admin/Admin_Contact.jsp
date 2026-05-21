@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact – Pathshala</title>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-common.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Admin_Contact.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-common.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></head>
 
 <body>
 <div class="app-wrapper">
@@ -21,85 +20,81 @@
     <div class="main-area">
         <jsp:include page="/WEB-INF/views/admin/adminTopbar.jsp" />
 
-        <main class="content-area admin-contact-page">
-            <div class="submission-header">
-                <div class="title-block">
-                    <h1>Contact Submission</h1>
-                    <p>Review and manage inquiries sent through the Pathshala platform</p>
-                </div>
-            </div>
+			<main class="content-area admin-contact-page">
 
-            <div class="submission-card">
-                <div class="table-wrapper">
-                    <table class="styled-table">
-                        <thead>
-                            <tr>
-                                <th width="15%">Date / Time</th>
-                                <th width="25%">Sender Details</th>
-                                <th width="20%">Phone Number</th>
-                                <th width="25%">Message Snippet</th>
-                                <th width="15%" class="text-right">Actions</th>
-                            </tr>
-                        </thead>
+				<div class="page-header">
+					<div>
+						<h1 class="page-title-large">Contact Submission</h1>
+						<p class="page-subtitle">Review and manage inquiries sent
+							through the Pathshala platform</p>
+					</div>
+				</div>
 
-                        <tbody>
-                            <c:forEach var="submission" items="${submissions}">
-                                <tr class="main-row">
-                                    <td>
-                                        <div class="date-txt"><c:out value="${submission.date}"/></div>
-                                        <div class="time-txt"><c:out value="${submission.time}"/></div>
-                                    </td>
+				<section class="contact-table-card">
+					<div class="contact-header-row">
+						<div>Date / Time</div>
+						<div>Sender Details</div>
+						<div>Phone Number</div>
+						<div>Message</div>
+						<div>Action</div>
+					</div>
 
-                                    <td>
-                                        <div class="user-name"><c:out value="${submission.name}"/></div>
-                                        <div class="user-email"><c:out value="${submission.email}"/></div>
-                                    </td>
+					<c:choose>
+						<c:when test="${empty submissions}">
+							<div class="empty-contact-row">No contact submissions
+								found.</div>
+						</c:when>
 
-                                    <td>
-                                        <span class="phone-tag"><c:out value="${submission.phone}"/></span>
-                                    </td>
+						<c:otherwise>
+							<c:forEach var="submission" items="${submissions}">
+								<div class="contact-row">
+									<div>
+										<div class="date-txt">
+											<c:out value="${submission.date}" />
+										</div>
+										<div class="time-txt">
+											<c:out value="${submission.time}" />
+										</div>
+									</div>
 
-                                    <td>
-                                        <p class="msg-preview"><c:out value="${submission.messageSnippet}"/></p>
-                                    </td>
+									<div>
+										<div class="user-name">
+											<c:out value="${submission.name}" />
+										</div>
+										<div class="user-email">
+											<c:out value="${submission.email}" />
+										</div>
+									</div>
 
-                                    <td class="text-right">
-                                        <div class="action-group">
-                                            <form action="${pageContext.request.contextPath}/admincontact"
-                                                  method="POST"
-                                                  class="delete-form"
-                                                  onsubmit="return confirm('Permanently delete this inquiry?');">
-                                                <input type="hidden" name="queryId" value="${submission.queryId}">
-                                                <input type="hidden" name="action" value="delete">
-                                                <button class="tbl-btn bin-btn" type="submit" title="Delete Submission">Bin</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
+									<div>
+										<span class="phone-tag"><c:out
+												value="${submission.phone}" /></span>
+									</div>
 
-                                <tr class="detail-row">
-                                    <td colspan="5">
-                                        <div class="detail-content">
-                                            <h5>Full Message Content (${submission.subject}):</h5>
-                                            <p><c:out value="${submission.fullMessage}"/></p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+									<div>
+										<p class="msg-preview">
+											<c:out value="${submission.messageSnippet}" />
+										</p>
+									</div>
 
-                            <c:if test="${empty submissions}">
-                                <tr>
-                                    <td colspan="5" class="empty-contact-row">
-                                        No contact submissions found.
-                                    </td>
-                                </tr>
-                            </c:if>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
-    </div>
+									<div>
+										<form action="${pageContext.request.contextPath}/admincontact"
+											method="POST"
+											onsubmit="return confirm('Permanently delete this inquiry?');">
+											<input type="hidden" name="queryId"
+												value="${submission.queryId}"> <input type="hidden"
+												name="action" value="delete">
+											<button class="bin-btn" type="submit">Bin</button>
+										</form>
+									</div>
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</section>
+
+			</main>
+		</div>
 </div>
 
 <script src="${pageContext.request.contextPath}/js/Admin_Contact.js"></script>

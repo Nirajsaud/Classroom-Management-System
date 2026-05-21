@@ -17,10 +17,10 @@ CS5054NI Advanced Programming Technologies - Group Coursework
 ## How to set up
 
 ### 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git clone https://github.com/Nirajsaud/Classroom-Management-System
 
 ### 2. Import into Eclipse
-- File → Import → Existing Maven Projects
+- File → Import → Existing Maven Projectss
 - Browse to the cloned folder → Finish
 - Right-click project → Maven → Update Project (Alt+F5)
 
