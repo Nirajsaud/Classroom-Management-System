@@ -81,6 +81,27 @@ public class ProfileServlet extends HttpServlet {
         String fullName = request.getParameter("fullName");
         String phoneNumber = request.getParameter("phoneNumber");
 
+        // Backend validation
+        if (fullName == null || fullName.trim().isEmpty()
+                || phoneNumber == null || phoneNumber.trim().isEmpty()) {
+
+            SessionUtil.setAttribute(request, "error", "Full name and phone number are required.", 60);
+            response.sendRedirect(request.getContextPath() + "/profile");
+            return;
+        }
+
+        if (!fullName.matches("^[A-Za-z ]{3,50}$")) {
+            SessionUtil.setAttribute(request, "error", "Full name must contain only letters and spaces.", 60);
+            response.sendRedirect(request.getContextPath() + "/profile");
+            return;
+        }
+
+        if (!phoneNumber.matches("^[0-9]{10}$")) {
+            SessionUtil.setAttribute(request, "error", "Phone number must be exactly 10 digits.", 60);
+            response.sendRedirect(request.getContextPath() + "/profile");
+            return;
+        }
+
         try {
             int rowsUpdated = 0;
 
@@ -110,7 +131,14 @@ public class ProfileServlet extends HttpServlet {
                 filePart = request.getPart("profileImage");
             }
 
-            if (filePart != null && filePart.getSize() > 0 && FileUploadUtil.isImage(filePart)) {
+            if (filePart != null && filePart.getSize() > 0) {
+
+                if (!FileUploadUtil.isImage(filePart)) {
+                    SessionUtil.setAttribute(request, "error", "Only image files are allowed.", 60);
+                    response.sendRedirect(request.getContextPath() + "/profile");
+                    return;
+                }
+
                 String extension = FileUploadUtil.getFileExtension(filePart.getSubmittedFileName());
                 String fileName = user.getEmail() + extension;
 

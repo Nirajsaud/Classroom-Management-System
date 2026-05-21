@@ -33,7 +33,53 @@
                 </div>
             </c:if>
 
-            <form action="${pageContext.request.contextPath}/addteacher" method="POST" id="addTeacherForm">
+				<c:if test="${not empty param.status && param.status ne 'error'}">
+					<div class="page-alert validation-alert">
+
+						<c:choose>
+
+							<c:when test="${param.status eq 'missing'}">
+                All required fields must be filled.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_name'}">
+                Full name must contain only letters and spaces.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_email'}">
+                Please enter a valid email address.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_phone'}">
+                Phone number must contain exactly 10 digits.
+            </c:when>
+
+							<c:when test="${param.status eq 'weak_password'}">
+                Password must be at least 6 characters long.
+            </c:when>
+
+							<c:when test="${param.status eq 'password_mismatch'}">
+                Password and confirm password do not match.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_subject'}">
+                Invalid subject selected.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_class'}">
+                Invalid classroom assignment selected.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_id'}">
+                Invalid teacher ID detected.
+            </c:when>
+
+						</c:choose>
+
+					</div>
+				</c:if>
+
+				<form action="${pageContext.request.contextPath}/addteacher" method="POST" id="addTeacherForm">
                 <div class="form-container">
                     <div class="form-section">
                         <div class="section-header">

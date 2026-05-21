@@ -33,8 +33,8 @@
     </button>
 
     <div class="public-nav-center">
-        <a href="${pageContext.request.contextPath}/home" class="public-nav-link active">Home</a>
-        <a href="${pageContext.request.contextPath}/about" class="public-nav-link">About Us</a>
+        <a href="${pageContext.request.contextPath}/home" class="public-nav-link">Home</a>
+        <a href="${pageContext.request.contextPath}/about" class="public-nav-link active">About Us</a>
         <a href="${pageContext.request.contextPath}/contact" class="public-nav-link">Contact Us</a>
     </div>
 

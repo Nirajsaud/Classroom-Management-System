@@ -71,12 +71,12 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="fullName">FULL NAME</label>
-                    <input type="text" id="fullName" name="fullName" value="${user.fullName}" required>
+                    <input type="text" id="fullName" name="fullName" value="${user.fullName}">
                 </div>
 
                 <div class="form-group">
                     <label for="phoneNumber">PHONE NUMBER</label>
-                    <input type="text" id="phoneNumber" name="phoneNumber" value="${user.phoneNumber}" required>
+                    <input type="text" id="phoneNumber" name="phoneNumber" value="${user.phoneNumber}">
                 </div>
 
                 <div class="form-group full-width">

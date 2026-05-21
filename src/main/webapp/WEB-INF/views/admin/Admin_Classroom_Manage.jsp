@@ -19,10 +19,62 @@
         <jsp:include page="/WEB-INF/views/admin/adminTopbar.jsp" />
 
         <main class="content-area">
-            <div class="form-header">
-                <a href="${pageContext.request.contextPath}/classrooms" class="btn-cancel">Back</a>
-                <h1 class="form-title">Classroom Details</h1>
-            </div>
+				<div class="form-header">
+					<a href="${pageContext.request.contextPath}/classrooms"
+						class="btn-cancel">Back</a>
+					<h1 class="form-title">Classroom Details</h1>
+				</div>
+
+				<c:if test="${not empty param.status}">
+					<div
+						class="${param.status eq 'price_updated' || param.status eq 'subject_added' || param.status eq 'subject_deleted' 
+                ? 'page-alert success-alert' 
+                : 'page-alert validation-alert'}">
+
+						<c:choose>
+							<c:when test="${param.status eq 'missing_action'}">
+                No classroom action was selected.
+            </c:when>
+
+							<c:when test="${param.status eq 'missing_price'}">
+                Please enter a classroom price.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_price'}">
+                Price must be a valid number.
+            </c:when>
+
+							<c:when test="${param.status eq 'negative_price'}">
+                Price cannot be negative.
+            </c:when>
+
+							<c:when test="${param.status eq 'missing_subject'}">
+                Please enter a subject name.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_subject'}">
+                Subject name must contain only letters and spaces.
+            </c:when>
+
+							<c:when test="${param.status eq 'invalid_action'}">
+                Invalid classroom action.
+            </c:when>
+
+							<c:when test="${param.status eq 'price_updated'}">
+                Classroom price updated successfully.
+            </c:when>
+
+							<c:when test="${param.status eq 'subject_added'}">
+                Subject added successfully.
+            </c:when>
+
+							<c:when test="${param.status eq 'subject_deleted'}">
+                Subject deleted successfully.
+            </c:when>
+						</c:choose>
+
+					</div>
+				</c:if>
 
 				<div class="classroom-details-body">
 					<div class="classroom-left-col">
